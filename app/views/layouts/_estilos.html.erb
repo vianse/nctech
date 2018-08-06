@@ -1,0 +1,623 @@
+<style>
+/* Hoja de estilos para sitio Endomarketing NC Tech
+Autor: @ionsoniko yon2788@gmail.com
+Fecha de craciÃ³n: 2 abril 2018
+*/
+html {
+  min-height: 100%;
+  position: relative;
+}
+body{
+	margin:0;
+	padding:0;
+	background-image: url(../images/bg-sitio-interior.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center bottom;
+	font-family: 'Roboto Condensed', sans-serif;
+  margin-bottom: 100px;
+}
+#gral{
+	width: 100%;
+	float: left;
+}
+.soy90{
+  width: 90%;
+  margin: 0 auto;
+}
+.cont100{
+	width: 100%;
+	float: left;
+	margin: 0 auto;
+	display: inline-block;
+}
+#logotipo{
+  margin: 3% 5% 0 0;
+	width: 25%;
+	font-size: 30px;
+	color: #fff;
+	text-align: left;
+}
+#logotipo img{
+	width: 100%;
+  float: left;
+}
+#logotipo span{
+  float: left;
+	margin-top: 20px;
+}
+#logotipo #sub{
+	margin-left: 40%;
+}
+.subsub{
+	display: none;
+	text-align: center;
+	color: #fff;
+	font-size: 30px;
+	margin-top: 3%;
+}
+#frase{
+    margin-top: 7%;
+    width: 100%;
+    /* margin-left: -200px; */
+    height: 60px;
+    /* margin-top: -150px; */
+    padding: 5px;
+    font-size: 36px;
+    opacity: 0.7;
+    color: #fff;
+    text-align: center;
+    float: left;
+    padding: 0 3%;
+}
+#entrar{
+	width: 70%;
+	color: #fff;
+  float: left;
+  margin-top: 10%;
+}
+.carousel-indicators li {
+    border-radius: 10px;
+    margin: 1px 3px;
+    height: 10px;
+    max-width: 10px;
+    border: 1px solid #FFF;
+    background-color: transparent;
+}
+.carousel-indicators .active {
+	border-radius: 10px;
+    background-color: #fff;
+    max-width: 12px;
+    margin: 0 3px;
+    height: 12px;
+}
+.cont-gral{
+  padding: 2% 2% 4% 2%;
+}
+.color-blanco{
+  color: #fff;
+}
+.color-gris{
+  color: #333;
+}
+.texto-gris{
+	color: #646162;
+}
+.lineadw{
+  width: 40%;
+  height: 8px;
+  margin: 10px auto;
+}
+.linea-roja{
+  background-color: #ED1C24;
+}
+.linea-verde{
+  background-color: #39B54A;
+}
+.linea-morada{
+	background-color: #662D91;
+}
+.linea-gris{
+  background-color: #BCBEC0;
+}
+.linea-azul{
+  background-color: #27AAE1;
+}
+.linea-naranja{
+  background-color: #F7941D;
+}
+.linea-amarilla{
+  background-color: #FFDE17;
+}
+.linea-azul1{
+  background-color: #2B3990;
+}
+.linea-azul2{
+  background-color: #1B75BC;
+}
+.linea-azul3{
+  background-color: #27AAE1;
+}
+.color-naranja{
+  color: #F7941D;
+}
+.img-responsive{
+  width: 100%;
+}
+.iconoshome{
+  width: 25%;
+}
+#elslide{
+  padding: 0;
+  margin: 0px auto 46px;
+  width: 1010px;
+  height: 200px;
+}
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 200px;
+}
+.titulos-home{
+  font-size: 19px;
+  margin: 10px 0;
+  text-decoration: none;
+}
+.subm{
+  top: 0% !important;
+  left: 70% !important;
+  font-size: 14px;
+  color: #fff;
+  min-width: 10%;
+  margin: 0;
+  padding: 0;
+  width: 35%;
+  background-color: transparent;
+  transform: inherit !important;
+  border: none;
+}
+.dropdown-item{
+  background-color: transparent;
+}
+.dropdown-item:hover{
+  background-color: transparent;
+}
+.subm .dropdown-item{
+  padding: 4px 10px;
+  color: #fff;
+  margin: 0;
+  background-image: url(../images/bg-negro-transparente.png);
+  margin-bottom: 2px;
+  font-size: 12px;
+}
+.subm [type=reset], [type=submit], button, html [type=button]{
+  margin: 0 15px;
+}
+.subm .dropdown-item:focus, .dropdown-item:hover{
+  background-color: #000;
+  cursor: pointer;
+  text-decoration: none;
+}
+.subm .titulos-home:focus, .titulos-home:hover{
+  text-decoration: none;
+}
+#log-int{
+  width: 50%;
+  float: left;
+}
+#log-int img{
+  width: 100%;
+}
+.carousel {
+    position: relative;
+    border: 1px solid #fff;
+    padding: 10px 10px 10px 10px;
+}
+.carousel-indicators {
+  position: absolute;
+  right: 0;
+  bottom: 0px;
+  left: 0;
+  z-index: 15;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding-left: 0;
+  margin-right: 15%;
+  margin-left: 15%;
+  list-style: none;
+}
+.carousel-indicators .active{
+  background-color: #8DC63F;
+  border: 0;
+}
+.carousel-indicators li{
+  background-color: #F7941D;
+  border: 0;
+}
+#log-int2{
+  position: absolute;
+  right: 3%;
+  bottom: 3%;
+  width: 15%;
+}
+#log-int2 img{
+  width: 100%;
+}
+.txt-pie-fotos{
+  font-size: 20px;
+}
+#demo-default{
+  margin: 0 auto;
+}
+.btn-naranja{
+  color: #fff;
+  background-color: #ea983e;
+  padding: 10px;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+}
+.btn-naranja:hover{
+  text-decoration: none;
+  color: #fff;
+}
+.img100{
+  width: 100%;
+}
+.linea-filtro{
+  position: relative;
+  margin-top: -100px;
+}
+.linea-filtro .form-control{
+  margin: 0 15px;
+}
+.linea-filtro input[type=checkbox], input[type=radio]{
+  margin: 0 15px;
+}
+.linea-filtro [type=reset], [type=submit], button, html [type=button]{
+  margin: 0 15px;
+}
+.icono-int{
+  margin-bottom: 15px;
+  width: 60%;
+}
+.linea-int{
+  width: 100%;
+}
+#sub-izq .dropdown-item{
+  text-align: left;
+  color: #fff;
+  background-image: url(../images/bg-negro-transparente.png);
+  background-color: transparent;
+  margin: 0 0 2px 0;
+  font-size: 12px !important;
+}
+#sub-izq .dropdown-item:hover{
+  background-color: #000;
+}
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  border-spacing: 5px;
+  border-collapse: separate;
+}
+thead tr th{
+  background-color: #F7941D !important;
+  color: #fff;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  border-top: 0 !important;
+  text-align: center;
+  font-size: 12px;
+  padding: 3px !important;
+}
+tbody tr td{
+  color: #fff;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  border-top: 0 !important;
+  text-align: center;
+  color: #58585a;
+  font-size: 12px;
+  padding: 2px !important;
+}
+.gris1{
+  background-color: #bbbdbf !important;
+}
+.gris2{
+  background-color: #e6e7e7 !important;
+}
+.gris3{
+  background-color: #585858 !important;
+}
+.modal-content{
+  color: #1c1c1c;
+}
+#cabecerasitio{
+  background-image: url(../images/bg-negro-transparente.png);
+  padding: 1%;
+  width: 100%;
+  float: left;
+  font-size: 14px;
+}
+#pie-sitio{
+ background-image: url(../images/bg-negro-transparente.png);
+  padding: 1%;
+  width: 100%;
+  float: left;
+  position: absolute;
+  bottom: 0;
+  font-size: 11px;
+}
+#sett{
+  padding: 5% 0;
+}
+.sub-head{
+  background-color: #000;
+  color: #fff;
+}
+.sub-head .dropdown-item{
+  color: #fff;
+}
+.sub-head .dropdown-item:hover{
+  color: #000;
+  background-color: #fff;
+}
+.btn-atras{}
+.mosaico-int .icono-int{
+  width: 38%;
+  text-align: center;
+}
+.mosaico-int .icono-int:hover{
+  cursor: pointer;
+}
+h4{
+  font-size: 18px;
+}
+.btn{
+  font-size: 12px;
+  padding: 3px 10px;
+}
+.menu-activo{
+  background-image: url(../images/flecha-activo.png) !important;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: cover;
+}
+#sub-izq .dropdown-item:hover{
+  text-align: left;
+  color: #fff;
+  background-image: url(../images/flecha-activo.png) !important;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: cover;
+  background-color: transparent;
+  margin: 0 0 2px 0;
+  font-size: 12px !important;
+}
+.logopdf{
+  padding: 0;
+}
+.logopdf img{
+  width: 80%;
+}
+.titulopdf{
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 17px;
+
+}
+#savePDFMinuta{
+  padding: 50px 20px;
+  margin-bottom: 50px;
+}
+#savePDFProceso{
+  padding: 20px;
+  margin-bottom: 50px;
+}
+#savePDFPolitica{
+  padding: 20px;
+  margin-bottom: 50px;
+}
+.lineapdf{
+  width: 100%;
+  height: 2px;
+  margin: 10px auto;
+}
+.celdapdf{
+  padding: 0px 0px;
+  border: 1px solid #585858;
+  font-size: 13px;
+}
+.celdapdf2{
+    padding: 0 0 0 5px;
+    border: 1px solid #585858;
+    font-size: 13px;
+}
+.espaciot{
+  margin-bottom: 20px;
+}
+.bg-blanco{
+  background-color: #fff;
+  padding: 1%;
+}
+.bg-blanco h5{
+  background-color: #F7941D;
+  margin-bottom: 0;
+  padding: 5px 10px 5px 10px;
+  font-size: 15px;
+}
+.form-control{
+	border-radius: 0;
+    font-size: 13px;
+    padding: 5px 5px;
+    line-height: 0;
+}
+textarea.form-control{
+    line-height: 1.5;
+}
+.chosen-container-single .chosen-single span{
+  color:#333;
+}
+.diaevento{
+  height: 200px;
+}
+.resevento{
+  background-color: #e6e7e7;
+  color: #666;
+  font-size: 13px;
+}
+.resevento .row{
+  border-bottom: 1px solid #F7941D;
+}
+.coldia{
+  margin-right: 10px;
+}
+.tit-mosaico{
+  font-size: 17px;
+}
+input, button, select, textarea{
+	font-size: 11px;
+}
+.left80{
+	margin-left: -80px;
+}
+#sub-izq{
+  margin-left: 0 !important;
+}
+.subtt{
+	font-size: 13px;
+	text-align: left;
+}
+.titt{
+  font-size: 15px;
+}
+.input-sm{
+    margin: 0 8px !important;
+    height: auto !important;
+    padding: 1px !important;
+}
+.page-item{
+  font-size: 13px;
+}
+.page-item a{
+  padding: 5px;
+  color: gray;
+}
+.page-item:hover{
+  padding: 5px;
+  background-color: transparent !important;
+}
+.page-item a:hover{
+  padding: 5px;
+  background-color: transparent !important;
+}
+.page-item.active .page-link{
+  background-color: #F7941D;
+  border-color: #F7941D;
+}
+.angularjs-datetime-picker{
+  z-index: 100;
+}
+.datepicker .datepicker-switch, .datepicker .next, .datepicker .prev, .datepicker tfoot tr th{
+  background-color: white !important;
+  color: gray !important;
+}
+.dow{
+  background-color: white !important;
+  color: gray !important;
+}
+.ng-binding{
+  font-size: 13px;
+}
+.btn-success{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/*Responsivo*/
+@media screen and (max-width: 900px) {
+  #logotipo{
+  	width: 100%;
+  	float: none;
+  	text-align: center;
+  }
+  #logotipo img{
+  	width: 50%;
+  	text-align: center;
+  }
+  #logotipo span{
+  	display: none;
+  }
+  #logotipo #sub{
+  	display: none;
+  }
+  .subsub{
+  	display: block;
+  }
+  #frase{
+  	position: relative;
+  	height: auto;
+  	display: none;
+  }
+  #entrar{
+  	width: 100%;
+  	right: 0;
+  	padding: 0 3%;
+  	position: relative;
+  	margin-top: 10%;
+  }
+  .subm {
+    top: 0%;
+    left: 4%;
+    background-color: #231F20;
+    opacity: 1;
+    font-size: 14px;
+    color: #fff;
+    min-width: 10%;
+    margin: 0;
+    padding: 0;
+    width: 92%;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 770px) {
+  .icono-int{
+    width: 50%;
+  }
+  .linea-filtro{
+    margin: 30px 0;
+  }
+  .form-group{
+    width: 100%;
+  }
+  .form-control{
+    width:90%;
+  }
+  #log-int2{
+    position: relative;
+    margin: 40px 0 10px 0;
+    /* bottom: 14%; */
+    width: 50%;
+    float: right;
+  }
+}
+@media screen and (max-width: 500px) {
+  body {
+    margin:0;
+    padding:0;
+    background-image: url(../images/bg-movil.jpg);
+    background-size: contain;
+    background-position: center top;
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+}
+</style>

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Minutatoken:</strong>
+  <%= @actividades_minutum.minutaToken %>
+</p>
+
+<p>
+  <strong>Responsable:</strong>
+  <%= @actividades_minutum.responsable %>
+</p>
+
+<p>
+  <strong>Asunto:</strong>
+  <%= @actividades_minutum.asunto %>
+</p>
+
+<p>
+  <strong>Actividad:</strong>
+  <%= @actividades_minutum.actividad %>
+</p>
+
+<p>
+  <strong>Coresponsable:</strong>
+  <%= @actividades_minutum.coResponsable %>
+</p>
+
+<p>
+  <strong>Fechacompromiso:</strong>
+  <%= @actividades_minutum.fechaCompromiso %>
+</p>
+
+<p>
+  <strong>Userid:</strong>
+  <%= @actividades_minutum.userid %>
+</p>
+
+<%= link_to 'Edit', edit_actividades_minutum_path(@actividades_minutum) %> |
+<%= link_to 'Back', actividades_minuta_path %>

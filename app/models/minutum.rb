@@ -1,0 +1,2 @@
+class Minutum < ApplicationRecord
+end

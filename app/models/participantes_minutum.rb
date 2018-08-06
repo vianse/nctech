@@ -1,0 +1,2 @@
+class ParticipantesMinutum < ApplicationRecord
+end

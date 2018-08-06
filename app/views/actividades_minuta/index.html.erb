@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Actividades Minuta</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Minutatoken</th>
+      <th>Responsable</th>
+      <th>Asunto</th>
+      <th>Actividad</th>
+      <th>Coresponsable</th>
+      <th>Fechacompromiso</th>
+      <th>Userid</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @actividades_minuta.each do |actividades_minutum| %>
+      <tr>
+        <td><%= actividades_minutum.minutaToken %></td>
+        <td><%= actividades_minutum.responsable %></td>
+        <td><%= actividades_minutum.asunto %></td>
+        <td><%= actividades_minutum.actividad %></td>
+        <td><%= actividades_minutum.coResponsable %></td>
+        <td><%= actividades_minutum.fechaCompromiso %></td>
+        <td><%= actividades_minutum.userid %></td>
+        <td><%= link_to 'Show', actividades_minutum %></td>
+        <td><%= link_to 'Edit', edit_actividades_minutum_path(actividades_minutum) %></td>
+        <td><%= link_to 'Destroy', actividades_minutum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Actividades Minutum', new_actividades_minutum_path %>

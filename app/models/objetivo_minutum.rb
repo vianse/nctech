@@ -1,0 +1,2 @@
+class ObjetivoMinutum < ApplicationRecord
+end

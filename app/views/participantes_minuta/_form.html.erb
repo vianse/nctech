@@ -1,0 +1,42 @@
+<%= form_with(model: participantes_minutum, local: true) do |form| %>
+  <% if participantes_minutum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(participantes_minutum.errors.count, "error") %> prohibited this participantes_minutum from being saved:</h2>
+
+      <ul>
+      <% participantes_minutum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :minutaToken %>
+    <%= form.text_field :minutaToken, id: :participantes_minutum_minutaToken %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, id: :participantes_minutum_nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :puesto %>
+    <%= form.text_field :puesto, id: :participantes_minutum_puesto %>
+  </div>
+
+  <div class="field">
+    <%= form.label :asistencia %>
+    <%= form.text_field :asistencia, id: :participantes_minutum_asistencia %>
+  </div>
+
+  <div class="field">
+    <%= form.label :userid %>
+    <%= form.text_field :userid, id: :participantes_minutum_userid %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

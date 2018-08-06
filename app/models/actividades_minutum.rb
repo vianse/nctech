@@ -1,0 +1,2 @@
+class ActividadesMinutum < ApplicationRecord
+end

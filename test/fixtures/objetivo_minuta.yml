@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  minutaToken: MyString
+  objetivo: MyText
+  fechaRevision: MyString
+  userid: MyString
+
+two:
+  minutaToken: MyString
+  objetivo: MyText
+  fechaRevision: MyString
+  userid: MyString

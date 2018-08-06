@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  minutaToken: MyString
+  responsable: MyString
+  asunto: MyString
+  actividad: MyText
+  coResponsable: MyString
+  fechaCompromiso: MyString
+  userid: MyString
+
+two:
+  minutaToken: MyString
+  responsable: MyString
+  asunto: MyString
+  actividad: MyText
+  coResponsable: MyString
+  fechaCompromiso: MyString
+  userid: MyString

@@ -1,0 +1,52 @@
+<%= form_with(model: actividades_minutum, local: true) do |form| %>
+  <% if actividades_minutum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(actividades_minutum.errors.count, "error") %> prohibited this actividades_minutum from being saved:</h2>
+
+      <ul>
+      <% actividades_minutum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :minutaToken %>
+    <%= form.text_field :minutaToken, id: :actividades_minutum_minutaToken %>
+  </div>
+
+  <div class="field">
+    <%= form.label :responsable %>
+    <%= form.text_field :responsable, id: :actividades_minutum_responsable %>
+  </div>
+
+  <div class="field">
+    <%= form.label :asunto %>
+    <%= form.text_field :asunto, id: :actividades_minutum_asunto %>
+  </div>
+
+  <div class="field">
+    <%= form.label :actividad %>
+    <%= form.text_area :actividad, id: :actividades_minutum_actividad %>
+  </div>
+
+  <div class="field">
+    <%= form.label :coResponsable %>
+    <%= form.text_field :coResponsable, id: :actividades_minutum_coResponsable %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fechaCompromiso %>
+    <%= form.text_field :fechaCompromiso, id: :actividades_minutum_fechaCompromiso %>
+  </div>
+
+  <div class="field">
+    <%= form.label :userid %>
+    <%= form.text_field :userid, id: :actividades_minutum_userid %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

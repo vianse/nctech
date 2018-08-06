@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Minutatoken:</strong>
+  <%= @objetivo_minutum.minutaToken %>
+</p>
+
+<p>
+  <strong>Objetivo:</strong>
+  <%= @objetivo_minutum.objetivo %>
+</p>
+
+<p>
+  <strong>Fecharevision:</strong>
+  <%= @objetivo_minutum.fechaRevision %>
+</p>
+
+<p>
+  <strong>Userid:</strong>
+  <%= @objetivo_minutum.userid %>
+</p>
+
+<%= link_to 'Edit', edit_objetivo_minutum_path(@objetivo_minutum) %> |
+<%= link_to 'Back', objetivo_minuta_path %>

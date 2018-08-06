@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha: MyString
+  inicio: MyString
+  final: MyString
+  fw: MyString
+  nombre: MyString
+  fechaProximaReunion: MyString
+  organizador: MyString
+  secretario: MyString
+  userId: MyString
+  token: MyString
+
+two:
+  fecha: MyString
+  inicio: MyString
+  final: MyString
+  fw: MyString
+  nombre: MyString
+  fechaProximaReunion: MyString
+  organizador: MyString
+  secretario: MyString
+  userId: MyString
+  token: MyString

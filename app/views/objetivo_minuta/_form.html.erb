@@ -1,0 +1,37 @@
+<%= form_with(model: objetivo_minutum, local: true) do |form| %>
+  <% if objetivo_minutum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(objetivo_minutum.errors.count, "error") %> prohibited this objetivo_minutum from being saved:</h2>
+
+      <ul>
+      <% objetivo_minutum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :minutaToken %>
+    <%= form.text_field :minutaToken, id: :objetivo_minutum_minutaToken %>
+  </div>
+
+  <div class="field">
+    <%= form.label :objetivo %>
+    <%= form.text_area :objetivo, id: :objetivo_minutum_objetivo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fechaRevision %>
+    <%= form.text_field :fechaRevision, id: :objetivo_minutum_fechaRevision %>
+  </div>
+
+  <div class="field">
+    <%= form.label :userid %>
+    <%= form.text_field :userid, id: :objetivo_minutum_userid %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

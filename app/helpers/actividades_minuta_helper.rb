@@ -1,0 +1,2 @@
+module ActividadesMinutaHelper
+end

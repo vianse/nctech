@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Objetivo Minuta</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Minutatoken</th>
+      <th>Objetivo</th>
+      <th>Fecharevision</th>
+      <th>Userid</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @objetivo_minuta.each do |objetivo_minutum| %>
+      <tr>
+        <td><%= objetivo_minutum.minutaToken %></td>
+        <td><%= objetivo_minutum.objetivo %></td>
+        <td><%= objetivo_minutum.fechaRevision %></td>
+        <td><%= objetivo_minutum.userid %></td>
+        <td><%= link_to 'Show', objetivo_minutum %></td>
+        <td><%= link_to 'Edit', edit_objetivo_minutum_path(objetivo_minutum) %></td>
+        <td><%= link_to 'Destroy', objetivo_minutum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Objetivo Minutum', new_objetivo_minutum_path %>

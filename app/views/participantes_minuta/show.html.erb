@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Minutatoken:</strong>
+  <%= @participantes_minutum.minutaToken %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @participantes_minutum.nombre %>
+</p>
+
+<p>
+  <strong>Puesto:</strong>
+  <%= @participantes_minutum.puesto %>
+</p>
+
+<p>
+  <strong>Asistencia:</strong>
+  <%= @participantes_minutum.asistencia %>
+</p>
+
+<p>
+  <strong>Userid:</strong>
+  <%= @participantes_minutum.userid %>
+</p>
+
+<%= link_to 'Edit', edit_participantes_minutum_path(@participantes_minutum) %> |
+<%= link_to 'Back', participantes_minuta_path %>

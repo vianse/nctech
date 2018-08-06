@@ -1,0 +1,2 @@
+module ParticipantesMinutaHelper
+end
