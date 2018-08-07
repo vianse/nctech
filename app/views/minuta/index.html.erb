@@ -58,6 +58,9 @@
 	.color-naranja{
 		color: #F7941D;
 	}
+	#addMinuta{
+		margin-right: 2.5%;
+	}
 	</style>
 </head>
 <body class="page-body">
@@ -207,7 +210,7 @@ class Link extends React.Component{
 		var url = "/minuta/new?id=" + moment().unix();
 			return (
 
-				<a href={url} className="btn btn-sm btn-success float-right ng-scope">Agregar Minuta</a>
+				<a href={url} className="btn btn-sm btn-success float-right ng-scope" id="addMinuta">Agregar Minuta</a>
 
 			)
 		}
@@ -312,22 +315,33 @@ class Minutas extends React.Component{
 			firebase.auth().onAuthStateChanged( firebaseUser => {
 					if(firebaseUser) {
 					var database = firebase.database();
-					var user    = firebaseUser.uid;
-					var ref = database.ref("minuta");
-							ref.orderByChild("nombre").limitToFirst(10).on('child_added', snap => {
-							const newReceta = {
-									id: snap.key,
-									data: snap.val(),
-							};
-							var newArr = this.state.data;
-									newArr.push(newReceta);
-									this.setState({
-											 data: this.state.data, arr:newArr
-									});
+					var pageSize = 3;
+					var ref = firebase.database().ref('minuta').orderByKey().limitToLast(pageSize);
 
-							});
+					function paginate(cursor) {
+					  var paginatedRef = ref;
+					  if (cursor) {
+					    paginatedRef = ref.endAt(cursor);
+					  }
+					  return paginatedRef.once('value').then(snap => snap.val());
+					}
+
+					function readAllPages(cursor) {
+					  return paginate(cursor).then(values => {
+					    var orderedKeys = Object.keys(values).sort((a, b) => +a > +b);
+					    console.log('cursor', cursor, 'orderedKeys', orderedKeys);
+					    if (orderedKeys.length == pageSize) {
+					      return readAllPages(orderedKeys[0]);
+					    }
+					  });
+					}
+
+					readAllPages();
 							}
 						});
+
+
+
 		}
 		pasarId(id){
 
@@ -340,24 +354,19 @@ class Minutas extends React.Component{
 		var pasar = this.pasarId.bind(this)
 		var arr = this.state.data
 
-			var options = arr.map(function(object){
+			var options = arr.map(function(object, i){
 				var url = "editar/minuta?id=" + object.id
 				var url_ver = "ver/minuta?id=" + object.id
+
 				return  <tr>
 									<td  className="ng-scope gris2 even" role="row">
-									{object.id}
+									{i + 1}
 									</td>
 									<td  className="ng-scope gris2 even" role="row">
 									{object.data.nombre}
 									</td>
 									<td  className="ng-scope gris2 even" role="row">
 									{object.data.fecha}
-									</td>
-									<td  className="ng-scope gris2 even" role="row">
-									{object.data.inicio}
-									</td>
-									<td  className="ng-scope gris2 even" role="row">
-									{object.data.fin}
 									</td>
 									<td  className="ng-scope gris2 even" role="row">
 									{object.data.version}
@@ -423,8 +432,6 @@ class Minutas extends React.Component{
 								<th onClick={()=>ordenar("id")}>Minuta</th>
 								<th onClick={()=>ordenar("nombre")} style={{width: "158px"}}>Nombre</th>
 								<th onClick={()=>ordenar("fecha")} style={{width: "65px"}}>Fecha</th>
-								<th onClick={()=>ordenar("inicio")}className="sorting" tabindex="0" aria-controls="DataTables_Table_30" rowspan="1" colspan="1" aria-label="Hora Inicio: Activar para ordenar la columna de manera ascendente" style={{width: "47px"}}>Hora Inicio</th>
-								<th onClick={()=>ordenar("fin")}className="sorting" tabindex="0" aria-controls="DataTables_Table_30" rowspan="1" colspan="1" aria-label="Hora Fin: Activar para ordenar la columna de manera ascendente" style={{width: "47px"}}>Hora Fin</th>
 								<th onClick={()=>ordenar("version")} className="sorting" tabindex="0" aria-controls="DataTables_Table_30" rowspan="1" colspan="1" aria-label="Versión: Activar para ordenar la columna de manera ascendente" style={{width: "40px"}}>Versión</th>
 								<th onClick={()=>ordenar("usuario")} className="sorting" tabindex="0" aria-controls="DataTables_Table_30" rowspan="1" colspan="1" aria-label="Usuario: Activar para ordenar la columna de manera ascendente" style={{width: "64px"}}>Usuario</th>
 								<th onClick={()=>ordenar("fechaModificacion")}className="sorting" tabindex="0" aria-controls="DataTables_Table_30" rowspan="1" colspan="1" aria-label="Fecha Modificación: Activar para ordenar la columna de manera ascendente" style={{width: "95px"}}>Fecha Modificación</th>

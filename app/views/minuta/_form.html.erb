@@ -365,24 +365,14 @@ $.cookie('minutaid' , minutaID)
 	              <tr>
 	              <td>Organizador</td>
 	              <td>
-	                <button onClick={click_one} className={visibleBoton}>Es Externo</button>
-	                <button onClick={click} className={ocultarBoton}>Es Interno</button>
-	                <input type="text" className={visible} id="organizador"/>
-	                <select className={ocultar} placeholder="Selecciona uno" id="organizador">
-	                  <option disabled selected>Selecciona una opción</option>
-	                                    {options}
-	                </select>
+									<div id="select-to_organizador"></div>
+
 	              </td>
 
 	              <td>Secretario</td>
 	              <td  className="ng-scope">
-	              <button onClick={click_two} className={visibleBoton_one}>Es Externo</button>
-	              <button onClick={click_tree} className={ocultarBoton_one}>Es Interno</button>
-	              <input type="text" className={visible_one} id="secretario"/>
-	              <select className={ocultar_one} placeholder="Selecciona uno" id="secretario">
-	                  <option disabled selected>Selecciona una opción</option>
-	                                  {options}
-	              </select>
+								<div id="select-to_secretario"></div>
+
 	              </td>
 	              </tr>
 
@@ -775,7 +765,7 @@ $.cookie('minutaid' , minutaID)
 
 setTimeout(function(){
 
-  $('#fecha').val(moment().format('LL'))
+  $('#fecha').val(moment().format('L'))
   $('#inicio').val(moment().format('LTS'))
   $('#fin').val(moment().format('LTS'))
   $('#fw').val(moment().format('w'));
@@ -864,10 +854,10 @@ function addMinuta(){
   else if(!$("#fechaProximaReunion").val()){
     notification("Fecha Próxima Reunión");
   }
-  else if(!$("#organizador").val()){
+  else if(!$("#select-to_organizador").val()){
     notification("Organizador");
   }
-  else if(!$("#secretario").val()){
+  else if(!$("#select-to_secretario").val()){
     notification("Secretario");
   }
     else{
@@ -881,8 +871,8 @@ function addMinuta(){
                         var fw = $("#fw").val();
                         var nombre = $("#nombre").val();
                         var fechaProximaReunion = $("#fechaProximaReunion").val();
-                        var organizador = $("#organizador").val();
-                        var secretario = $("#secretario").val();
+                        var organizador = $("#select-to_organizador").val();
+                        var secretario = $("#select-to_secretario").val();
                         var database = firebase.database();
                               var objeto = {
                                    fecha: fecha,
@@ -896,7 +886,7 @@ function addMinuta(){
                                    minutaid: minutaID,
                                    usuario: userName,
                                    usuarioID: user,
-                                   fechaModificacion: moment().format('LL'),
+                                   fechaModificacion: moment().format('L'),
                                    version: "1.0",
                                    tipo:'ultima'
                               }
@@ -918,6 +908,118 @@ function select(arrar){
   var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
                     '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
   $('#select-to').selectize({
+      persist: false,
+      maxItems: null,
+      valueField: 'email',
+      labelField: 'name',
+      searchField: ['name', 'email'],
+      options: [
+          arrar
+      ],
+      render: {
+          item: function(item, escape) {
+              return '<div class="menu">' +
+                  (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
+                  (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+              '</div>';
+          },
+          option: function(item, escape) {
+              var label = item.name || item.email;
+              var caption = item.name ? item.email : null;
+              return '<div>' +
+                  '<span class="label">' + escape(label) + '</span>' +
+                  (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+              '</div>';
+          }
+      },
+      createFilter: function(input) {
+          var match, regex;
+
+          // email@address.com
+          regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+          match = input.match(regex);
+          if (match) return !this.options.hasOwnProperty(match[0]);
+
+          // name <email@address.com>
+          regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+          match = input.match(regex);
+          if (match) return !this.options.hasOwnProperty(match[2]);
+
+          return false;
+      },
+      create: function(input) {
+          if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+              return {email: input};
+          }
+          var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+          if (match) {
+              return {
+                  email : match[2],
+                  name  : $.trim(match[1])
+              };
+          }
+          alert('Invalid email address.');
+          return false;
+      }
+  });
+
+	$('#select-to_organizador').selectize({
+      persist: false,
+      maxItems: null,
+      valueField: 'email',
+      labelField: 'name',
+      searchField: ['name', 'email'],
+      options: [
+          arrar
+      ],
+      render: {
+          item: function(item, escape) {
+              return '<div class="menu">' +
+                  (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
+                  (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+              '</div>';
+          },
+          option: function(item, escape) {
+              var label = item.name || item.email;
+              var caption = item.name ? item.email : null;
+              return '<div>' +
+                  '<span class="label">' + escape(label) + '</span>' +
+                  (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+              '</div>';
+          }
+      },
+      createFilter: function(input) {
+          var match, regex;
+
+          // email@address.com
+          regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+          match = input.match(regex);
+          if (match) return !this.options.hasOwnProperty(match[0]);
+
+          // name <email@address.com>
+          regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+          match = input.match(regex);
+          if (match) return !this.options.hasOwnProperty(match[2]);
+
+          return false;
+      },
+      create: function(input) {
+          if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+              return {email: input};
+          }
+          var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+          if (match) {
+              return {
+                  email : match[2],
+                  name  : $.trim(match[1])
+              };
+          }
+          alert('Invalid email address.');
+          return false;
+      }
+  });
+
+	$('#select-to_secretario').selectize({
       persist: false,
       maxItems: null,
       valueField: 'email',
