@@ -423,7 +423,7 @@ class Procedimientos extends React.Component{
       var aumento = Number($.cookie("versionProcedimiento")) + 1
       var res = procedimientoID.replace(procedimientoID, minutanumero + "_Version_" + aumento);
       var ref = database.ref("lineamientos");
-          ref.orderByChild("procedimientoid").startAt(minutanumero + "_Version_1").endAt(res).on('child_added', snap => {
+          ref.orderByChild("procedimientoid").startAt(minutanumero).endAt(res).on('child_added', snap => {
           const newReceta = {
               id: snap.key,
               data: snap.val(),
@@ -512,7 +512,7 @@ class Procedimientos extends React.Component{
       var aumento = Number($.cookie("versionProcedimiento")) + 1
       var res = procedimientoID.replace(procedimientoID, minutanumero + "_Version_" + aumento);
       var ref = database.ref("procesodetallado");
-          ref.orderByChild("procedimientoid").startAt(minutanumero + "_Version_1").endAt(res).on('child_added', snap => {
+          ref.orderByChild("procedimientoid").startAt(minutanumero).endAt(res).on('child_added', snap => {
           const newReceta = {
               id: snap.key,
               data: snap.val(),
@@ -601,7 +601,7 @@ class Procedimientos extends React.Component{
       var aumento = Number($.cookie("versionProcedimiento")) + 1
       var res = procedimientoID.replace(procedimientoID, minutanumero + "_Version_" + aumento);
       var ref = database.ref("checklist");
-          ref.orderByChild("procedimientoid").startAt(minutanumero + "_Version_1").endAt(res).on('child_added', snap => {
+          ref.orderByChild("procedimientoid").startAt(minutanumero).endAt(res).on('child_added', snap => {
           const newReceta = {
               id: snap.key,
               data: snap.val(),
@@ -798,7 +798,7 @@ class Procedimientos extends React.Component{
      var aumento = Number($.cookie("versionProcedimiento")) + 1
      var res = procedimientoID.replace(procedimientoID, minutanumero + "_Version_" + aumento);
       var ref = database.ref("participantes2");
-          ref.orderByChild("procedimientoid").startAt(minutanumero + "_Version_1").endAt(res).on('child_added', snap => {
+          ref.orderByChild("procedimientoid").startAt(minutanumero).endAt(res).on('child_added', snap => {
           const newReceta = {
               id: snap.key,
               data: snap.val(),
@@ -1005,7 +1005,14 @@ class Procedimientos extends React.Component{
         if(firebaseUser) {
                       var user    = firebaseUser.uid;
                       var requerimeintos = $("#requerimeintos").val();
-                      var cumplido = $("#cumplido").val();
+											if ($('input#cumplido').is(':checked')) {
+												var cumplido = "Sí";
+												console.log(cumplido);
+											}
+											else {
+												var cumplido = "No";
+												console.log(cumplido);
+											}
                       var posicion = procedimientoID.indexOf("_");
                      var minutanumero = procedimientoID.substring(0,posicion);
                      var aumento = Number($.cookie("versionProcedimiento")) + 1
