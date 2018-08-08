@@ -194,7 +194,7 @@
 <script>
 firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-          $("#usuario").text(user.email);
+          $("#usuario").text(user.displayName);
 
         } else {
           window.location.href = "/login"
@@ -280,8 +280,8 @@ class Minutas extends React.Component{
 
 									$("#fw").val(newReceta.data.fw)
 									$("#nombre").val(newReceta.data.nombre)
-									$("#organizador").val(newReceta.data.organizador)
-									$("#secretario").val(newReceta.data.secretario)
+									$("#select-to_organizador").val(newReceta.data.organizador)
+									$("#select-to_secretario").val(newReceta.data.secretario)
 									$.cookie("version", newReceta.data.version )
 		            });
 								}
@@ -382,11 +382,11 @@ class Minutas extends React.Component{
               <tr>
               <td>Organizador</td>
               <td>
-                <input type="text" className={ocultar} id="organizador"/>
+                <div id="select-to_organizador"></div>
               </td>
               <td>Secretario</td>
               <td  className="ng-scope">
-              	<input type="text" className={ocultar_one} id="secretario"/>
+              	<div id="select-to_secretario"></div>
               </td>
               </tr>
             </tbody>
@@ -439,7 +439,7 @@ class Minutas extends React.Component{
 			var aumento = Number($.cookie("version")) + 1
 			var res = minutaID.replace(minutaID, minutanumero + "_Version_" + aumento);
       var ref = database.ref("participantes");
-          ref.orderByChild("minutaid").startAt(minutanumero + "_Version_1").endAt(res).on('child_added', snap => {
+          ref.orderByChild("minutaid").startAt(minutanumero).endAt(res).on('child_added', snap => {
           const newReceta = {
               id: snap.key,
               data: snap.val(),
@@ -544,7 +544,7 @@ class Minutas extends React.Component{
 			var aumento = Number($.cookie("version")) + 1
 			var res = minutaID.replace(minutaID, minutanumero + "_Version_" + aumento);
       var ref = database.ref("objetivos");
-          ref.orderByChild("minutaid").startAt(minutanumero + "_Version_1").endAt(res).on('child_added', snap => {
+          ref.orderByChild("minutaid").startAt(minutanumero).endAt(res).on('child_added', snap => {
           const newReceta = {
               id: snap.key,
               data: snap.val(),
@@ -616,6 +616,7 @@ class Minutas extends React.Component{
          this.state = {
            data:[],
            data1:[],
+					 data3:[]
          }
 
          }
@@ -644,7 +645,23 @@ class Minutas extends React.Component{
                   })
               });
 
+							var ref = database.ref("minuta");
+		              ref.orderByChild("tipo").equalTo("ultima").on('child_added', snap => {
+		              const newReceta = {
+											data: snap.val().nombre,
+		              };
+		              var newArr = this.state.data3;
+		                  newArr.push(newReceta);
+		                  this.setState({
+		                       data3: this.state.data3, arr:newArr
+		                  });
+
+											console.log(this.state.data3);
+
+		              });
+
               }
+							  select();
             });
         }
         componentWillMount(){
@@ -654,7 +671,7 @@ class Minutas extends React.Component{
 					var aumento = Number($.cookie("version")) + 1
 					var res = minutaID.replace(minutaID, minutanumero + "_Version_" + aumento);
           var ref = database.ref("actividades");
-              ref.orderByChild("minutaid").startAt(minutanumero + "_Version_1").endAt(res).on('child_added', snap => {
+              ref.orderByChild("minutaid").startAt(minutanumero).endAt(res).on('child_added', snap => {
               const newReceta = {
                   id: snap.key,
                   data: snap.val(),
@@ -668,8 +685,11 @@ class Minutas extends React.Component{
                   //
               });
         }
-
+		asignar(e){
+			$("#asuntoMinutaActividades").val(e.target.value)
+		}
     render() {
+			var asignar = this.asignar.bind(this)
       var arra = this.state.data1
       var participantes = arra.map(function(object){
         return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
@@ -687,6 +707,11 @@ class Minutas extends React.Component{
       var options = arr.map(function(object){
         return  <option value={object.data.url} id="usuarios">{object.data.nombre}</option>
       })
+			var asunto = this.state.data3
+      var asuntos = asunto.map(function(object){
+        return  <option value={object.data} id="usuarios" >{object.data}</option>
+      })
+
         return (
           <div>
 							<table className="table" style={{backgroundColor:"#FFF"}}>
@@ -711,7 +736,11 @@ class Minutas extends React.Component{
 										</td>
 
                     <td>
-                      <input type="text" className="form-control" id="asuntoMinutaActividades"/>
+										<input type="text" className="form-control" id="asuntoMinutaActividades"/>
+										<select className="form-control" placeholder="Selecciona uno" id="ResponsableActividades" onChange={(e)=>asignar(e)}>
+												<option disabled selected>Selecciona una opción</option>
+												{asuntos}
+										</select>
 										</td>
 										<td>
                     <input type="text" className="form-control" id="subActividadActividades"/>
@@ -881,10 +910,10 @@ function addMinuta(){
   else if(!$("#fechaProximaReunion").val()){
     notification("Fecha Próxima Reunión");
   }
-  else if(!$("#organizador").val()){
+  else if(!$("#select-to_organizador").val()){
     notification("Organizador");
   }
-  else if(!$("#secretario").val()){
+  else if(!$("#select-to_secretario").val()){
     notification("Secretario");
   }
     else{
@@ -898,8 +927,8 @@ function addMinuta(){
                     var fw = $("#fw").val();
                     var nombre = $("#nombre").val();
                     var fechaProximaReunion = $("#fechaProximaReunion").val();
-                    var organizador = $("#organizador").val();
-                    var secretario = $("#secretario").val();
+                    var organizador = $("#select-to_organizador").val();
+                    var secretario = $("#select-to_secretario").val();
                     var database = firebase.database();
                           var objeto = {
                                fecha: fecha,
@@ -971,17 +1000,127 @@ function addMinuta(){
 
 
 function select(arrar){
-  var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
-                    '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
-  $('#select-to').selectize({
+
+	var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+																				'(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
+
+	$('#select-to').selectize({
+			persist: false,
+			maxItems: null,
+			valueField: 'email',
+			labelField: 'name',
+			searchField: ['name', 'email'],
+			options: [{email:"krlos013@gmail.com", name:"Juan Carlos Santiago"},{"email":"letteromo@gmail.com", name:"Arlette Romo"}]
+	,
+			render: {
+					item: function(item, escape) {
+							return '<div class="menu">' +
+									(item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
+									(item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+							'</div>';
+					},
+					option: function(item, escape) {
+							var label = item.name || item.email;
+							var caption = item.name ? item.email : null;
+							return '<div>' +
+									'<span class="label">' + escape(label) + '</span>' +
+									(caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+							'</div>';
+					}
+			},
+			createFilter: function(input) {
+					var match, regex;
+
+					// email@address.com
+					regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+					match = input.match(regex);
+					if (match) return !this.options.hasOwnProperty(match[0]);
+
+					// name <email@address.com>
+					regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+					match = input.match(regex);
+					if (match) return !this.options.hasOwnProperty(match[2]);
+
+					return false;
+			},
+			create: function(input) {
+					if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+							return {email: input};
+					}
+					var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+					if (match) {
+							return {
+									email : match[2],
+									name  : $.trim(match[1])
+							};
+					}
+					alert('Invalid email address.');
+					return false;
+			}
+	});
+
+
+	$('#select-to_organizador').selectize({
       persist: false,
       maxItems: null,
       valueField: 'email',
       labelField: 'name',
       searchField: ['name', 'email'],
-      options: [
-          arrar
-      ],
+      options: [{email:"krlos013@gmail.com", name:"Juan Carlos Santiago"},{"email":"letteromo@gmail.com", name:"Arlette Romo"}],
+      render: {
+          item: function(item, escape) {
+              return '<div class="menu">' +
+                  (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
+                  (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+              '</div>';
+          },
+          option: function(item, escape) {
+              var label = item.name || item.email;
+              var caption = item.name ? item.email : null;
+              return '<div>' +
+                  '<span class="label">' + escape(label) + '</span>' +
+                  (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+              '</div>';
+          }
+      },
+      createFilter: function(input) {
+          var match, regex;
+
+          // email@address.com
+          regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+          match = input.match(regex);
+          if (match) return !this.options.hasOwnProperty(match[0]);
+
+          // name <email@address.com>
+          regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+          match = input.match(regex);
+          if (match) return !this.options.hasOwnProperty(match[2]);
+
+          return false;
+      },
+      create: function(input) {
+          if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+              return {email: input};
+          }
+          var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+          if (match) {
+              return {
+                  email : match[2],
+                  name  : $.trim(match[1])
+              };
+          }
+          alert('Invalid email address.');
+          return false;
+      }
+  });
+
+	$('#select-to_secretario').selectize({
+      persist: false,
+      maxItems: null,
+      valueField: 'email',
+      labelField: 'name',
+      searchField: ['name', 'email'],
+      options: [{email:"krlos013@gmail.com", name:"Juan Carlos Santiago"},{"email":"letteromo@gmail.com", name:"Arlette Romo"}],
       render: {
           item: function(item, escape) {
               return '<div class="menu">' +

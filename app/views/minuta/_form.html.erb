@@ -118,7 +118,7 @@
 					<div class="col-md-4"></div>
 				</div>
 
-
+					<div id="us"></div>
 					<div class="row">
 						<div class="col-md-12">
               <div id="cabeceraMinuta">
@@ -608,8 +608,10 @@ $.cookie('minutaid' , minutaID)
          this.state = {
            data:[],
            data1:[],
+					 data2:[],
+					 data3:[]
          }
-
+        this.selecti = this.selecti.bind(this)
          }
     componentDidMount() {
 
@@ -620,8 +622,7 @@ $.cookie('minutaid' , minutaID)
           var ref = database.ref("usuarios");
               ref.on('child_added', snap => {
               const newReceta = {
-                  id: snap.key,
-                  data: snap.val(),
+									data: snap.val(),
               };
               var newArr = this.state.data;
                   newArr.push(newReceta);
@@ -629,17 +630,68 @@ $.cookie('minutaid' , minutaID)
                        data: this.state.data, arr:newArr
                   });
 
-                  var usu = this.state.data.map(function(object){
-                    var ar = {email: object.data.correo ,name: object.data.nombre}
-                    select(ar);
-                    console.log(ar);
-                  })
+									var arr  = this.state.data.map(function(ob){
+										  var o = {email:ob.data.correo}
+											console.log(JSON.stringify(o));
+
+									})
+									console.log(JSON.stringify(arr));
+
               });
 
-              }
-            });
+							var ref = database.ref("minuta");
+		              ref.orderByChild("tipo").equalTo("ultima").on('child_added', snap => {
+		              const newReceta = {
+											data: snap.val().nombre,
+		              };
+		              var newArr = this.state.data3;
+		                  newArr.push(newReceta);
+		                  this.setState({
+		                       data3: this.state.data3, arr:newArr
+		                  });
+
+											console.log(this.state.data3);
+
+		              });
+
+
+          }
+          select();
+        });
+
         }
+				selecti(){
+
+					// var database = firebase.database();
+					// var a = this.state.data
+          // var ref = database.ref("usuarios");
+          //     ref.limitToFirst(2).on('value', snap => {
+          //     const newReceta = {
+          //         id: snap.key,
+          //         data: snap.val(),
+          //     };
+          //     var newArr = this.state.data3;
+          //         newArr.push(newReceta);
+          //         this.setState({
+          //              data3: this.state.data3, arr:newArr
+          //         });
+					// 				select(this.state.data3);
+          //     });
+
+
+
+					// var a = s
+					// var usuarios = [a].map(function(object){
+					// 	return  {name:object.data.nombre ,email:object.data.correo}
+					// })
+					console.log(this.state.data);
+					//console.log(JSON.stringify(participantes));
+
+
+
+				}
         componentWillMount(){
+					select();
           var database = firebase.database();
 
           var ref = database.ref("actividades");
@@ -658,7 +710,11 @@ $.cookie('minutaid' , minutaID)
               });
         }
 
+			asignar(e){
+				$("#asuntoMinutaActividades").val(e.target.value)
+			}
     render() {
+			var asignar = this.asignar.bind(this)
       var arra = this.state.data1
       var participantes = arra.map(function(object){
         return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
@@ -674,8 +730,14 @@ $.cookie('minutaid' , minutaID)
       })
       var arr = this.state.data
       var options = arr.map(function(object){
-        return  <option value={object.data.url} id="usuarios">{object.data.nombre}</option>
+        return  <option value={object.data.nombre} id="usuarios">{object.data.nombre}</option>
       })
+
+			var asunto = this.state.data3
+      var asuntos = asunto.map(function(object){
+        return  <option value={object.data} id="usuarios" >{object.data}</option>
+      })
+
         return (
           <div>
 							<table className="table" style={{backgroundColor:"#FFF"}}>
@@ -701,6 +763,10 @@ $.cookie('minutaid' , minutaID)
 
                     <td>
                       <input type="text" className="form-control" id="asuntoMinutaActividades"/>
+											<select className="form-control" placeholder="Selecciona uno" id="ResponsableActividades" onChange={(e)=>asignar(e)}>
+	                        <option disabled selected>Selecciona una opción</option>
+	                        {asuntos}
+	                    </select>
 										</td>
 										<td>
                     <input type="text" className="form-control" id="subActividadActividades"/>
@@ -786,7 +852,13 @@ function addParticipante(){
                     var user    = firebaseUser.uid;
                     var nombre = $("#nombreParticipante").val();
                     var puesto = $("#puesto").val();
-                    var asistencia = $("#asistencia").val();
+										if ($('input#asistencia').is(':checked')) {
+											var asistencia = "Sí";
+										}
+										else {
+											var asistencia = "No";
+										}
+
                     var minutaid = $("#minutaid").val();
                     var database = firebase.database();
                           var objeto = {
@@ -905,63 +977,65 @@ function addMinuta(){
 
 
 function select(arrar){
-  var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
-                    '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
-  $('#select-to').selectize({
-      persist: false,
-      maxItems: null,
-      valueField: 'email',
-      labelField: 'name',
-      searchField: ['name', 'email'],
-      options: [
-          arrar
-      ],
-      render: {
-          item: function(item, escape) {
-              return '<div class="menu">' +
-                  (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
-                  (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
-              '</div>';
-          },
-          option: function(item, escape) {
-              var label = item.name || item.email;
-              var caption = item.name ? item.email : null;
-              return '<div>' +
-                  '<span class="label">' + escape(label) + '</span>' +
-                  (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
-              '</div>';
-          }
-      },
-      createFilter: function(input) {
-          var match, regex;
 
-          // email@address.com
-          regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
-          match = input.match(regex);
-          if (match) return !this.options.hasOwnProperty(match[0]);
+	var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+																				'(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
 
-          // name <email@address.com>
-          regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
-          match = input.match(regex);
-          if (match) return !this.options.hasOwnProperty(match[2]);
+	$('#select-to').selectize({
+			persist: false,
+			maxItems: null,
+			valueField: 'email',
+			labelField: 'name',
+			searchField: ['name', 'email'],
+			options: [{email:"krlos013@gmail.com", name:"Juan Carlos Santiago"},{"email":"letteromo@gmail.com", name:"Arlette Romo"}]
+	,
+			render: {
+					item: function(item, escape) {
+							return '<div class="menu">' +
+									(item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
+									(item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+							'</div>';
+					},
+					option: function(item, escape) {
+							var label = item.name || item.email;
+							var caption = item.name ? item.email : null;
+							return '<div>' +
+									'<span class="label">' + escape(label) + '</span>' +
+									(caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+							'</div>';
+					}
+			},
+			createFilter: function(input) {
+					var match, regex;
 
-          return false;
-      },
-      create: function(input) {
-          if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
-              return {email: input};
-          }
-          var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
-          if (match) {
-              return {
-                  email : match[2],
-                  name  : $.trim(match[1])
-              };
-          }
-          alert('Invalid email address.');
-          return false;
-      }
-  });
+					// email@address.com
+					regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+					match = input.match(regex);
+					if (match) return !this.options.hasOwnProperty(match[0]);
+
+					// name <email@address.com>
+					regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+					match = input.match(regex);
+					if (match) return !this.options.hasOwnProperty(match[2]);
+
+					return false;
+			},
+			create: function(input) {
+					if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+							return {email: input};
+					}
+					var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+					if (match) {
+							return {
+									email : match[2],
+									name  : $.trim(match[1])
+							};
+					}
+					alert('Invalid email address.');
+					return false;
+			}
+	});
+
 
 	$('#select-to_organizador').selectize({
       persist: false,
@@ -969,9 +1043,7 @@ function select(arrar){
       valueField: 'email',
       labelField: 'name',
       searchField: ['name', 'email'],
-      options: [
-          arrar
-      ],
+      options: [{email:"krlos013@gmail.com", name:"Juan Carlos Santiago"},{"email":"letteromo@gmail.com", name:"Arlette Romo"}],
       render: {
           item: function(item, escape) {
               return '<div class="menu">' +
@@ -1025,9 +1097,7 @@ function select(arrar){
       valueField: 'email',
       labelField: 'name',
       searchField: ['name', 'email'],
-      options: [
-          arrar
-      ],
+      options: [{email:"krlos013@gmail.com", name:"Juan Carlos Santiago"},{"email":"letteromo@gmail.com", name:"Arlette Romo"}],
       render: {
           item: function(item, escape) {
               return '<div class="menu">' +
@@ -1091,4 +1161,8 @@ function notification(campo){
         });
         notification.show();
   }
+
+
+
+
 </script>
