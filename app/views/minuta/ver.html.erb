@@ -440,7 +440,7 @@ class Minutas extends React.Component{
 			var aumento = Number($.cookie("version")) + 1
 			var res = minutaID.replace(minutaID, minutanumero + "_Version_" + aumento);
       var ref = database.ref("participantes");
-          ref.orderByChild("minutaid").startAt(minutanumero + "_Version_1").endAt(minutaID).on('child_added', snap => {
+          ref.orderByChild("minutaid").startAt(minutanumero).endAt(minutaID + "\uf8ff").on('child_added', snap => {
           const newReceta = {
               id: snap.key,
               data: snap.val(),
@@ -518,7 +518,7 @@ class Minutas extends React.Component{
 			var aumento = Number($.cookie("version")) + 1
 			var res = minutaID.replace(minutaID, minutanumero + "_Version_" + aumento);
       var ref = database.ref("objetivos");
-          ref.orderByChild("minutaid").startAt(minutanumero + "_Version_1").endAt(minutaID).on('child_added', snap => {
+          ref.orderByChild("minutaid").startAt(minutanumero).endAt(minutaID+ "\uf8ff").on('child_added', snap => {
           const newReceta = {
               id: snap.key,
               data: snap.val(),
@@ -613,7 +613,7 @@ class Minutas extends React.Component{
 					var aumento = Number($.cookie("version")) + 1
 					var res = minutaID.replace(minutaID, minutanumero + "_Version_" + aumento);
           var ref = database.ref("actividades");
-              ref.orderByChild("minutaid").startAt(minutanumero + "_Version_1").endAt(minutaID).on('child_added', snap => {
+              ref.orderByChild("minutaid").startAt(minutanumero).endAt(minutaID + "\uf8ff").on('child_added', snap => {
               const newReceta = {
                   id: snap.key,
                   data: snap.val(),
