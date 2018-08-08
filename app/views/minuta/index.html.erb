@@ -73,7 +73,8 @@
 	<div class="clearfix">
 		<span class="float-left">
 			<div id="log-int">
-				<img src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Flogo-cabecera.png?alt=media&token=2d197f6d-6d72-495f-b820-8816ad1c277b" ng-click="goToPath('/app/home')" style="cursor:pointer;">
+<img src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Flogo-cabecera.png?alt=media&token=2d197f6d-6d72-495f-b820-8816ad1c277b" onClick="javascript:redirecciona('/')" style="cursor:pointer;">
+
 			</div>
 		</span>
 		<span class="float-right">
@@ -116,7 +117,7 @@
 						<div class="" aria-labelledby="dropdownMenuLink">
 							<button class="dropdown-item" type="button">Galeria NC Tech</button>
 							<button class="dropdown-item" type="button">Chat de negocios</button>
-							<button class="dropdown-item menu-activo" type="button" ng-click="goToPath('/app/documentos')">Documentos</button>
+							<button class="dropdown-item menu-activo" type="button" onClick="javascript:redirecciona('/documentos')">Documentos</button>
 							<button class="dropdown-item" type="button">Newsletter</button>
 							<a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&amp;service=mail&amp;sacu=1&amp;rip=1&amp;flowName=GlifWebSignIn&amp;flowEntry=ServiceLogin" target="_blank"><button class="dropdown-item" type="button">Correo</button></a>
 						</div>
@@ -487,7 +488,7 @@ function modal(id){
 						 var minutanumero = version.substring(0,posicion);
 						 console.log(minutanumero);
 						 var ref = database.ref("minuta");
-								ref.orderByChild("minutaid").startAt(minutanumero).endAt(version).on('child_added', snap => {
+								ref.orderByChild("minutaid").startAt(minutanumero).endAt(version+ "\uf8ff").on('child_added', snap => {
 
 								const newReceta = {
 										id: snap.key,
@@ -510,7 +511,7 @@ function modal(id){
 
 			var arr = this.state.data
 
-				var options = arr.map(function(object){
+				var options = arr.map(function(object, i){
 					var url = "editar/procedimiento?id=" + object.id
 					var url_ver = "ver/minuta?id=" + object.id
 					return  <tr>
@@ -527,7 +528,7 @@ function modal(id){
 										{object.data.fin}
 										</td>
 										<td  className="ng-scope gris2 even" role="row">
-										{object.data.version}
+										{i +1}
 										</td>
 										<td  className="ng-scope gris2 even" role="row">
 										{object.data.usuario}

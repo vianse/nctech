@@ -57,7 +57,8 @@
 	<div class="clearfix">
 		<span class="float-left">
 			<div id="log-int">
-				<img src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Flogo-cabecera.png?alt=media&token=2d197f6d-6d72-495f-b820-8816ad1c277b" ng-click="goToPath('/app/home')" style="cursor:pointer;">
+<img src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Flogo-cabecera.png?alt=media&token=2d197f6d-6d72-495f-b820-8816ad1c277b" onClick="javascript:redirecciona('/')" style="cursor:pointer;">
+
 			</div>
 		</span>
 		<span class="float-right">
@@ -100,7 +101,7 @@
 						<div class="" aria-labelledby="dropdownMenuLink">
               <button class="dropdown-item" type="button">Galeria NC Tech</button>
 							<button class="dropdown-item" type="button">Chat de negocios</button>
-							<button class="dropdown-item menu-activo" type="button" ng-click="goToPath('/app/documentos')">Documentos</button>
+							<button class="dropdown-item menu-activo" type="button" onClick="javascript:redirecciona('/documentos')">Documentos</button>
 							<button class="dropdown-item" type="button">Newsletter</button>
 							<a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&amp;service=mail&amp;sacu=1&amp;rip=1&amp;flowName=GlifWebSignIn&amp;flowEntry=ServiceLogin" target="_blank"><button class="dropdown-item" type="button">Correo</button></a>
 						</div>
@@ -111,8 +112,7 @@
 			<div class="col-md-10 text-center color-blanco">
 				<div class="row">
 					<div class="col-md-4 text-left">
-						<button class="btn btn-xs btn-default color-blanco btn-atras" style="background-color: transparent;" ng-click="goToPath('/app/minutas')"><svg class="svg-inline--fa fa-arrow-alt-circle-left fa-w-16 fa-2x color-blanco" aria-hidden="true" data-prefix="fa" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z"></path></svg><!-- <i class="fa fa-arrow-alt-circle-left fa-2x color-blanco"></i> --></button>
-					</div>
+<button class="btn btn-xs btn-default color-blanco btn-atras" style="background-color: transparent;" onClick="javascript:redirecciona('/checklist');"><svg class="svg-inline--fa fa-arrow-alt-circle-left fa-w-16 fa-2x color-blanco" aria-hidden="true" data-prefix="fa" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z"></path></svg><!-- <i class="fa fa-arrow-alt-circle-left fa-2x color-blanco"></i> --></button>					</div>
 					<!-- ngIf: !isEdit --><div class="col-md-4 text-center ng-scope" ng-if="!isEdit"><h3>AGREGAR CHECKLIST</h3></div><!-- end ngIf: !isEdit -->
 					<!-- ngIf: isEdit -->
 					<div class="col-md-4"></div>
@@ -462,7 +462,7 @@ $.cookie('checkid' , checklistID)
 	              </td>
                 <td>
 	              <div className="text-left"> TERMINO</div>
-                <input type="checkbox" value="Sí" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="terminoChecklist"  />
+                <input type="checkbox" value="Sí" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="terminochekChecklist"  />
 	              </td>
                 <td>
                 <a href="javascript:addCheckList();"  className="btn btn-success">Agregar</a>
@@ -541,6 +541,12 @@ function addCheckList(){
                     var responsable = $("#responsableCheckChecklist").val();
                     var coresponsable = $("#coresponsableChecklist").val();
                     var termino = $("#terminoChecklist").val();
+										if ($('input#terminochekChecklist').is(':checked')) {
+											var termino = "Sí";
+										}
+										else {
+											var termino = "No";
+										}
                     var database = firebase.database();
                           var objeto = {
                                grupoChecklist: grupo,
@@ -610,7 +616,7 @@ function addProcedimiento(){
                                    version: "1.0",
                                    tipo:'ultima'
                               }
-                             var ref = database.ref("documentos_checklist").child(checklistID+  "_Version_" + "1");
+                             var ref = database.ref("documentoschecklist").child(checklistID+  "_Version_" + "1");
                              ref.set(objeto)
                              window.location.href = "/checklist"
                   }
@@ -694,5 +700,7 @@ function notification(campo){
         notification.show();
   }
 
-
+	function redirecciona(url){
+		window.location.href = url
+	}
 </script>

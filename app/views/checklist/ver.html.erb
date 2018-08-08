@@ -57,7 +57,8 @@
 	<div class="clearfix">
 		<span class="float-left">
 			<div id="log-int">
-				<img src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Flogo-cabecera.png?alt=media&token=2d197f6d-6d72-495f-b820-8816ad1c277b" ng-click="goToPath('/app/home')" style="cursor:pointer;">
+<img src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Flogo-cabecera.png?alt=media&token=2d197f6d-6d72-495f-b820-8816ad1c277b" onClick="javascript:redirecciona('/')" style="cursor:pointer;">
+
 			</div>
 		</span>
 		<span class="float-right">
@@ -232,7 +233,7 @@ $.cookie('checkid' , checklistID)
             if(firebaseUser) {
         var database = firebase.database();
         var user    = firebaseUser.uid;
-        var ref = database.ref("documentos_checklist").child(checklistID);
+        var ref = database.ref("documentoschecklist").child(checklistID);
             ref.on('value', snap => {
             const newReceta = {
                 id: snap.key,
@@ -249,7 +250,7 @@ $.cookie('checkid' , checklistID)
 
 
                     var ref = database.ref("checklistChecklist");
-                        ref.orderByChild("checkid").equalTo(checklistID).on('child_added', snap => {
+                        ref.orderByChild("checkid").startAt(minutanumero).endAt(checklistID+ "\uf8ff").on('child_added', snap => {
                         const newReceta = {
                             id: snap.key,
                             data: snap.val(),
@@ -276,7 +277,7 @@ $.cookie('checkid' , checklistID)
               var res = checklistID.replace(checklistID, minutanumero + "_Version_" + aumento);
               console.log(minutanumero);
               var ref = database.ref("accesoChecklist");
-                        ref.orderByChild("checkid").startAt(minutanumero + "_Version_1").endAt(checklistID).on('child_added', snap => {
+                        ref.orderByChild("checkid").startAt(minutanumero).endAt(checklistID+ "\uf8ff").on('child_added', snap => {
                         const newReceta = {
                             id: snap.key,
                             data: snap.val(),
@@ -553,7 +554,7 @@ function addProcedimiento(){
                                    version: "1.0",
                                    tipo:'ultima'
                               }
-                             var ref = database.ref("documentos_checklist").child(checklistID+  "_Version_" + "1");
+                             var ref = database.ref("documentoschecklist").child(checklistID+  "_Version_" + "1");
                              ref.set(objeto)
                              window.location.href = "/checklist"
                   }

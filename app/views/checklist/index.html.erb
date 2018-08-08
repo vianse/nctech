@@ -25,7 +25,7 @@
   </style>
 	<style>
 	#addMinuta{
-		margin-right: 2.5%;
+		margin-right: 0%;
 	}
 	</style>
 </head>
@@ -35,7 +35,8 @@
 	<div class="clearfix">
 		<span class="float-left">
 			<div id="log-int">
-				<img src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Flogo-cabecera.png?alt=media&token=2d197f6d-6d72-495f-b820-8816ad1c277b" ng-click="goToPath('/app/home')" style="cursor:pointer;">
+<img src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Flogo-cabecera.png?alt=media&token=2d197f6d-6d72-495f-b820-8816ad1c277b" onClick="javascript:redirecciona('/')" style="cursor:pointer;">
+
 			</div>
 		</span>
 		<span class="float-right">
@@ -78,7 +79,7 @@
 						<div class="" aria-labelledby="dropdownMenuLink">
 							<button class="dropdown-item" type="button">Galeria NC Tech</button>
 							<button class="dropdown-item" type="button">Chat de negocios</button>
-							<button class="dropdown-item menu-activo" type="button" ng-click="goToPath('/app/documentos')">Documentos</button>
+							<button class="dropdown-item menu-activo" type="button"onClick="javascript:redirecciona(/documentos)">Documentos</button>
 							<button class="dropdown-item" type="button">Newsletter</button>
 							<a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&amp;service=mail&amp;sacu=1&amp;rip=1&amp;flowName=GlifWebSignIn&amp;flowEntry=ServiceLogin" target="_blank"><button class="dropdown-item" type="button">Correo</button></a>
 						</div>
@@ -119,13 +120,13 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<div class="col-sm-12 text-center">
-					<h3 class="modal-title ng-binding" id="modal-title">Version Minuta </h3>
+					<h3 class="modal-title ng-binding" id="modal-title">Versiones Check List </h3>
 				</div>
 			</div>
 			<div class="modal-body" id="modal-body">
 				<div class="row">
 					<div class="col-sm-12">
-						<div id="procedimientoID"></div>
+
 						<div id="versiones"></div>
 					</div>
 				</div>
@@ -206,7 +207,7 @@ class Minutas extends React.Component{
 				if(firebaseUser) {
 				var database = firebase.database();
 				var user    = firebaseUser.uid;
-				var ref = database.ref("documentos_checklist");
+				var ref = database.ref("documentoschecklist");
 						ref.orderByChild("tipo").equalTo("ultima").on('child_added', snap => {
 						const newReceta = {
 								id: snap.key,
@@ -309,7 +310,6 @@ class Minutas extends React.Component{
 						});
 		}
 		pasarId(id){
-
 			modal(id)
 		}
 	render() {
@@ -366,20 +366,20 @@ class Minutas extends React.Component{
 					<table id="example" className="table table-striped table-bordered" style={{width:"100%"}}>
 						<thead className="ng-scope">
 							<tr role="row">
-								<th onClick={()=>ordenar("id")}>No</th>
-								<th onClick={()=>ordenar("nombreChecklist")} style={{width: "158px"}}>Nombre</th>
-								<th onClick={()=>ordenar("responsableChecklist")} style={{width: "65px"}}>Resposnable</th>
-								<th onClick={()=>ordenar("terminoChecklist")} className="sorting"  style={{width: "47px"}}>Termino</th>
-                <th onClick={()=>ordenar("version")} className="sorting"  style={{width: "40px"}}>Versión</th>
-								<th onClick={()=>ordenar("fechaModificacion")} className="sorting" style={{width: "95px"}}>Fecha Modificación</th>
-								<th className="sorting_disabled" tabindex="0" aria-controls="DataTables_Table_30" rowspan="1" colspan="1" aria-label="" style={{width: "216px"}}></th>
+								<th>No</th>
+								<th>Nombre</th>
+								<th>Resposnable</th>
+								<th>Termino</th>
+                <th>Versión</th>
+								<th>Fecha Modificación</th>
+								<th ></th>
 							</tr>
 						</thead>
 						<tbody className="ng-scope">
 						 {options}
 						</tbody>
 					</table>
-		
+
 			)
 		}
 }
@@ -393,13 +393,13 @@ function modal(id){
 		constructor(props) {
 				 super(props);
 				 this.state = {
-					 data:[],
+					 versiones:[],
 					 text: '',
 					 limitar: ''
 				 }
 
 		}
-		componentWillMount() {
+		componentDidMount() {
 
 
 				firebase.auth().onAuthStateChanged( firebaseUser => {
@@ -408,35 +408,31 @@ function modal(id){
 						var user    = firebaseUser.uid;
 						var version = id
 						var posicion = version.indexOf("_");
-						 var minutanumero = version.substring(0,posicion);
+						var minutanumero = version.substring(0,posicion);
 
-
-						 console.log(minutanumero);
-						 var ref = database.ref("documentos_checklist");
-								ref.orderByChild("checklistid").startAt(minutanumero + "_Version_1").endAt(version).on('child_added', snap => {
+						 var ref = database.ref("documentoschecklist");
+								ref.orderByChild("checkid").startAt(minutanumero).endAt(version + "\uf8ff").on('child_added', snap => {
 
 								const newReceta = {
 										id: snap.key,
 										data: snap.val(),
 								};
-								var newArr = this.state.data;
+								console.log(newReceta);
+								var newArr = this.state.versiones;
 										newArr.push(newReceta);
 										this.setState({
-												 data: this.state.data, arr:newArr
+												 versiones: this.state.versiones, arr:newArr
 										});
 								});
 								}
 							});
-
-
-
 		}
 
 		render() {
 
-			var arr = this.state.data
+			var arr = this.state.versiones
 
-				var options = arr.map(function(object){
+				var options = arr.map(function(object, i){
 					var url = "editar/checklist?id=" + object.id
 					var url_ver = "ver/checklist?id=" + object.id
 					return  <tr>
@@ -450,7 +446,7 @@ function modal(id){
 										{object.data.terminoChecklist}
 										</td>
 										<td  className="ng-scope gris2 even" role="row">
-										{object.data.version}
+										{i + 1}
 										</td>
 										<td  className="ng-scope gris2 even" role="row">
 										{object.data.fechaModificacion}
