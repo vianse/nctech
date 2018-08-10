@@ -27,6 +27,11 @@
 	#addMinuta{
 		margin-right: 0%;
 	}
+  .avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
 	</style>
 </head>
 <body class="page-body">
@@ -79,7 +84,7 @@
 						<div class="" aria-labelledby="dropdownMenuLink">
 							<button class="dropdown-item" type="button">Galeria NC Tech</button>
 							<button class="dropdown-item" type="button">Chat de negocios</button>
-							<button class="dropdown-item menu-activo" type="button" onClick="javascript:redirecciona('/documentos')">Documentos</button>
+							<button class="dropdown-item menu-activo" type="button"onClick="javascript:redirecciona(/documentos)">Documentos</button>
 							<button class="dropdown-item" type="button">Newsletter</button>
 							<a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&amp;service=mail&amp;sacu=1&amp;rip=1&amp;flowName=GlifWebSignIn&amp;flowEntry=ServiceLogin" target="_blank"><button class="dropdown-item" type="button">Correo</button></a>
 						</div>
@@ -91,7 +96,7 @@
 					<div class="col-md-4 text-left">
 						<button class="btn btn-xs btn-default color-blanco btn-atras" style="background-color: transparent;" onClick="javascript:redirecciona('/documentos');"><svg class="svg-inline--fa fa-arrow-alt-circle-left fa-w-16 fa-2x color-blanco" aria-hidden="true" data-prefix="fa" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z"></path></svg><!-- <i class="fa fa-arrow-alt-circle-left fa-2x color-blanco"></i> --></button>
 					</div>
-					<div class="col-md-4 text-center"><h3>POLITICAS</h3></div>
+					<div class="col-md-4 text-center"><h3>USUARIOS</h3></div>
 					<div class="col-md-4"></div>
 				</div>
 
@@ -120,39 +125,19 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<div class="col-sm-12 text-center">
-					<h3 class="modal-title ng-binding" id="modal-title">AVISO! </h3>
+					<h3 class="modal-title ng-binding" id="modal-title">Versiones Check List </h3>
 				</div>
 			</div>
 			<div class="modal-body" id="modal-body">
 				<div class="row">
 					<div class="col-sm-12">
-            <div id="versiones"></div>
+
+						<div id="versiones"></div>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-
-			</div>
-		</div>
-	</div>
-</div>
-<div class="modal ng-scope" tabindex="-1" role="dialog" id="modal-versionMinuta1">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<div class="col-sm-12 text-center">
-					<h3 class="modal-title ng-binding" id="modal-title">Usuarios que Aceptaron la Política</h3>
-				</div>
-			</div>
-			<div class="modal-body" id="modal-body">
-				<div class="row">
-					<div class="col-sm-12">
-            <div id="versiones1"></div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-
+				<button class="btn btn-danger" class="btn btn-default" data-dismiss="modal">CERRAR</button>
 			</div>
 		</div>
 	</div>
@@ -187,36 +172,12 @@ firebase.auth().onAuthStateChanged(function(user) {
       });
 </script>
 <script type="text/jsx">
-class Link extends React.Component{
-	constructor(props) {
-			 super(props);
-			 this.state = {
-				 data:[],
 
-			 }
-
-			 }
-
-	render() {
-		var url = "/politicas/crear?id=" + moment().unix();
-			return (
-
-				<a href={url} className="btn btn-sm btn-success float-right ng-scope" id="addMinuta">Agregar Politicas</a>
-
-			)
-		}
-}
-
-ReactDOM.render(
-	<Link  />,
-	document.getElementById('link')
-);
 class Minutas extends React.Component{
 	constructor(props) {
 			 super(props);
 			 this.state = {
 				 data:[],
-         data1:[],
 				 text: '',
 				 limitar: ''
 			 }
@@ -228,8 +189,8 @@ class Minutas extends React.Component{
 				if(firebaseUser) {
 				var database = firebase.database();
 				var user    = firebaseUser.uid;
-				var ref = database.ref("politicas");
-						ref.orderByChild("tipo").equalTo("ultima").on('child_added', snap => {
+				var ref = database.ref("usuarios");
+						ref.on('child_added', snap => {
 						const newReceta = {
 								id: snap.key,
 								data: snap.val(),
@@ -242,14 +203,15 @@ class Minutas extends React.Component{
 						});
 						}
 					});
+					if (!$.cookie("versionId")){
+						$.cookie("versionId", 0)
+					}else{
 
+					}
 
 
 			}
-      componentDidMount(){
-
-      }
-		ordenar(campo){
+			ordenar(campo){
 				this.setState({
 						 data: []
 				});
@@ -257,7 +219,7 @@ class Minutas extends React.Component{
 						if(firebaseUser) {
 						var database = firebase.database();
 						var user    = firebaseUser.uid;
-						var ref = database.ref("procedimientos");
+						var ref = database.ref("checklist");
 								ref.orderByChild(campo).on('child_added', snap => {
 								const newReceta = {
 										id: snap.key,
@@ -276,7 +238,7 @@ class Minutas extends React.Component{
 								}
 							});
 			}
-		buscar(e){
+			buscar(e){
         this.setState({ text: e.target.value });
 				this.setState({
 						 data: []
@@ -285,8 +247,8 @@ class Minutas extends React.Component{
 						if(firebaseUser) {
 						var database = firebase.database();
 						var user    = firebaseUser.uid;
-						var ref = database.ref("procedimientos");
-								ref.orderByChild("nombreProcedimiento").startAt(this.state.text).endAt("\uf8ff" +this.state.text).on('child_added', snap => {
+						var ref = database.ref("checklist");
+								ref.orderByChild("nombreChecklist").startAt(this.state.text).endAt("\uf8ff" +this.state.text).on('child_added', snap => {
 								const newReceta = {
 										id: snap.key,
 										data: snap.val(),
@@ -313,8 +275,8 @@ class Minutas extends React.Component{
 					if(firebaseUser) {
 					var database = firebase.database();
 					var user    = firebaseUser.uid;
-					var ref = database.ref("procedimientos");
-							ref.orderByChild("nombreProcedimiento").limitToFirst(10).on('child_added', snap => {
+					var ref = database.ref("document_checklist");
+							ref.orderByChild("nombreChecklist").limitToFirst(10).on('child_added', snap => {
 							const newReceta = {
 									id: snap.key,
 									data: snap.val(),
@@ -329,82 +291,75 @@ class Minutas extends React.Component{
 							}
 						});
 		}
-		pasar(id,titulo){
-			modal(id,titulo)
+		pasarId(id){
+			modal(id)
 		}
-    pasar1(id,titulo){
-			modal1(id,titulo)
+    disabled(id){
+			disabledUser(id)
 		}
-	render(){
+	render() {
 		var ordenar = this.ordenar.bind(this)
 		var buscar = this.buscar.bind(this)
 		var limitar = this.limitar.bind(this)
-		var pasar = this.pasar.bind(this)
-    var pasar1 = this.pasar1.bind(this)
-
+		var pasar = this.pasarId.bind(this)
+    var disabled = this.disabled.bind(this)
 		var arr = this.state.data
+
 			var options = arr.map(function(object, i){
-				var url = "editar/politica?id=" + object.id
-				var url_ver = "ver/politicas?id=" + object.id
-        var ids = "clase_" + object.id
-        estado(object.data.politicaid);
+				var url = "editar/usuarios?id=" + object.id
+				var url_ver = "ver/usuarios?id=" + object.id
 				return  <tr>
-									<td  className="ng-scope gris2 even" role="row">
-									{i + 1}
+                  <td className="ng-scope gris2 even" role="row">
+                  <img src={object.data.foto} className="avatar"/>
+                  </td>
+									<td className="ng-scope gris2 even" role="row">
+									{object.data.nombre}
+									</td>
+									<td className="ng-scope gris2 even" role="row">
+									{object.data.telefono}
 									</td>
 									<td  className="ng-scope gris2 even" role="row">
-									{object.data.nombrePolitica}
+									{object.data.correo}
 									</td>
 									<td  className="ng-scope gris2 even" role="row">
-									{object.data.areaaplica}
+									{object.data.puesto}
 									</td>
 									<td  className="ng-scope gris2 even" role="row">
-									{object.data.emitio}
+									{object.data.rol}
 									</td>
 									<td  className="ng-scope gris2 even" role="row">
-									{object.data.usuario}
-									</td>
-									<td  className="ng-scope gris2 even" role="row">
-									{object.data.fechaModificacion}
+									{object.data.ultimaSesion}
 									</td>
                   <td  className="ng-scope gris2 even" role="row">
-									<div id={ids}></div>
+									{object.data.estatus}
 									</td>
-						  <td className="ng-scope gris2 even" role="row">
-							<button className="btn btn-sm btn-info ng-scope" data-toggle="modal" data-target="#modal-versionMinuta" onClick={()=>pasar(object.id,object.data.nombrePolitica)}>
-              <svg className="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" data-prefix="fa" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
-              <path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z">
-              </path>
-              </svg>
-              </button>
+						<td  className="ng-scope gris2 even" role="row">
+							<a href="#" className="btn btn-sm btn-warning ng-scope" onClick={()=>disabled(object.id)} >
+								<svg className="svg-inline--fa fa-ban fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="ban" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"></path></svg>
+							</a>
 							<a href={url} className="btn btn-sm btn-primary ng-scope">
 							<svg className="svg-inline--fa fa-edit fa-w-18" aria-hidden="true" data-prefix="fa" data-icon="edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
 								<path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z">
 								</path>
 							</svg>
 							</a>
-							<button className="btn btn-sm btn-default ng-scope" data-toggle="modal" data-target="#modal-versionMinuta1" onClick={()=>pasar1(object.id,object.data.nombrePolitica)}>
-              <svg className="svg-inline--fa fa-users fa-w-20" aria-hidden="true" data-prefix="fa" data-icon="users" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg="">
-              <path fill="currentColor" d="M320 64c57.99 0 105 47.01 105 105s-47.01 105-105 105-105-47.01-105-105S262.01 64 320 64zm113.463 217.366l-39.982-9.996c-49.168 35.365-108.766 27.473-146.961 0l-39.982 9.996C174.485 289.379 152 318.177 152 351.216V412c0 19.882 16.118 36 36 36h264c19.882 0 36-16.118 36-36v-60.784c0-33.039-22.485-61.837-54.537-69.85zM528 300c38.66 0 70-31.34 70-70s-31.34-70-70-70-70 31.34-70 70 31.34 70 70 70zm-416 0c38.66 0 70-31.34 70-70s-31.34-70-70-70-70 31.34-70 70 31.34 70 70 70zm24 112v-60.784c0-16.551 4.593-32.204 12.703-45.599-29.988 14.72-63.336 8.708-85.69-7.37l-26.655 6.664C14.99 310.252 0 329.452 0 351.477V392c0 13.255 10.745 24 24 24h112.169a52.417 52.417 0 0 1-.169-4zm467.642-107.09l-26.655-6.664c-27.925 20.086-60.89 19.233-85.786 7.218C499.369 318.893 504 334.601 504 351.216V412c0 1.347-.068 2.678-.169 4H616c13.255 0 24-10.745 24-24v-40.523c0-22.025-14.99-41.225-36.358-46.567z">
-              </path>
-              </svg>
-              </button>
+
 						</td>
 					</tr>
 			})
 			return (
-
 					<table id="example" className="table table-striped table-bordered" style={{width:"100%"}}>
 						<thead className="ng-scope">
 							<tr role="row">
-								<th>No</th>
-								<th >Nombre</th>
-								<th >Área que aplica</th>
-								<th >Emisor</th>
-								<th >Usuario</th>
-								<th >Fecha Modificación</th>
-                <th >Aceptada</th>
-                <th className="sorting_disabled" tabindex="0" aria-controls="DataTables_Table_30" rowspan="1" colspan="1" aria-label="" style={{width: "216px"}}></th>
+                <th>Avatar</th>
+								<th>Nombre</th>
+								<th>Telefono</th>
+								<th>Correo</th>
+								<th>Puesto</th>
+                <th>Rol</th>
+								<th>Fecha última Sesión</th>
+								<th>Estado</th>
+                <th></th>
 							</tr>
 						</thead>
 						<tbody className="ng-scope">
@@ -420,54 +375,100 @@ ReactDOM.render(
 	<Minutas  />,
 	document.getElementById('minutas')
 );
-function modal(id, titulo){
+function modal(id){
 	class Versiones extends React.Component{
 		constructor(props) {
 				 super(props);
 				 this.state = {
-					 data:[],
+					 versiones:[],
 					 text: '',
 					 limitar: ''
 				 }
 
 		}
+		componentDidMount() {
 
-    accion(e){
-      firebase.auth().onAuthStateChanged( firebaseUser => {
-          if(firebaseUser) {
-                        var userName    = firebaseUser.displayName;
-                        var user    = firebaseUser.uid;
-                        var database = firebase.database();
-                              var objeto = {
-                                   politicaid: id,
-																	 usuario: userName,
-                                   usuarioID: user,
-                                   fechaaceptacion: moment().format('LL'),
-                                   areaaplica: "No aplica",
-                                   estatus: e
-                              }
-                             var ref = database.ref("politicasaceptadas").child(user + "_" + id);
-                             ref.set(objeto)
 
-                  }
-              });
+				firebase.auth().onAuthStateChanged( firebaseUser => {
+						if(firebaseUser) {
+						var database = firebase.database();
+						var user    = firebaseUser.uid;
+						var version = id
+						var posicion = version.indexOf("_");
+						var minutanumero = version.substring(0,posicion);
 
-    }
+						 var ref = database.ref("documentoschecklist");
+								ref.orderByChild("checkid").startAt(minutanumero).endAt(version + "\uf8ff").on('child_added', snap => {
+
+								const newReceta = {
+										id: snap.key,
+										data: snap.val(),
+								};
+								console.log(newReceta);
+								var newArr = this.state.versiones;
+										newArr.push(newReceta);
+										this.setState({
+												 versiones: this.state.versiones, arr:newArr
+										});
+								});
+								}
+							});
+		}
+
 		render() {
-      var accion = this.accion.bind(this)
+
+			var arr = this.state.versiones
+
+				var options = arr.map(function(object, i){
+					var url = "editar/checklist?id=" + object.id
+					var url_ver = "ver/checklist?id=" + object.id
+					return  <tr>
+										<td  className="ng-scope gris2 even" role="row">
+										{object.data.nombreChecklist}
+										</td>
+										<td  className="ng-scope gris2 even" role="row">
+										{object.data.responsableChecklist}
+										</td>
+										<td  className="ng-scope gris2 even" role="row">
+										{object.data.terminoChecklist}
+										</td>
+										<td  className="ng-scope gris2 even" role="row">
+										{i + 1}
+										</td>
+										<td  className="ng-scope gris2 even" role="row">
+										{object.data.fechaModificacion}
+									</td>
+									<td  className="ng-scope gris2 even" role="row">
+									<a href={url_ver} className="btn btn-sm btn-info ng-scope">
+										<svg className="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" data-prefix="fa" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
+										<path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z">
+										</path>
+										</svg>
+									</a>
+								</td>
+
+						</tr>
+				})
 				return (
-          <div>
-					<div className="ng-scope">Hola!, Si estas leyendo este mensaje, significa que revisarás el documento <strong>{titulo}</strong>, te sugerimos que leas cuidadosamente cada punto, recuerda que las políticas son las reglas bajo las cuales ser rige la empresa y están definidas exclusivamente por Dirección General. Una vez aceptado este mensaje, damos por asentada la lectura, comprensión total y apego a las mismas</div>
-          <div className="modal-footer">
-          <button className="btn btn-danger" onClick={()=>accion("No acepto")} data-dismiss="modal">
-          No, Acepto
-          </button>
-          <button className="btn btn-success" onClick={()=>accion("Acepto")} data-dismiss="modal">
-          Si, Acepto
-          </button>
-          </div>
-          </div>
-        )
+
+					<table className="table table-striped">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Responsable</th>
+								<th>Termino</th>
+								<th>Versión</th>
+								<th>Fecha de Modificación</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{options}
+						</tbody>
+					</table>
+
+
+				)
 			}
 	}
 
@@ -477,101 +478,11 @@ function modal(id, titulo){
 	);
 }
 
-function modal1(id, titulo){
-	class Versiones extends React.Component{
-		constructor(props) {
-				 super(props);
-				 this.state = {
-					 data:[],
-					 text: '',
-					 limitar: ''
-				 }
-		}
-    componentWillMount(){
-      firebase.auth().onAuthStateChanged( firebaseUser => {
-  				if(firebaseUser) {
-  				var database = firebase.database();
-  				var user    = firebaseUser.uid;
-  				var ref = database.ref("politicasaceptadas");
-  						ref.orderByChild("politicaid").equalTo(id).on('child_added', snap => {
-  						const newReceta = {
-  								id: snap.key,
-  								data: snap.val(),
-  						};
-  						var newArr = this.state.data;
-  								newArr.push(newReceta);
-  								this.setState({
-  										 data: this.state.data, arr:newArr
-  								});
-
-  						});
-  						}
-  				});
-    }
-		render() {
-      var arr = this.state.data
-      var options = arr.map(function(object, i){
-        var clase = "#clase_" + object.id
-        return <tr ng-repeat="user in userPolitica" className="ng-scope gris2">
-          <td className="ng-binding">{object.data.usuario}</td>
-          <td className="ng-binding">CAPITAL HUMANO</td>
-          <td className="ng-binding">{object.data.fechaaceptacion}</td>
-          <td className="ng-binding">{object.data.estatus}</td>
-        </tr>
-      })
-
-				return (
-          <table className="table table-striped">
-							<thead>
-								<tr>
-									<th>Nombre</th>
-									<th>Area</th>
-									<th>Fecha Aceptación</th>
-                  <th>Esatus</th>
-								</tr>
-							</thead>
-							<tbody>
-               {
-                 options
-               }
-							</tbody>
-						</table>
-        )
-			}
-	}
-
-	ReactDOM.render(
-		<Versiones  />,
-		document.getElementById('versiones1')
-	);
-}
-
 
 function redirecciona(url){
 	window.location.href = url
 }
 
-
-function estado(id){
-    firebase.auth().onAuthStateChanged( firebaseUser => {
-    if(firebaseUser) {
-    var database = firebase.database();
-    var user    = firebaseUser.uid;
-
-    var ref = database.ref("politicasaceptadas").child(user + "_" + id);
-        ref.on('value', snap => {
-        const newReceta = {
-            data: snap.val(),
-        };
-
-          var ids = "#clase_" + id
-          $(ids).text(newReceta.data.estatus)
-
-
-        });
-      }
-    });
-}
 setTimeout(function(){
 	$('#example').DataTable({
 		"language":
@@ -602,5 +513,24 @@ setTimeout(function(){
 
 	});
 },2000)
+
+
+function disabledUser(id){
+      firebase.auth().onAuthStateChanged( firebaseUser => {
+          if(firebaseUser) {
+                        var userName    = firebaseUser.displayName;
+                        var user    = firebaseUser.uid;
+                        var database = firebase.database();
+                              var objeto1 = {
+                                   estatus: "Inactivo",
+                                   fechaModificacion: moment().format('LL')
+                              }
+     												var ref = database.ref("usuarios").child(id);
+     												ref.update(objeto1)
+ 													  window.location.href = "/usuarios"
+                  }
+              });
+
+}
 
 </script>

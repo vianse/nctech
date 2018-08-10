@@ -5,6 +5,46 @@ Rails.application.routes.draw do
 
 
 
+  get 'newsletter/index'
+
+  get 'newsletter/crear'
+
+  get 'newsletter/editar'
+
+  get 'newsletter/ver'
+
+  get 'conocimiento/index'
+
+  get 'conocimiento/crear'
+
+  get 'conocimiento/editar'
+
+  get 'conocimiento/ver'
+
+  get 'archivos/index'
+
+  get 'archivos/crear'
+
+  get 'archivos/editar'
+
+  get 'archivos/ver'
+
+  get 'roles/index'
+
+  get 'roles/crear'
+
+  get 'roles/editar'
+
+  get 'roles/ver'
+
+  get 'usuarios/index'
+
+  get 'usuarios/crear'
+
+  get 'usuarios/editar'
+
+  get 'usuarios/ver'
+
   get 'poli/index'
 
   get 'poli/crear'
@@ -47,9 +87,13 @@ Rails.application.routes.draw do
   get 'politicas/crear' => 'poli#crear', as: :crear_politica
   get 'editar/politica' => 'poli#editar', as: :editar_politicas
   get 'ver/politica' => 'poli#ver', as: :ver_politicas
-    get 'checklist/crear' => 'checklist#crear', as: :crear_checklist
+  get 'checklist/crear' => 'checklist#crear', as: :crear_checklist
   get 'editar/checklist' => 'checklist#editar', as: :editar_checklist
   get 'ver/checklist' => 'checklist#ver', as: :ver_checklist
+  get 'usuarios' => 'usuarios#index', as: :usuarios
+  get 'usuarios/crear' => 'usuarios#crear', as: :crear_usuarios
+  get 'editar/usuarios' => 'usuarios#editar', as: :editar_usuarios
+  get 'ver/usuarios' => 'usuarios#ver', as: :ver_usuarios
   namespace :api do
       namespace :v1 do
         resources :get_user, path: "get_user"

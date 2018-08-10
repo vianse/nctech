@@ -112,9 +112,8 @@
 			<div class="col-md-10 text-center color-blanco">
 				<div class="row">
 					<div class="col-md-4 text-left">
-						<button class="btn btn-xs btn-default color-blanco btn-atras" style="background-color: transparent;" ng-click="goToPath('/app/minutas')"><svg class="svg-inline--fa fa-arrow-alt-circle-left fa-w-16 fa-2x color-blanco" aria-hidden="true" data-prefix="fa" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z"></path></svg><!-- <i class="fa fa-arrow-alt-circle-left fa-2x color-blanco"></i> --></button>
-					</div>
-					<!-- ngIf: !isEdit --><div class="col-md-4 text-center ng-scope" ng-if="!isEdit"><h3>AGREGAR POLÍTICA</h3></div><!-- end ngIf: !isEdit -->
+<button class="btn btn-xs btn-default color-blanco btn-atras" style="background-color: transparent;" onClick="javascript:redirecciona('/checklist');"><svg class="svg-inline--fa fa-arrow-alt-circle-left fa-w-16 fa-2x color-blanco" aria-hidden="true" data-prefix="fa" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z"></path></svg><!-- <i class="fa fa-arrow-alt-circle-left fa-2x color-blanco"></i> --></button>					</div>
+					<!-- ngIf: !isEdit --><div class="col-md-4 text-center ng-scope" ng-if="!isEdit"><h3>EDITAR USUARIO</h3></div><!-- end ngIf: !isEdit -->
 					<!-- ngIf: isEdit -->
 					<div class="col-md-4"></div>
 				</div>
@@ -126,38 +125,7 @@
               </div>
 						</div>
 					</div>
-          <div class="row">
-						<div class="col-md-12">
-              <div id="lineamientos">
-              </div>
-						</div>
-					</div>
-          <div class="row">
-						<div class="col-md-12">
-              <div id="procesodetallado">
-              </div>
-						</div>
-					</div>
-          <div class="row">
-						<div class="col-md-12">
-              <div id="checklist">
-              </div>
-						</div>
-					</div>
-          <div class="row">
-						<div class="col-md-12">
-              <div id="participantes">
-              </div>
-							<div id="participantesparte2">
-              </div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-              <div id="emitio">
-              </div>
-						</div>
-					</div>
+
           <div class="row">
 						<div class="col-md-12">
 
@@ -209,11 +177,8 @@
 	<div class="page-loading-overlay loaded">
 		<div class="loader-2"></div>
 	</div>
-
-
-
-
-</body></html>
+</body>
+</html>
 
 <script>
 firebase.auth().onAuthStateChanged(function(user) {
@@ -250,8 +215,8 @@ for (i = 0; i < sURLVariables.length; i++) {
   }
 };
 
-var politicaID = getUrlParameter('id');
-$.cookie('politicaid' , politicaID)
+var usuarioID = getUrlParameter('id');
+
 
 
 	class Procedimientos extends React.Component{
@@ -259,15 +224,10 @@ $.cookie('politicaid' , politicaID)
 	         super(props);
 	         this.state = {
 	           data:[],
-						 data1:[],
-	           interno: "visible",
-	           externo: "ocultar",
-	           interno_one: "visible",
-	           externo_one: "ocultar",
-	           buttonInterno: "visible",
-	           buttonExterno: "ocultar"
+
+
 	         }
-	        this.changeInterno = this.changeInterno.bind(this);
+
 	         }
 	    componentDidMount() {
 	      firebase.auth().onAuthStateChanged( firebaseUser => {
@@ -287,70 +247,27 @@ $.cookie('politicaid' , politicaID)
 	                  });
 
 	              });
+
+                var ref = database.ref("usuarios").child(usuarioID);
+                    ref.on('value', snap => {
+                    const newReceta = {
+                        id: snap.key,
+                        data: snap.val(),
+                    };
+                    $("#nombre").val(newReceta.data.nombre)
+                    $("#telefono").val(newReceta.data.telefono)
+                    $("#correo").val(newReceta.data.correo)
+                    $("#area").val(newReceta.data.area)
+
+
+                  });
+
 	              }
 	            });
 
 	        }
-	    changeInterno(e){
-	      this.setState({
-	        externo: "ocultar",
-	        interno: ""
-	      })
-	    }
-	    changeExterno(e){
-	      this.setState({
-	        interno: "ocultar",
-	        externo: "visible"
-	      })
-	      console.log(e);
-	    }
-	    changeInterno_one(e){
-	      this.setState({
-	        externo_one: "ocultar",
-	        interno_one: ""
-	      })
-	    }
-	    changeExterno_one(e){
-	      this.setState({
-	        interno_one: "ocultar",
-	        externo_one: "visible"
-	      })
-	      console.log(e);
-	    }
-			componentWillMount(){
-				var database = firebase.database();
 
-				var ref = database.ref("politicas").child(politicaID);
-						ref.on('value', snap => {
-						const newReceta = {
-								id: snap.key,
-								data: snap.val(),
-						};
-
-
-								$('#nombrePolitica').val(newReceta.data.nombrePolitica)
-							  $('#objetivoPolitica').val(newReceta.data.objetivoPolitica)
-							  $('#alcancePolitica').val(newReceta.data.alcancePolitica)
-								$('#grupoPolitica').val(newReceta.data.grupoPolitica)
-							  $('#descripcionPolitica').val(newReceta.data.descripcionPolitica)
-
-
-						});
-
-			}
 	    render() {
-	      var click = this.changeInterno.bind(this)
-	      var click_one = this.changeExterno.bind(this)
-	      var click_tree = this.changeInterno_one.bind(this)
-	      var click_two = this.changeExterno_one.bind(this)
-	      var visible = "form-control " + this.state.externo
-	      var ocultar = "form-control " + this.state.interno
-	      var visible_one = "form-control " + this.state.externo_one
-	      var ocultar_one = "form-control " + this.state.interno_one
-	      var ocultarBoton =  this.state.externo
-	      var visibleBoton =  this.state.interno
-	      var ocultarBoton_one =  this.state.externo_one
-	      var visibleBoton_one =  this.state.interno_one
 	      var arr = this.state.data
 
 	        var options = arr.map(function(object){
@@ -360,44 +277,74 @@ $.cookie('politicaid' , politicaID)
 
 	          <table className="table" style={{backgroundColor: "#FFF"}}>
 	            <thead>
-	              <tr>
-	                <th colSpan="2" className="text-left">NOMBRE DE LA POLITICA</th>
-	              </tr>
+              <tr>
+                <th colSpan="7" className="text-left">INFORMACIÓN GENERAL</th>
+              </tr>
+
 	            </thead>
 	            <tbody>
 	              <tr>
-	              <td>
+	              <td colSpan="3">
+                <div className="text-left">NOMBRE USUARIO</div>
 	              <div>
-	                    <input type="text" className="form-control" id="nombrePolitica" placeholder="Ingresa un nombre de la politica o lineamiento"/>
+	                    <input type="text" className="form-control" id="nombre" placeholder="Ingresa un nombre" disabled/>
+	                </div>
+	              </td>
+                <td colSpan="2">
+                <div className="text-left">TELEFONO</div>
+	              <div>
+                  <input type="text" className="form-control" id="telefono" placeholder="Ingresa un teléfono de contacto"/>
+	              </div>
+	              </td>
+                <td colSpan="2">
+                <div className="text-left">CORREO</div>
+	                <div>
+	                    <input type="text" className="form-control" id="correo" placeholder="Ingresa un correo" disabled/>
 	                </div>
 	              </td>
 	              </tr>
 	            </tbody>
 	            <thead>
-	              <tr>
-	                <th colSpan="2" className="text-left">OBJETIVO Y ALCANCE</th>
-	              </tr>
 	            </thead>
 	            <tbody>
-	              <tr>
-
-	              <td>
-	              <div>
-	              <div className="text-left"> Objetivo</div>
-	                    <input type="text" className="form-control" id="objetivoPolitica" placeholder="Ingresa el objetivo"/>
-	                </div>
+	              <tr >
+	              <td colSpan="3" >
+	              <div className="text-left"> PUESTO</div>
+                <input type="text" className="form-control" id="puesto" placeholder="Ingresa un Puesto"/>
 	              </td>
-	              </tr>
-	              <tr>
+                <td colSpan="2" >
+	              <div className="text-left"> ÁREA</div>
 
-	              <td>
-	              <div className="text-left"> Alcance</div>
-	              <div>
-	                    <input type="text" className="form-control" id="alcancePolitica" placeholder="Ingresa el alcance"/>
-	                </div>
+                <select className="form-control" placeholder="Selecciona uno" id="area">
+                  <option disabled selected>Selecciona una opción</option>
+                  <option>CAPITAL HUMANO</option>
+                  <option>SOPORTE TECNICO</option>
+                  <option>MARKETING</option>
+                  <option>ADMINISTRACION</option>
+                  <option>VENTAS</option>
+                  <option>ATENCION AL CLIENTE</option>
+                  <option>XPERTCAD</option>
+                </select>
+
 	              </td>
+                <td colSpan="2">
+                <div className="text-left"> ROL</div>
+
+                <select className="form-control" placeholder="Selecciona uno" id="rol">
+                  <option disabled selected>Selecciona una opción</option>
+                  <option>CAPITAL HUMANO</option>
+                  <option>SOPORTE TECNICO</option>
+                  <option>MARKETING</option>
+                  <option>ADMINISTRACION</option>
+                  <option>VENTAS</option>
+                  <option>ATENCION AL CLIENTE</option>
+                  <option>XPERTCAD</option>
+                </select>
+                </td>
 	              </tr>
+
 	            </tbody>
+
 	          </table>
 
 	        )
@@ -409,371 +356,7 @@ $.cookie('politicaid' , politicaID)
 	    document.getElementById('cabeceraProcedimientos')
 	  );
 
-  class Lineamientos extends React.Component{
-    constructor(props) {
-         super(props);
-         this.state = {
-           data:[],
-           data1:[],
-         }
 
-         }
-
-
-    componentWillMount(){
-      var database = firebase.database();
-
-      var ref = database.ref("lineamientos");
-          ref.orderByChild("procedimientoid").equalTo(politicaID).on('child_added', snap => {
-          const newReceta = {
-              id: snap.key,
-              data: snap.val(),
-          };
-          var newArr = this.state.data1;
-              newArr.push(newReceta);
-              this.setState({
-                   data1: this.state.data1, arr:newArr
-              });
-              console.log(this.state.data1);
-          });
-    }
-
-
-    render() {
-        return (
-          <div>
-							<table className="table" style={{backgroundColor:"#FFF"}}>
-								<thead>
-									<tr>
-										<th className="text-left" colSpan="3">GRUPO / DESCRIPCIÓN</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr ng-repeat="participante in minuta.participantes" className="ng-scope">
-										<td><div className="text-left"> Grupo</div><input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="grupoPolitica"  /></td>
-										<td><div className="text-left"> Descripción</div><input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="descripcionPolitica" /></td>
-										<td>
-                    </td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-
-        )
-      }
-  }
-
-  ReactDOM.render(
-    <Lineamientos  />,
-    document.getElementById('lineamientos')
-  );
-
-	class ProcesoDetallado extends React.Component{
-	    constructor(props) {
-	         super(props);
-	         this.state = {
-	           data:[],
-	           data1:[],
-	         }
-
-	         }
-
-
-	    componentWillMount(){
-	      var database = firebase.database();
-
-	      var ref = database.ref("areaPolitica");
-	          ref.orderByChild("politicaid").equalTo(politicaID).on('child_added', snap => {
-	          const newReceta = {
-	              id: snap.key,
-	              data: snap.val(),
-	          };
-	          var newArr = this.state.data1;
-	              newArr.push(newReceta);
-	              this.setState({
-	                   data1: this.state.data1, arr:newArr
-	              });
-	              console.log(this.state.data1);
-	          });
-	    }
-
-
-	    render() {
-	        var arra = this.state.data1
-	        var participantes = arra.map(function(object){
-	          return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
-
-	                <td>{object.data.areaPolitica}</td>
-	                <td>{object.data.puestoPolitica}</td>
-
-	              </tr>
-
-	        })
-
-	        return (
-
-	          <div>
-								<table className="table" style={{backgroundColor:"#FFF"}}>
-									<thead>
-										<tr>
-											<th className="text-left" colSpan="3">AREA O PUESTOS A LOS QUE APLICA</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr ng-repeat="participante in minuta.participantes" className="ng-scope">
-											<td><div className="text-left"> ÁREA</div><select className="form-control" placeholder="Selecciona uno" id="areaPolitica">
-                        <option disabled selected>Selecciona una opción</option>
-  											<option>CAPITAL HUMANO</option>
-  											<option>SOPORTE TECNICO</option>
-  											<option>MARKETING</option>
-  											<option>ADMINISTRACION</option>
-  											<option>VENTAS</option>
-  											<option>ATENCION AL CLIENTE</option>
-  											<option>XPERTCAD</option>
-                      </select></td>
-											<td><div className="text-left"> PUESTO</div><input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="puestoPolitica" /></td>
-											<td>
-	                    <a href="javascript:addAreaPolitica();" className="btn btn-success">Agregar Área</a>
-	                    </td>
-										</tr>
-									</tbody>
-								</table>
-	              <table className="table" style={{backgroundColor:"#FFF"}}>
-	                <thead>
-	                  <tr>
-	                    <th className="text-center">ÁREA</th>
-	                    <th className="text-center">PUESTO</th>
-	                  </tr>
-	                </thead>
-	                <tbody>
-	                {participantes}
-	                </tbody>
-	              </table>
-							</div>
-	        )
-	      }
-	  }
-
-	  ReactDOM.render(
-	    <ProcesoDetallado  />,
-	    document.getElementById('procesodetallado')
-	  );
-
-
-	  class Checklist extends React.Component{
-	    constructor(props) {
-	         super(props);
-	         this.state = {
-	           data:[],
-	           data1:[],
-	         }
-
-	         }
-
-
-	    componentWillMount(){
-	      var database = firebase.database();
-
-	      var ref = database.ref("disposicionPolitica");
-	          ref.orderByChild("politicaid").equalTo(politicaID).on('child_added', snap => {
-	          const newReceta = {
-	              id: snap.key,
-	              data: snap.val(),
-	          };
-	          var newArr = this.state.data1;
-	              newArr.push(newReceta);
-	              this.setState({
-	                   data1: this.state.data1, arr:newArr
-	              });
-	              console.log(this.state.data1);
-	          });
-	    }
-
-
-	    render() {
-	        var arra = this.state.data1
-	        var participantes = arra.map(function(object,i){
-	          return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
-
-	                <td>{i + 1}</td>
-	                <td>{object.data.descripcionDispocionPolitica}</td>
-
-	              </tr>
-
-	        })
-
-	        return (
-
-	          <div>
-								<table className="table" style={{backgroundColor:"#FFF"}}>
-									<thead>
-										<tr>
-											<th className="text-left" colSpan="3">DISPOSICIONES GENERALES</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr ng-repeat="participante in minuta.participantes" className="ng-scope">
-
-											<td></td>
-
-											<td><div className="text-left"> DESCRIPCIÓN</div><input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="descripcionDispocionPolitica"  /></td>
-											<td>
-	                    <a href="javascript:addDisposicion();" className="btn btn-success">Agregar Dispocisión</a>
-	                    </td>
-										</tr>
-									</tbody>
-								</table>
-	              <table className="table" style={{backgroundColor:"#FFF"}}>
-	                <thead>
-	                  <tr>
-	                    <th className="text-center">No</th>
-	                    <th className="text-center">Descripción</th>
-	                  </tr>
-	                </thead>
-	                <tbody>
-	                {participantes}
-	                </tbody>
-	              </table>
-							</div>
-
-	        )
-	      }
-	  }
-
-	  ReactDOM.render(
-	    <Checklist  />,
-	    document.getElementById('checklist')
-	  );
-
-  class Participantes extends React.Component{
-    constructor(props) {
-         super(props);
-         this.state = {
-           data:[],
-           data1:[],
-         }
-
-         }
-
-
-    componentWillMount(){
-      var database = firebase.database();
-
-      var ref = database.ref("sancionesPoliticas");
-          ref.orderByChild("politicaid").equalTo(politicaID).on('child_added', snap => {
-          const newReceta = {
-              id: snap.key,
-              data: snap.val(),
-          };
-          var newArr = this.state.data1;
-              newArr.push(newReceta);
-              this.setState({
-                   data1: this.state.data1, arr:newArr
-              });
-              console.log(this.state.data1);
-          });
-    }
-
-
-    render() {
-        var arra = this.state.data1
-        var participantes = arra.map(function(object,i){
-          return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
-
-                <td>{i + 1}</td>
-                <td>{object.data.descripcionSancionPolitica}</td>
-
-              </tr>
-
-        })
-
-        return (
-
-          <div>
-              <table className="table" style={{backgroundColor:"#FFF"}}>
-                <thead>
-                  <tr>
-                    <th className="text-left" colSpan="3">SANCIONES</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
-
-                    <td></td>
-
-                    <td><div className="text-left"> DESCRIPCIÓN</div><input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="descripcionSancionPolitica"  /></td>
-                    <td>
-                    <a href="javascript:addSanciones();" className="btn btn-success">Agregar Prohibición</a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <table className="table" style={{backgroundColor:"#FFF"}}>
-                <thead>
-                  <tr>
-                    <th className="text-center">No</th>
-                    <th className="text-center">Descripción</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {participantes}
-                </tbody>
-              </table>
-            </div>
-
-        )
-      }
-  }
-
-  ReactDOM.render(
-    <Participantes  />,
-    document.getElementById('participantes')
-  );
-
-
-
-	class Emitio extends React.Component{
-		constructor(props) {
-				 super(props);
-				 this.state = {
-					 data:[],
-					 data1:[],
-				 }
-
-				 }
-
-		render() {
-
-
-				return (
-
-					<div>
-							<table className="table" style={{backgroundColor:"#FFF"}}>
-								<thead>
-									<tr>
-									  <th className="text-left" colSpan="3">EMITIO</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr ng-repeat="participante in minuta.participantes" className="ng-scope">
-
-										<td><div className="text-left"> EMITIO</div>
-										<input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="quienemitioPolitica"  value="DIRECTOR GENERAL"/>
-										</td>
-
-									</tr>
-								</tbody>
-							</table>
-						</div>
-
-				)
-			}
-	}
-
-	ReactDOM.render(
-		<Emitio  />,
-		document.getElementById('emitio')
-	);
 
   class BotonCrear extends React.Component{
     constructor(props) {
@@ -785,7 +368,7 @@ $.cookie('politicaid' , politicaID)
     }
     render() {
         return (
-          <a href="javascript:addPolitica();" className="btn btn-success">Actualizar Política </a>
+          <a href="javascript:addUsuario();" className="btn btn-success"> Actualizar Usuario </a>
         )
       }
   }
@@ -795,212 +378,34 @@ $.cookie('politicaid' , politicaID)
     document.getElementById('botoncrear')
   );
 
-setTimeout(function(){
 
-  $('#fecha').val(moment().format('LL'))
-  $('#inicio').val(moment().format('LTS'))
-  $('#fin').val(moment().format('LTS'))
-  $('#fw').val(moment().format('w'));
+function addUsuario(){
 
-}, 1000);
-
-
-function addParticipante2(){
-  firebase.auth().onAuthStateChanged( firebaseUser => {
-      if(firebaseUser) {
-                    var user    = firebaseUser.uid;
-                    var area = $("#areainvolucrada").val();
-                    var responsable = $("#responsableinvolucrado").val();
-                    var database = firebase.database();
-                          var objeto = {
-                               area: area,
-                               responsable: responsable,
-                               procedimientoid: politicaID,
-                               usuario: user,
-                          }
-                         var ref = database.ref("participantes2").push();
-                         ref.set(objeto)
-                        //window.location.href = "/home/invoice"
-              }
-          });
-}
-function addSanciones(){
-  firebase.auth().onAuthStateChanged( firebaseUser => {
-      if(firebaseUser) {
-                    var user    = firebaseUser.uid;
-                    var descripcionSancionPolitica = $("#descripcionSancionPolitica").val();
-                    var database = firebase.database();
-                          var objeto = {
-                               descripcionSancionPolitica: descripcionSancionPolitica,
-                               politicaid: politicaID,
-                               usuario: user,
-                          }
-                         var ref = database.ref("sancionesPoliticas").push();
-                         ref.set(objeto)
-                        //window.location.href = "/home/invoice"
-              }
-          });
-}
-function addDisposicion(){
-
-  firebase.auth().onAuthStateChanged( firebaseUser => {
-      if(firebaseUser) {
-        var database = firebase.database();
-                    var user    = firebaseUser.uid;
-                    var disposicion = $("#descripcionDispocionPolitica").val();
-
-                          var objeto = {
-                               descripcionDispocionPolitica: disposicion,
-                               politicaid: politicaID,
-                               consecutivo:1,
-                               usuario: user,
-                          }
-                         var ref = database.ref("disposicionPolitica").push();
-                         ref.set(objeto)
-                        //window.location.href = "/home/invoice"
-
-              }
-          });
-}
-function addAreaPolitica(){
-  firebase.auth().onAuthStateChanged( firebaseUser => {
-      if(firebaseUser) {
-                    var user    = firebaseUser.uid;
-                    var areaPolitica = $("#areaPolitica").val();
-                    var puestoPolitica = $("#puestoPolitica").val();
-                    var database = firebase.database();
-                          var objeto = {
-                               areaPolitica: areaPolitica,
-                               puestoPolitica: puestoPolitica,
-                               politicaid: politicaID,
-                               usuario: user,
-                          }
-                         var ref = database.ref("areaPolitica").push();
-                         ref.set(objeto)
-                        //window.location.href = "/home/invoice"
-              }
-          });
-}
-function addPolitica(){
-  if(!$("#nombrePolitica").val()){
-    notification("Nombre de la Política");
-  }
-  else if(!$("#objetivoPolitica").val()){
-    notification("Objetivo de la Política");
-  }
-  else if(!$("#alcancePolitica").val()){
-    notification("Alcance de la Política");
-  }
-
-    else{
       firebase.auth().onAuthStateChanged( firebaseUser => {
           if(firebaseUser) {
                         var userName    = firebaseUser.displayName;
                         var user    = firebaseUser.uid;
-                        var nombrePolitica = $("#nombrePolitica").val();
-                        var objetivoPolitica = $("#objetivoPolitica").val();
-                        var alcancePolitica = $("#alcancePolitica").val();
-                        var grupoPolitica = $("#grupoPolitica").val();
-                        var descripcionPolitica = $("#descripcionPolitica").val();
-                        var emitio = $("#quienemitioPolitica").val();
+                        var telefono = $("#telefono").val();
+                        var puesto = $("#puesto").val();
+                        var area= $("#area").val();
+                        var rol= $("#rol").val();
                         var database = firebase.database();
-                              var objeto = {
-                                   nombrePolitica: nombrePolitica,
-                                   objetivoPolitica: objetivoPolitica,
-                                   alcancePolitica: alcancePolitica,
-                                   grupoPolitica: grupoPolitica,
-                                   descripcionPolitica: descripcionPolitica,
-                                   emitio: emitio,
-                                   politicaid: politicaID,
-																	 usuario: userName,
-                                   usuarioID: user,
-                                   fechaModificacion: moment().format('LL'),
-                                   version: "1.0",
-                                   tipo:'ultima',
-                                   areaaplica: "No aplica",
-                                   aceptada:"Aun no se acepta Política"
+                              var objeto1 = {
+                                   telefono: telefono,
+                                   puesto: puesto,
+                                   area: area,
+                                   rol: rol,
+                                   fechaModificacion: moment().format('LL')
                               }
-                             var ref = database.ref("politicas").child(politicaID);
-                             ref.update(objeto)
-                             window.location.href = "/politicas"
+     												var ref = database.ref("usuarios").child(usuarioID);
+     												ref.update(objeto1)
+ 													  window.location.href = "/usuarios"
                   }
               });
 
 
-  }
-
-}
-function select(arrar){
-  var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
-                    '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
-  $('#select-to').selectize({
-      persist: false,
-      maxItems: null,
-      valueField: 'email',
-      labelField: 'name',
-      searchField: ['name', 'email'],
-      options: [
-          arrar
-      ],
-      render: {
-          item: function(item, escape) {
-              return '<div class="menu">' +
-                  (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
-                  (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
-              '</div>';
-          },
-          option: function(item, escape) {
-              var label = item.name || item.email;
-              var caption = item.name ? item.email : null;
-              return '<div>' +
-                  '<span class="label">' + escape(label) + '</span>' +
-                  (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
-              '</div>';
-          }
-      },
-      createFilter: function(input) {
-          var match, regex;
-
-          // email@address.com
-          regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
-          match = input.match(regex);
-          if (match) return !this.options.hasOwnProperty(match[0]);
-
-          // name <email@address.com>
-          regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
-          match = input.match(regex);
-          if (match) return !this.options.hasOwnProperty(match[2]);
-
-          return false;
-      },
-      create: function(input) {
-          if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
-              return {email: input};
-          }
-          var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
-          if (match) {
-              return {
-                  email : match[2],
-                  name  : $.trim(match[1])
-              };
-          }
-          alert('Invalid email address.');
-          return false;
-      }
-  });
 
 
 }
-function notification(campo){
-        var notification = new NotificationFx({
-          message : '<p>Error!</p></br><p>El campo ' + campo + ' no puede estar vacio. </p>',
-          layout : 'growl',
-          effect : 'jelly',
-          type : 'notice', // notice, warning, error or success
-          onClose : function() {
-            //bttn.disabled = false;
-          }
-        });
-        notification.show();
-  }
+
 </script>

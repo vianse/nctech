@@ -230,6 +230,7 @@ if(user) {
                 telefono: user.phoneNumber,
                 foto: user.photoURL,
                 uid: user.uid,
+								estatus: "Activo"
                 }
 
                var ref = database.ref("usuarios").child(user.uid);
