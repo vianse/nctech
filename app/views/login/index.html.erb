@@ -221,7 +221,6 @@ firebase.auth().onAuthStateChanged( user => {
   console.log(user);
 if(user) {
   // User is signed in.
-    window.location.href = "/"
     console.log(user);
     var database = firebase.database();
     var objeto = {
@@ -235,6 +234,7 @@ if(user) {
 
                var ref = database.ref("usuarios").child(user.uid);
                ref.set(objeto)
+	window.location.href = "/"
 
   } else {
     // No user is signed in.
