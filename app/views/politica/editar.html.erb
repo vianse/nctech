@@ -445,8 +445,8 @@ class Procedimientos extends React.Component{
         var participantes = arra.map(function(object){
           return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
 
-                <td>{object.data.lineamientos}</td>
-                <td>{object.data.objetivos}</td>
+					<td className="text-left">{object.data.lineamientos}</td>
+					<td className="text-left">{object.data.objetivos}</td>
 
               </tr>
 

@@ -110,7 +110,7 @@
 					<div class="col-md-4 text-left">
 						<button class="btn btn-xs btn-default color-blanco btn-atras" style="background-color: transparent;" onClick="javascript:redirecciona('/minuta');"><svg class="svg-inline--fa fa-arrow-alt-circle-left fa-w-16 fa-2x color-blanco" aria-hidden="true" data-prefix="fa" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z"></path></svg><!-- <i class="fa fa-arrow-alt-circle-left fa-2x color-blanco"></i> --></button>
 					</div>
-					<!-- ngIf: !isEdit --><div class="col-md-4 text-center ng-scope" ng-if="!isEdit"><h3>AGREGAR MINUTAS</h3></div><!-- end ngIf: !isEdit -->
+					<!-- ngIf: !isEdit --><div class="col-md-4 text-center ng-scope" ng-if="!isEdit"><h3>EDITAR MINUTA</h3></div><!-- end ngIf: !isEdit -->
 					<!-- ngIf: isEdit -->
 					<div class="col-md-4"></div>
 				</div>
@@ -453,18 +453,29 @@ class Minutas extends React.Component{
               console.log(this.state.data1);
           });
     }
+		eliminar(id){
+			var database = firebase.database();
+			var ref = database.ref("actividades").child(id);
+					ref.on('child_removed', snap => {
 
+					});
+					$("#remove_" + id).addClass("ocultar")
+					ref.remove()
+
+		}
 
     render() {
+			  var eliminar = this.eliminar.bind(this)
         var arra = this.state.data1
         var participantes = arra.map(function(object){
-          return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
+					var ids = "remove_" + object.id
+          return <tr id={ids} ng-repeat="participante in minuta.participantes" className="ng-scope">
                 <td>
                 {object.data.nombre}
                 </td>
                 <td>{object.data.puesto}</td>
                 <td>{object.data.asistencia}</td>
-                <td><button className="btn btn-md btn-danger float-right" ng-click="addParticipante()">Eliminar</button>
+                <td><button className="btn btn-md btn-danger float-right" onClick={()=>eliminar(object.id)}>Eliminar</button>
                 </td>
               </tr>
 
@@ -689,17 +700,29 @@ class Minutas extends React.Component{
 		asignar(e){
 			$("#asuntoMinutaActividades").val(e.target.value)
 		}
+		eliminar(id){
+			var database = firebase.database();
+			var ref = database.ref("actividades").child(id);
+					ref.on('child_removed', snap => {
+
+					});
+					$("#remove_" + id).addClass("ocultar")
+					ref.remove()
+
+		}
     render() {
+			var eliminar = this.eliminar.bind(this)
 			var asignar = this.asignar.bind(this)
       var arra = this.state.data1
       var participantes = arra.map(function(object){
-        return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
+				var ids = "remove_" + object.id
+        return <tr id={ids} ng-repeat="participante in minuta.participantes" className="ng-scope">
               <td>{object.data.responsable}</td>
               <td>{object.data.asunto}</td>
               <td>{object.data.subactividad}</td>
               <td>{object.data.coResponsable}</td>
               <td>{object.data.fechaCompromiso}</td>
-              <td><button className="btn btn-md btn-danger float-right" ng-click="addParticipante()">Eliminar</button>
+              <td><button className="btn btn-md btn-danger float-right" onClick={()=>eliminar(object.id)}>Eliminar</button>
               </td>
             </tr>
 
@@ -807,7 +830,7 @@ class Minutas extends React.Component{
 
 	setTimeout(function(){
 
-	  $('#fecha').val(moment().format('LL'))
+	  $('#fecha').val(moment().format('L'))
 	  $('#inicio').val(moment().format('LTS'))
 	  $('#fin').val(moment().format('LTS'))
 	  $('#fw').val(moment().format('w'));
@@ -943,7 +966,7 @@ function addMinuta(){
                                minutaid: minutaID,
                                usuario: userName,
                                usuarioID: user,
-                               fechaModificacion: moment().format('LL'),
+                               fechaModificacion: moment().format('L'),
                                version: Number($.cookie("version")) + Number(1),
 															 tipo: "ultima"
                           }
@@ -965,7 +988,7 @@ function addMinuta(){
 															minutaid: minutaID,
 															usuario: userName,
 															usuarioID: user,
-															fechaModificacion: moment().format('LL'),
+															fechaModificacion: moment().format('L'),
 															version: Number($.cookie("version")) + Number(1),
 														  tipo: ""
 												 }
@@ -1008,7 +1031,7 @@ function select(arrar){
 	$('#select-to').selectize({
 			persist: false,
 			maxItems: null,
-			valueField: 'email',
+			valueField: 'name',
 			labelField: 'name',
 			searchField: ['name', 'email'],
 			options: [{email:"krlos013@gmail.com", name:"Juan Carlos Santiago"},{"email":"letteromo@gmail.com", name:"Arlette Romo"}]
@@ -1017,7 +1040,7 @@ function select(arrar){
 					item: function(item, escape) {
 							return '<div class="menu">' +
 									(item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
-									(item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+
 							'</div>';
 					},
 					option: function(item, escape) {
@@ -1025,7 +1048,7 @@ function select(arrar){
 							var caption = item.name ? item.email : null;
 							return '<div>' +
 									'<span class="label">' + escape(label) + '</span>' +
-									(caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+									
 							'</div>';
 					}
 			},
@@ -1064,7 +1087,7 @@ function select(arrar){
 	$('#select-to_organizador').selectize({
       persist: false,
       maxItems: null,
-      valueField: 'email',
+      valueField: 'name',
       labelField: 'name',
       searchField: ['name', 'email'],
       options: [{email:"krlos013@gmail.com", name:"Juan Carlos Santiago"},{"email":"letteromo@gmail.com", name:"Arlette Romo"}],
@@ -1072,7 +1095,7 @@ function select(arrar){
           item: function(item, escape) {
               return '<div class="menu">' +
                   (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
-                  (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+
               '</div>';
           },
           option: function(item, escape) {
@@ -1080,7 +1103,7 @@ function select(arrar){
               var caption = item.name ? item.email : null;
               return '<div>' +
                   '<span class="label">' + escape(label) + '</span>' +
-                  (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+
               '</div>';
           }
       },
@@ -1118,7 +1141,7 @@ function select(arrar){
 	$('#select-to_secretario').selectize({
       persist: false,
       maxItems: null,
-      valueField: 'email',
+      valueField: 'name',
       labelField: 'name',
       searchField: ['name', 'email'],
       options: [{email:"krlos013@gmail.com", name:"Juan Carlos Santiago"},{"email":"letteromo@gmail.com", name:"Arlette Romo"}],
@@ -1126,7 +1149,7 @@ function select(arrar){
           item: function(item, escape) {
               return '<div class="menu">' +
                   (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
-                  (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+
               '</div>';
           },
           option: function(item, escape) {
@@ -1134,7 +1157,7 @@ function select(arrar){
               var caption = item.name ? item.email : null;
               return '<div>' +
                   '<span class="label">' + escape(label) + '</span>' +
-                  (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+
               '</div>';
           }
       },

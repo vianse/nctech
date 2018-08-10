@@ -599,6 +599,9 @@
     margin-bottom: 10px;
   }
 
+  .dataTables_info, .dataTables_length, .dataTables_filter, .dataTables_paginate, .paging_simple_numbers{
+    font-size: 13px!important;
+  }
   /*Responsivo*/
   @media screen and (max-width: 900px) {
     #logotipo{
@@ -699,5 +702,7 @@ function cerrarSesion(){
     // An error happened.
   });
 }
-
+function redirecciona(url){
+	window.location.href = url
+}
 </script>

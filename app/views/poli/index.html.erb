@@ -448,6 +448,9 @@ function modal(id, titulo){
                               }
                              var ref = database.ref("politicasaceptadas").child(user + "_" + id);
                              ref.set(objeto)
+														 if (e === "Acepto"){
+															 window.location.href = "/ver/politica?id=" + id
+														 }
 
                   }
               });
@@ -574,6 +577,7 @@ function estado(id){
 }
 setTimeout(function(){
 	$('#example').DataTable({
+		"order": [[ 0, "desc" ]],
 		"language":
 			{
 	"sProcessing":     "Procesando...",

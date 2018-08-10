@@ -24,11 +24,15 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script>
+
+
 <link rel="stylesheet" type="text/css" href="https://firebasestorage.googleapis.com/v0/b/agencias-app.appspot.com/o/css%2Fns-default.css?alt=media&token=68b95a10-9c2e-4989-abab-e469c30c9e7d" />
 <link rel="stylesheet" type="text/css" href="https://firebasestorage.googleapis.com/v0/b/agencias-app.appspot.com/o/css%2Fns-style-growl.css?alt=media&token=947337d1-08b2-4a29-a3f0-30f34539a5ec" />
 <script src="https://firebasestorage.googleapis.com/v0/b/agencias-app.appspot.com/o/js%2Fmodernizr.custom.js?alt=media&token=0279d02f-0fcd-4354-b665-bfe441d670bf"></script>
 <script src="https://firebasestorage.googleapis.com/v0/b/agencias-app.appspot.com/o/js%2Fclassie.js?alt=media&token=b5060707-614c-41ab-8b5c-9ef668b3d717"></script>
 <script src="https://firebasestorage.googleapis.com/v0/b/agencias-app.appspot.com/o/js%2FnotificationFx.js?alt=media&token=dcde4776-58c4-49a6-a6aa-9890db627a73"></script>
+
+
 
   <style id="svelte-1eldsjg-style">body > .ui-pnotify{position:fixed;z-index:100040}body > .ui-pnotify.ui-pnotify-modal{z-index:100042}.ui-pnotify{position:absolute;height:auto;z-index:1;display:none}.ui-pnotify.ui-pnotify-modal{z-index:3}.ui-pnotify.ui-pnotify-in{display:block}.ui-pnotify.ui-pnotify-initial-hidden{display:block;visibility:hidden}.ui-pnotify.ui-pnotify-move{transition:left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-slow{transition:opacity .4s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-slow.ui-pnotify.ui-pnotify-move{transition:opacity .4s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-normal{transition:opacity .25s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-normal.ui-pnotify.ui-pnotify-move{transition:opacity .25s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-fast{transition:opacity .1s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-fast.ui-pnotify.ui-pnotify-move{transition:opacity .1s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-in{opacity:1}.ui-pnotify .ui-pnotify-shadow{-webkit-box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1);-moz-box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1);box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1)}.ui-pnotify-container{background-position:0 0;padding:.8em;height:100%;margin:0}.ui-pnotify-container:after{content:" ";visibility:hidden;display:block;height:0;clear:both}.ui-pnotify-container.ui-pnotify-sharp{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.ui-pnotify-title{display:block;white-space:pre-line;margin-bottom:.4em;margin-top:0}.ui-pnotify.ui-pnotify-with-icon .ui-pnotify-title,.ui-pnotify.ui-pnotify-with-icon .ui-pnotify-text{margin-left:24px}[dir=rtl] .ui-pnotify.ui-pnotify-with-icon .ui-pnotify-title,[dir=rtl] .ui-pnotify.ui-pnotify-with-icon .ui-pnotify-text{margin-right:24px;margin-left:0}.ui-pnotify-title-bs4{font-size:1.2rem}.ui-pnotify-text{display:block;white-space:pre-line}.ui-pnotify-icon,.ui-pnotify-icon span{display:block;float:left}[dir=rtl] .ui-pnotify-icon,[dir=rtl] .ui-pnotify-icon span{float:right}.ui-pnotify-icon-bs3 > span{position:relative;top:2px}.ui-pnotify-icon-bs4 > span{position:relative;top:4px}.ui-pnotify-modal-overlay{background-color:rgba(0, 0, 0, .4);top:0;left:0;position:absolute;height:100%;width:100%;z-index:2}body > .ui-pnotify-modal-overlay{position:fixed;z-index:100041}
   </style>
@@ -95,7 +99,7 @@
 					<div class="lineadw linea-verde linea-int"></div>
 					<div id="sub-izq" class="row">
 						<div class="" aria-labelledby="dropdownMenuLink">
-							<button class="dropdown-item" type="button">Galeria NC Tech</button>
+              <button class="dropdown-item" type="button">Galeria NC Tech</button>
 							<button class="dropdown-item" type="button">Chat de negocios</button>
 							<button class="dropdown-item menu-activo" type="button" onClick="javascript:redirecciona('/documentos')">Documentos</button>
 							<button class="dropdown-item" type="button">Newsletter</button>
@@ -108,52 +112,59 @@
 			<div class="col-md-10 text-center color-blanco">
 				<div class="row">
 					<div class="col-md-4 text-left">
-						<button class="btn btn-xs btn-default color-blanco btn-atras" style="background-color: transparent;" onClick="javascript:redirecciona('/procedimientos');"><svg class="svg-inline--fa fa-arrow-alt-circle-left fa-w-16 fa-2x color-blanco" aria-hidden="true" data-prefix="fa" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z"></path></svg><!-- <i class="fa fa-arrow-alt-circle-left fa-2x color-blanco"></i> --></button>
+						<button class="btn btn-xs btn-default color-blanco btn-atras" style="background-color: transparent;" onclick="redirecciona('/politicas')"><svg class="svg-inline--fa fa-arrow-alt-circle-left fa-w-16 fa-2x color-blanco" aria-hidden="true" data-prefix="fa" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z"></path></svg><!-- <i class="fa fa-arrow-alt-circle-left fa-2x color-blanco"></i> --></button>
 					</div>
-					<!-- ngIf: !isEdit --><div class="col-md-4 text-center ng-scope" ng-if="!isEdit"><h3>EDITAR PROCEDIMIENTO</h3></div><!-- end ngIf: !isEdit -->
+					<!-- ngIf: !isEdit --><div class="col-md-4 text-center ng-scope" ng-if="!isEdit"><h3>POLÍTICA</h3></div><!-- end ngIf: !isEdit -->
 					<!-- ngIf: isEdit -->
 					<div class="col-md-4"></div>
 				</div>
 
 
-        <div class="row">
-          <div class="col-md-12">
-            <div id="cabeceraProcedimientos">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div id="lineamientos">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div id="procesodetallado">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div id="checklist">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div id="participantes">
-            </div>
-            <div id="participantesparte2">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div id="emitio">
-            </div>
-          </div>
-        </div>
+					<div class="row">
+						<div class="col-md-12">
+              <div id="cabeceraProcedimientos">
+              </div>
+						</div>
+					</div>
+          <div class="row">
+						<div class="col-md-12">
+              <div id="lineamientos">
+              </div>
+						</div>
+					</div>
+          <div class="row">
+						<div class="col-md-12">
+              <div id="procesodetallado">
+              </div>
+						</div>
+					</div>
+          <div class="row">
+						<div class="col-md-12">
+              <div id="checklist">
+              </div>
+						</div>
+					</div>
+          <div class="row">
+						<div class="col-md-12">
+              <div id="participantes">
+              </div>
+							<div id="participantesparte2">
+              </div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+              <div id="emitio">
+              </div>
+						</div>
+					</div>
+          <div class="row">
+						<div class="col-md-12">
+
+              <div id="botoncrear">
+              </div>
+						</div>
+					</div>
 
 			</div><!---colmd10-->
 		</div><!--row-->
@@ -239,165 +250,164 @@ for (i = 0; i < sURLVariables.length; i++) {
   }
 };
 
-var procedimientoID = getUrlParameter('id');
-$.cookie('procedimientoid' , procedimientoID)
+var politicaID = getUrlParameter('id');
+$.cookie('politicaid' , politicaID)
 
 
-class Procedimientos extends React.Component{
-    constructor(props) {
-         super(props);
-         this.state = {
-           data:[],
-           interno: "visible",
-           externo: "ocultar",
-           interno_one: "visible",
-           externo_one: "ocultar",
-           buttonInterno: "visible",
-           buttonExterno: "ocultar"
-         }
-        this.changeInterno = this.changeInterno.bind(this);
-         }
-    componentDidMount() {
-      firebase.auth().onAuthStateChanged( firebaseUser => {
-          if(firebaseUser) {
-          var database = firebase.database();
-          var user    = firebaseUser.uid;
-          var ref = database.ref("usuarios");
-              ref.on('child_added', snap => {
-              const newReceta = {
-                  id: snap.key,
-                  data: snap.val(),
-              };
-              var newArr = this.state.data;
-                  newArr.push(newReceta);
-                  this.setState({
-                       data: this.state.data, arr:newArr
-                  });
+	class Procedimientos extends React.Component{
+	    constructor(props) {
+	         super(props);
+	         this.state = {
+	           data:[],
+						 data1:[],
+	           interno: "visible",
+	           externo: "ocultar",
+	           interno_one: "visible",
+	           externo_one: "ocultar",
+	           buttonInterno: "visible",
+	           buttonExterno: "ocultar"
+	         }
+	        this.changeInterno = this.changeInterno.bind(this);
+	         }
+	    componentDidMount() {
+	      firebase.auth().onAuthStateChanged( firebaseUser => {
+	          if(firebaseUser) {
+	          var database = firebase.database();
+	          var user    = firebaseUser.uid;
+	          var ref = database.ref("usuarios");
+	              ref.on('child_added', snap => {
+	              const newReceta = {
+	                  id: snap.key,
+	                  data: snap.val(),
+	              };
+	              var newArr = this.state.data;
+	                  newArr.push(newReceta);
+	                  this.setState({
+	                       data: this.state.data, arr:newArr
+	                  });
 
-              });
-              }
-            });
+	              });
+	              }
+	            });
 
-        }
-        componentWillMount() {
-          firebase.auth().onAuthStateChanged( firebaseUser => {
-              if(firebaseUser) {
-              var database = firebase.database();
-              var user    = firebaseUser.uid;
-              var ref = database.ref("procedimientos").child(procedimientoID);
-                  ref.on('value', snap => {
-                  const newReceta = {
-                      id: snap.key,
-                      data: snap.val(),
-                  };
-                  $("#nombreProcedimiento").val(newReceta.data.nombreProcedimiento)
-                  $("#objetivoProcedimiento").val(newReceta.data.objetivoProcedimiento)
-                  $("#alcanceProcedimiento").val(newReceta.data.alcanceProcedimiento)
-                  $("#arearresponsableproceso").val(newReceta.data.arearresponsableproceso)
-                  $("#responsableproceso").val(newReceta.data.responsableproceso)
-                  $("#quienemitio").val(newReceta.data.emitio)
-                  $.cookie("versionProcedimiento", newReceta.data.version )
-                });
-                }
-              });
-            }
-    changeInterno(e){
-      this.setState({
-        externo: "ocultar",
-        interno: ""
-      })
-    }
-    changeExterno(e){
-      this.setState({
-        interno: "ocultar",
-        externo: "visible"
-      })
-      console.log(e);
-    }
-    changeInterno_one(e){
-      this.setState({
-        externo_one: "ocultar",
-        interno_one: ""
-      })
-    }
-    changeExterno_one(e){
-      this.setState({
-        interno_one: "ocultar",
-        externo_one: "visible"
-      })
-      console.log(e);
-    }
+	        }
+	    changeInterno(e){
+	      this.setState({
+	        externo: "ocultar",
+	        interno: ""
+	      })
+	    }
+	    changeExterno(e){
+	      this.setState({
+	        interno: "ocultar",
+	        externo: "visible"
+	      })
+	      console.log(e);
+	    }
+	    changeInterno_one(e){
+	      this.setState({
+	        externo_one: "ocultar",
+	        interno_one: ""
+	      })
+	    }
+	    changeExterno_one(e){
+	      this.setState({
+	        interno_one: "ocultar",
+	        externo_one: "visible"
+	      })
+	      console.log(e);
+	    }
+			componentWillMount(){
+				var database = firebase.database();
 
-    render() {
-      var click = this.changeInterno.bind(this)
-      var click_one = this.changeExterno.bind(this)
-      var click_tree = this.changeInterno_one.bind(this)
-      var click_two = this.changeExterno_one.bind(this)
-      var visible = "form-control " + this.state.externo
-      var ocultar = "form-control " + this.state.interno
-      var visible_one = "form-control " + this.state.externo_one
-      var ocultar_one = "form-control " + this.state.interno_one
-      var ocultarBoton =  this.state.externo
-      var visibleBoton =  this.state.interno
-      var ocultarBoton_one =  this.state.externo_one
-      var visibleBoton_one =  this.state.interno_one
-      var arr = this.state.data
+				var ref = database.ref("politicas").child(politicaID);
+						ref.on('value', snap => {
+						const newReceta = {
+								id: snap.key,
+								data: snap.val(),
+						};
 
-        var options = arr.map(function(object){
-          return  <option value={object.data.url} id="usuarios">{object.data.nombre}</option>
-        })
-        return (
 
-          <table className="table" style={{backgroundColor: "#FFF"}}>
-            <thead>
-              <tr>
-                <th colSpan="2" className="text-left">NOMBRE DEL PROCESO</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-              <td>
-              <div>
-                    <input type="text" className="form-control" id="nombreProcedimiento" placeholder="Ingresa un nombre para el proceso" disabled/>
-                </div>
-              </td>
-              </tr>
-            </tbody>
-            <thead>
-              <tr>
-                <th colSpan="2" className="text-left">DESCRIPCIÓN DEL OBJETIVO Y ALCANCE</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
+								$('#nombrePolitica').val(newReceta.data.nombrePolitica)
+							  $('#objetivoPolitica').val(newReceta.data.objetivoPolitica)
+							  $('#alcancePolitica').val(newReceta.data.alcancePolitica)
+								$('#grupoPolitica').val(newReceta.data.grupoPolitica)
+							  $('#descripcionPolitica').val(newReceta.data.descripcionPolitica)
 
-              <td>
-              <div>
-              <div className="text-left"> Objetivo</div>
-                    <input type="text" className="form-control" id="objetivoProcedimiento" placeholder="Ingresa el objetivo" disabled/>
-                </div>
-              </td>
-              </tr>
-              <tr>
 
-              <td>
-              <div className="text-left"> Alcance</div>
-              <div>
-                    <input type="text" className="form-control" id="alcanceProcedimiento" placeholder="Ingresa el alcance" disabled/>
-                </div>
-              </td>
-              </tr>
-            </tbody>
-          </table>
+						});
 
-        )
-      }
-  }
+			}
+	    render() {
+	      var click = this.changeInterno.bind(this)
+	      var click_one = this.changeExterno.bind(this)
+	      var click_tree = this.changeInterno_one.bind(this)
+	      var click_two = this.changeExterno_one.bind(this)
+	      var visible = "form-control " + this.state.externo
+	      var ocultar = "form-control " + this.state.interno
+	      var visible_one = "form-control " + this.state.externo_one
+	      var ocultar_one = "form-control " + this.state.interno_one
+	      var ocultarBoton =  this.state.externo
+	      var visibleBoton =  this.state.interno
+	      var ocultarBoton_one =  this.state.externo_one
+	      var visibleBoton_one =  this.state.interno_one
+	      var arr = this.state.data
 
-  ReactDOM.render(
-    <Procedimientos  />,
-    document.getElementById('cabeceraProcedimientos')
-  );
+	        var options = arr.map(function(object){
+	          return  <option value={object.data.url} id="usuarios">{object.data.nombre}</option>
+	        })
+	        return (
+
+	          <table className="table" style={{backgroundColor: "#FFF"}}>
+	            <thead>
+	              <tr>
+	                <th colSpan="2" className="text-left">NOMBRE DE LA POLITICA</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr>
+	              <td>
+	              <div>
+	                    <input type="text" className="form-control" id="nombrePolitica" placeholder="Ingresa un nombre de la politica o lineamiento" disabled/>
+	                </div>
+	              </td>
+	              </tr>
+	            </tbody>
+	            <thead>
+	              <tr>
+	                <th colSpan="2" className="text-left">OBJETIVO Y ALCANCE</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr>
+
+	              <td>
+	              <div>
+	              <div className="text-left"> Objetivo</div>
+	                    <input type="text" className="form-control" id="objetivoPolitica" placeholder="Ingresa el objetivo" disabled/>
+	                </div>
+	              </td>
+	              </tr>
+	              <tr>
+
+	              <td>
+	              <div className="text-left"> Alcance</div>
+	              <div>
+	                    <input type="text" className="form-control" id="alcancePolitica" placeholder="Ingresa el alcance" disabled/>
+	                </div>
+	              </td>
+	              </tr>
+	            </tbody>
+	          </table>
+
+	        )
+	      }
+	  }
+
+	  ReactDOM.render(
+	    <Procedimientos  />,
+	    document.getElementById('cabeceraProcedimientos')
+	  );
 
   class Lineamientos extends React.Component{
     constructor(props) {
@@ -412,12 +422,9 @@ class Procedimientos extends React.Component{
 
     componentWillMount(){
       var database = firebase.database();
-      var posicion = procedimientoID.indexOf("_");
-      var minutanumero = procedimientoID.substring(0,posicion);
-      var aumento = Number($.cookie("versionProcedimiento")) + 1
-      var res = procedimientoID.replace(procedimientoID, minutanumero + "_Version_" + aumento);
+
       var ref = database.ref("lineamientos");
-          ref.orderByChild("procedimientoid").startAt(minutanumero + "_Version_1").endAt(procedimientoID).on('child_added', snap => {
+          ref.orderByChild("procedimientoid").equalTo(politicaID).on('child_added', snap => {
           const newReceta = {
               id: snap.key,
               data: snap.val(),
@@ -427,39 +434,29 @@ class Procedimientos extends React.Component{
               this.setState({
                    data1: this.state.data1, arr:newArr
               });
-
-
+              console.log(this.state.data1);
           });
     }
 
 
     render() {
-        var arra = this.state.data1
-        var participantes = arra.map(function(object){
-          return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
-
-                <td>{object.data.lineamientos}</td>
-                <td>{object.data.objetivos}</td>
-
-              </tr>
-
-        })
-
         return (
-
           <div>
-
-              <table className="table" style={{backgroundColor:"#FFF"}}>
-                <thead>
-                  <tr>
-                    <th className="text-center">Lineamiento</th>
-                    <th className="text-center">Objetivo</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {participantes}
-                </tbody>
-              </table>
+							<table className="table" style={{backgroundColor:"#FFF"}}>
+								<thead>
+									<tr>
+										<th className="text-left" colSpan="3">GRUPO / DESCRIPCIÓN</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="participante in minuta.participantes" className="ng-scope">
+										<td><div className="text-left"> Grupo</div><input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="grupoPolitica" disabled /></td>
+										<td><div className="text-left"> Descripción</div><input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="descripcionPolitica" disabled/></td>
+										<td>
+                    </td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 
         )
@@ -471,154 +468,144 @@ class Procedimientos extends React.Component{
     document.getElementById('lineamientos')
   );
 
-  class ProcesoDetallado extends React.Component{
-    constructor(props) {
-         super(props);
-         this.state = {
-           data:[],
-           data1:[],
-         }
+	class ProcesoDetallado extends React.Component{
+	    constructor(props) {
+	         super(props);
+	         this.state = {
+	           data:[],
+	           data1:[],
+	         }
 
-         }
-
-
-    componentWillMount(){
-      var database = firebase.database();
-      var posicion = procedimientoID.indexOf("_");
-      var minutanumero = procedimientoID.substring(0,posicion);
-      var aumento = Number($.cookie("versionProcedimiento")) + 1
-      var res = procedimientoID.replace(procedimientoID, minutanumero + "_Version_" + aumento);
-      var ref = database.ref("procesodetallado");
-          ref.orderByChild("procedimientoid").startAt(minutanumero + "_Version_1").endAt(procedimientoID).on('child_added', snap => {
-          const newReceta = {
-              id: snap.key,
-              data: snap.val(),
-          };
-          var newArr = this.state.data1;
-              newArr.push(newReceta);
-              this.setState({
-                   data1: this.state.data1, arr:newArr
-              });
-              console.log(this.state.data1);
-          });
-    }
+	         }
 
 
-    render() {
-        var arra = this.state.data1
-        var participantes = arra.map(function(object){
-          return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
+	    componentWillMount(){
+	      var database = firebase.database();
 
-                <td>{object.data.pasos}</td>
-                <td>{object.data.area}</td>
-
-              </tr>
-
-        })
-
-        return (
-
-          <div>
-
-              <table className="table" style={{backgroundColor:"#FFF"}}>
-                <thead>
-                <tr>
-                  <th className="text-left" colSpan="3">PROCESO DETALLADO</th>
-                </tr>
-                  <tr>
-                    <th className="text-center">PASOS</th>
-                    <th className="text-center">ÁREA / PUESTO RESPONSABLE</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {participantes}
-                </tbody>
-              </table>
-            </div>
-
-        )
-      }
-  }
-
-  ReactDOM.render(
-    <ProcesoDetallado  />,
-    document.getElementById('procesodetallado')
-  );
+	      var ref = database.ref("areaPolitica");
+	          ref.orderByChild("politicaid").equalTo(politicaID).on('child_added', snap => {
+	          const newReceta = {
+	              id: snap.key,
+	              data: snap.val(),
+	          };
+	          var newArr = this.state.data1;
+	              newArr.push(newReceta);
+	              this.setState({
+	                   data1: this.state.data1, arr:newArr
+	              });
+	              console.log(this.state.data1);
+	          });
+	    }
 
 
-  class Checklist extends React.Component{
-    constructor(props) {
-         super(props);
-         this.state = {
-           data:[],
-           data1:[],
-         }
+	    render() {
+	        var arra = this.state.data1
+	        var participantes = arra.map(function(object){
+	          return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
 
-         }
+	                <td className="text-left">{object.data.areaPolitica}</td>
+	                <td className="text-left">{object.data.puestoPolitica}</td>
+
+	              </tr>
+
+	        })
+
+	        return (
+
+	          <div>
+
+	              <table className="table" style={{backgroundColor:"#FFF"}}>
+	                <thead>
+	                  <tr>
+	                    <th className="text-center">ÁREA</th>
+	                    <th className="text-center">PUESTO</th>
+	                  </tr>
+	                </thead>
+	                <tbody>
+	                {participantes}
+	                </tbody>
+	              </table>
+							</div>
+	        )
+	      }
+	  }
+
+	  ReactDOM.render(
+	    <ProcesoDetallado  />,
+	    document.getElementById('procesodetallado')
+	  );
 
 
-    componentWillMount(){
-      var database = firebase.database();
-      var posicion = procedimientoID.indexOf("_");
-      var minutanumero = procedimientoID.substring(0,posicion);
-      var aumento = Number($.cookie("versionProcedimiento")) + 1
-      var res = procedimientoID.replace(procedimientoID, minutanumero + "_Version_" + aumento);
-      var ref = database.ref("checklist");
-          ref.orderByChild("procedimientoid").startAt(minutanumero + "_Version_1").endAt(procedimientoID).on('child_added', snap => {
-          const newReceta = {
-              id: snap.key,
-              data: snap.val(),
-          };
-          var newArr = this.state.data1;
-              newArr.push(newReceta);
-              this.setState({
-                   data1: this.state.data1, arr:newArr
-              });
-              console.log(this.state.data1);
-          });
-    }
+	  class Checklist extends React.Component{
+	    constructor(props) {
+	         super(props);
+	         this.state = {
+	           data:[],
+	           data1:[],
+	         }
+
+	         }
 
 
-    render() {
-        var arra = this.state.data1
-        var participantes = arra.map(function(object){
-          return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
+	    componentWillMount(){
+	      var database = firebase.database();
 
-                <td>{object.data.requerimeintos}</td>
-                <td>{object.data.cumplido}</td>
+	      var ref = database.ref("disposicionPolitica");
+	          ref.orderByChild("politicaid").equalTo(politicaID).on('child_added', snap => {
+	          const newReceta = {
+	              id: snap.key,
+	              data: snap.val(),
+	          };
+	          var newArr = this.state.data1;
+	              newArr.push(newReceta);
+	              this.setState({
+	                   data1: this.state.data1, arr:newArr
+	              });
+	              console.log(this.state.data1);
+	          });
+	    }
 
-              </tr>
 
-        })
+	    render() {
+	        var arra = this.state.data1
+	        var participantes = arra.map(function(object,i){
+	          return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
 
-        return (
+	                <td>{i + 1}</td>
+	                <td>{object.data.descripcionDispocionPolitica}</td>
 
-          <div>
+	              </tr>
 
-              <table className="table" style={{backgroundColor:"#FFF"}}>
-                <thead>
-                <tr>
-                  <th className="text-left" colSpan="3">CHECK LIST</th>
-                </tr>
-                  <tr>
-                    <th className="text-center">REQUERIMIENTOS</th>
-                    <th className="text-center">CUMPLIDO</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {participantes}
-                </tbody>
-              </table>
-            </div>
+	        })
 
-        )
-      }
-  }
+	        return (
 
-  ReactDOM.render(
-    <Checklist  />,
-    document.getElementById('checklist')
-  );
+	          <div>
+
+	              <table className="table" style={{backgroundColor:"#FFF"}}>
+	                <thead>
+										<tr>
+											<th className="text-left" colSpan="3">DISPOSICIONES GENERALES</th>
+										</tr>
+	                  <tr>
+	                    <th className="text-center">No</th>
+	                    <th className="text-center">Descripción</th>
+	                  </tr>
+	                </thead>
+	                <tbody>
+	                {participantes}
+	                </tbody>
+	              </table>
+							</div>
+
+	        )
+	      }
+	  }
+
+	  ReactDOM.render(
+	    <Checklist  />,
+	    document.getElementById('checklist')
+	  );
 
   class Participantes extends React.Component{
     constructor(props) {
@@ -632,68 +619,52 @@ class Procedimientos extends React.Component{
 
 
     componentWillMount(){
-			firebase.auth().onAuthStateChanged( firebaseUser => {
-          if(firebaseUser) {
-          var database = firebase.database();
-          var user    = firebaseUser.uid;
-          var ref = database.ref("usuarios");
-              ref.on('child_added', snap => {
-              const newReceta = {
-                  id: snap.key,
-                  data: snap.val(),
-              };
-              var newArr = this.state.data;
-                  newArr.push(newReceta);
-                  this.setState({
-                       data: this.state.data, arr:newArr
-                  });
+      var database = firebase.database();
 
+      var ref = database.ref("sancionesPoliticas");
+          ref.orderByChild("politicaid").equalTo(politicaID).on('child_added', snap => {
+          const newReceta = {
+              id: snap.key,
+              data: snap.val(),
+          };
+          var newArr = this.state.data1;
+              newArr.push(newReceta);
+              this.setState({
+                   data1: this.state.data1, arr:newArr
               });
-              }
-            });
-
+              console.log(this.state.data1);
+          });
     }
 
 
     render() {
-			var arr = this.state.data
+        var arra = this.state.data1
+        var participantes = arra.map(function(object,i){
+          return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
 
-				var options = arr.map(function(object){
-					return  <option value={object.data.nombre} id="usuarios">{object.data.nombre}</option>
-				})
+                <td>{i + 1}</td>
+                <td>{object.data.descripcionSancionPolitica}</td>
+
+              </tr>
+
+        })
 
         return (
 
           <div>
+
               <table className="table" style={{backgroundColor:"#FFF"}}>
                 <thead>
+								<tr>
+									<th className="text-left" colSpan="3">SANCIONES</th>
+								</tr>
                   <tr>
-                    <th className="text-left" colSpan="3">RESPONSABLE</th>
+                    <th className="text-center">No</th>
+                    <th className="text-center">Descripción</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
-
-                    <td><div className="text-left"> ÁREA RESPONSABLE DEL PROCESO</div>
-										<select className="form-control" placeholder="Selecciona uno" id="arearresponsableproceso" disabled>
-                      <option disabled selected>Selecciona una opción</option>
-											<option>CAPITAL HUMANO</option>
-											<option>SOPORTE TECNICO</option>
-											<option>MARKETING</option>
-											<option>ADMINISTRACION</option>
-											<option>VENTAS</option>
-											<option>ATENCION AL CLIENTE</option>
-											<option>XPERTCAD</option>
-                    </select></td>
-
-                    <td><div className="text-left"> REPONSABLE</div><select className="form-control" placeholder="Selecciona uno" id="responsableproceso" disabled>
-                      <option disabled selected>Selecciona una opción</option>
-											{options}
-                    </select></td>
-                    <td colSpan="2">
-
-                    </td>
-                  </tr>
+                {participantes}
                 </tbody>
               </table>
             </div>
@@ -708,97 +679,6 @@ class Procedimientos extends React.Component{
   );
 
 
-	class Participantes2 extends React.Component{
-    constructor(props) {
-         super(props);
-         this.state = {
-           data:[],
-           data1:[],
-         }
-
-         }
-    componentDidMount(){
-          firebase.auth().onAuthStateChanged( firebaseUser => {
-              if(firebaseUser) {
-              var database = firebase.database();
-              var user    = firebaseUser.uid;
-              var ref = database.ref("usuarios");
-                  ref.on('child_added', snap => {
-                  const newReceta = {
-                      id: snap.key,
-                      data: snap.val(),
-                  };
-                  var newArr = this.state.data;
-                      newArr.push(newReceta);
-                      this.setState({
-                           data: this.state.data, arr:newArr
-                      });
-
-                  });
-                  }
-                });
-
-         }
-
-    componentWillMount(){
-      var database = firebase.database();
-      var posicion = procedimientoID.indexOf("_");
-     var minutanumero = procedimientoID.substring(0,posicion);
-     var aumento = Number($.cookie("versionProcedimiento")) + 1
-     var res = procedimientoID.replace(procedimientoID, minutanumero + "_Version_" + aumento);
-      var ref = database.ref("participantes2");
-          ref.orderByChild("procedimientoid").startAt(minutanumero + "_Version_1").endAt(procedimientoID).on('child_added', snap => {
-          const newReceta = {
-              id: snap.key,
-              data: snap.val(),
-          };
-          var newArr = this.state.data1;
-              newArr.push(newReceta);
-              this.setState({
-                   data1: this.state.data1, arr:newArr
-              });
-              console.log(this.state.data1);
-          });
-    }
-
-
-    render() {
-			var arr = this.state.data
-
-				var options = arr.map(function(object){
-					return  <option value={object.data.nombre} id="usuarios">{object.data.nombre}</option>
-				})
-        var arra = this.state.data1
-        var participantes = arra.map(function(object){
-          return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
-                	<td>{object.data.area}</td>
-                	<td>{object.data.responsable}</td>
-              	</tr>
-
-        })
-        return (
-          <div>
-              <table className="table" style={{backgroundColor:"#FFF"}}>
-                <thead>
-                  <tr>
-                    <th className="text-center">ÁREAS INVOLUCRADAS</th>
-                    <th className="text-center">RESPONSABLE</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {participantes}
-                </tbody>
-              </table>
-            </div>
-
-        )
-      }
-  }
-
-  ReactDOM.render(
-    <Participantes2  />,
-    document.getElementById('participantesparte2')
-  );
 
 	class Emitio extends React.Component{
 		constructor(props) {
@@ -810,37 +690,8 @@ class Procedimientos extends React.Component{
 
 				 }
 
-
-		componentWillMount(){
-			var database = firebase.database();
-
-			var ref = database.ref("checklist");
-					ref.orderByChild("procedimientoid").equalTo(procedimientoID).on('child_added', snap => {
-					const newReceta = {
-							id: snap.key,
-							data: snap.val(),
-					};
-					var newArr = this.state.data1;
-							newArr.push(newReceta);
-							this.setState({
-									 data1: this.state.data1, arr:newArr
-							});
-							console.log(this.state.data1);
-					});
-		}
-
-
 		render() {
-				var arra = this.state.data1
-				var participantes = arra.map(function(object){
-					return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
 
-								<td>{object.data.areasinvolucradas}</td>
-								<td>{object.data.responsableinvolucrado}</td>
-
-							</tr>
-
-				})
 
 				return (
 
@@ -855,7 +706,7 @@ class Procedimientos extends React.Component{
 									<tr ng-repeat="participante in minuta.participantes" className="ng-scope">
 
 										<td><div className="text-left"> EMITIO</div>
-										<input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="quienemitio" disabled />
+										<input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="quienemitioPolitica"  value="DIRECTOR GENERAL" disabled/>
 										</td>
 
 									</tr>
@@ -872,142 +723,103 @@ class Procedimientos extends React.Component{
 		document.getElementById('emitio')
 	);
 
+  
+
+setTimeout(function(){
+
+  $('#fecha').val(moment().format('LL'))
+  $('#inicio').val(moment().format('LTS'))
+  $('#fin').val(moment().format('LTS'))
+  $('#fw').val(moment().format('w'));
+
+}, 1000);
 
 
-
-
-
-
-  function addParticipante2(){
-    firebase.auth().onAuthStateChanged( firebaseUser => {
-        if(firebaseUser) {
-                      var user    = firebaseUser.uid;
-                      var area = $("#areainvolucrada").val();
-                      var responsable = $("#responsableinvolucrado").val();
-                      var posicion = procedimientoID.indexOf("_");
-                     var minutanumero = procedimientoID.substring(0,posicion);
-                     var aumento = Number($.cookie("versionProcedimiento")) + 1
-                     var res = procedimientoID.replace(procedimientoID, minutanumero + "_Version_" + aumento);
-                      var database = firebase.database();
-                            var objeto = {
-                                 area: area,
-                                 responsable: responsable,
-                                 procedimientoid: res,
-                                 usuario: user,
-                            }
-                           var ref = database.ref("participantes2").push();
-                           ref.set(objeto)
-                          //window.location.href = "/home/invoice"
-                }
-            });
-  }
-  function addCheckList(){
-    firebase.auth().onAuthStateChanged( firebaseUser => {
-        if(firebaseUser) {
-                      var user    = firebaseUser.uid;
-                      var requerimeintos = $("#requerimeintos").val();
-                      var cumplido = $("#cumplido").val();
-                      var posicion = procedimientoID.indexOf("_");
-                     var minutanumero = procedimientoID.substring(0,posicion);
-                     var aumento = Number($.cookie("versionProcedimiento")) + 1
-                     var res = procedimientoID.replace(procedimientoID, minutanumero + "_Version_" + aumento);
-                      var database = firebase.database();
-                            var objeto = {
-                                 requerimeintos: requerimeintos,
-                                 cumplido: cumplido,
-                                 procedimientoid: res,
-                                 usuario: user,
-                            }
-                           var ref = database.ref("checklist").push();
-                           ref.set(objeto)
-                          //window.location.href = "/home/invoice"
-                }
-            });
-  }
-  function addProcesoDetallado(){
-    firebase.auth().onAuthStateChanged( firebaseUser => {
-        if(firebaseUser) {
-                      var user    = firebaseUser.uid;
-                      var pasos = $("#pasos").val();
-                      var area = $("#areas").val();
-                      var posicion = procedimientoID.indexOf("_");
-                     var minutanumero = procedimientoID.substring(0,posicion);
-                     var aumento = Number($.cookie("versionProcedimiento")) + 1
-                     var res = procedimientoID.replace(procedimientoID, minutanumero + "_Version_" + aumento);
-                      var database = firebase.database();
-                            var objeto = {
-                                 pasos: pasos,
-                                 area: area,
-                                 procedimientoid: res,
-                                 usuario: user,
-                            }
-                           var ref = database.ref("procesodetallado").push();
-                           ref.set(objeto)
-                          //window.location.href = "/home/invoice"
-                }
-            });
-  }
-function addObjetivos(){
+function addParticipante2(){
   firebase.auth().onAuthStateChanged( firebaseUser => {
       if(firebaseUser) {
                     var user    = firebaseUser.uid;
-                    var objetivos = $("#objetivosProcedimientos").val();
-                    var lineamientos = $("#lineamientosProcedimientos").val();
-                    var posicion = procedimientoID.indexOf("_");
-                   var minutanumero = procedimientoID.substring(0,posicion);
-                   var aumento = Number($.cookie("versionProcedimiento")) + 1
-                   var res = procedimientoID.replace(procedimientoID, minutanumero + "_Version_" + aumento);
+                    var area = $("#areainvolucrada").val();
+                    var responsable = $("#responsableinvolucrado").val();
                     var database = firebase.database();
                           var objeto = {
-                               lineamientos: lineamientos,
-                               objetivos: objetivos,
-                               procedimientoid: res,
+                               area: area,
+                               responsable: responsable,
+                               procedimientoid: politicaID,
                                usuario: user,
                           }
-                         var ref = database.ref("lineamientos").push();
+                         var ref = database.ref("participantes2").push();
                          ref.set(objeto)
                         //window.location.href = "/home/invoice"
               }
           });
 }
-function addActividad(){
+function addSanciones(){
   firebase.auth().onAuthStateChanged( firebaseUser => {
       if(firebaseUser) {
                     var user    = firebaseUser.uid;
-                    var responsableActividad = $("#ResponsableActividades").val();
-                    var asuntoActividad = $("#asuntoMinutaActividades").val();
-                    var subActividad = $("#subActividadActividades").val();
-                    var coResponsable = $("#select-to").val();
-                    var fechaCompromiso = $("#fechaCompromisoActividad").val();
-                    var posicion = procedimientoID.indexOf("_");
-                   var minutanumero = procedimientoID.substring(0,posicion);
-                   var aumento = Number($.cookie("versionProcedimiento")) + 1
-                   var res = procedimientoID.replace(procedimientoID, minutanumero + "_Version_" + aumento);
+                    var descripcionSancionPolitica = $("#descripcionSancionPolitica").val();
                     var database = firebase.database();
                           var objeto = {
-                               responsable: responsableActividad,
-                               asunto: asuntoActividad,
-                               subactividad: subActividad,
-                               coResponsable: coResponsable,
-                               fechaCompromiso: fechaCompromiso,
-                               procedimientoid: res,
+                               descripcionSancionPolitica: descripcionSancionPolitica,
+                               politicaid: politicaID,
                                usuario: user,
                           }
-                         var ref = database.ref("actividades").push();
+                         var ref = database.ref("sancionesPoliticas").push();
                          ref.set(objeto)
                         //window.location.href = "/home/invoice"
               }
           });
 }
-function addProcedimiento(){
-  if(!$("#nombreProcedimiento").val()){
-    notification("Nombre del procedimiento");
+function addDisposicion(){
+
+  firebase.auth().onAuthStateChanged( firebaseUser => {
+      if(firebaseUser) {
+        var database = firebase.database();
+                    var user    = firebaseUser.uid;
+                    var disposicion = $("#descripcionDispocionPolitica").val();
+
+                          var objeto = {
+                               descripcionDispocionPolitica: disposicion,
+                               politicaid: politicaID,
+                               consecutivo:1,
+                               usuario: user,
+                          }
+                         var ref = database.ref("disposicionPolitica").push();
+                         ref.set(objeto)
+                        //window.location.href = "/home/invoice"
+
+              }
+          });
+}
+function addAreaPolitica(){
+  firebase.auth().onAuthStateChanged( firebaseUser => {
+      if(firebaseUser) {
+                    var user    = firebaseUser.uid;
+                    var areaPolitica = $("#areaPolitica").val();
+                    var puestoPolitica = $("#puestoPolitica").val();
+                    var database = firebase.database();
+                          var objeto = {
+                               areaPolitica: areaPolitica,
+                               puestoPolitica: puestoPolitica,
+                               politicaid: politicaID,
+                               usuario: user,
+                          }
+                         var ref = database.ref("areaPolitica").push();
+                         ref.set(objeto)
+                        //window.location.href = "/home/invoice"
+              }
+          });
+}
+function addPolitica(){
+  if(!$("#nombrePolitica").val()){
+    notification("Nombre de la Política");
   }
-  else if(!$("#objetivoProcedimiento").val()){
-    notification("Objetivo del procedimiento");
+  else if(!$("#objetivoPolitica").val()){
+    notification("Objetivo de la Política");
   }
-  else if(!$("#alcanceProcedimiento").val()){
-    notification("Alcance del procedimiento");
+  else if(!$("#alcancePolitica").val()){
+    notification("Alcance de la Política");
   }
 
     else{
@@ -1015,70 +827,32 @@ function addProcedimiento(){
           if(firebaseUser) {
                         var userName    = firebaseUser.displayName;
                         var user    = firebaseUser.uid;
-                        var nombreProcedimiento = $("#nombreProcedimiento").val();
-                        var objetivoProcedimiento = $("#objetivoProcedimiento").val();
-                        var alcanceProcedimiento = $("#alcanceProcedimiento").val();
-                        var arearresponsableproceso = $("#arearresponsableproceso").val();
-                        var responsableproceso = $("#responsableproceso").val();
-                        var emitio = $("#quienemitio").val();
+                        var nombrePolitica = $("#nombrePolitica").val();
+                        var objetivoPolitica = $("#objetivoPolitica").val();
+                        var alcancePolitica = $("#alcancePolitica").val();
+                        var grupoPolitica = $("#grupoPolitica").val();
+                        var descripcionPolitica = $("#descripcionPolitica").val();
+                        var emitio = $("#quienemitioPolitica").val();
                         var database = firebase.database();
                               var objeto = {
-                                   nombreProcedimiento: nombreProcedimiento,
-                                   objetivoProcedimiento: objetivoProcedimiento,
-                                   alcanceProcedimiento: alcanceProcedimiento,
-                                   arearresponsableproceso: arearresponsableproceso,
-                                   responsableproceso: responsableproceso,
+                                   nombrePolitica: nombrePolitica,
+                                   objetivoPolitica: objetivoPolitica,
+                                   alcancePolitica: alcancePolitica,
+                                   grupoPolitica: grupoPolitica,
+                                   descripcionPolitica: descripcionPolitica,
                                    emitio: emitio,
-                                   procedimientoid: procedimientoID,
+                                   politicaid: politicaID,
 																	 usuario: userName,
                                    usuarioID: user,
                                    fechaModificacion: moment().format('LL'),
-                                   version: Number($.cookie("versionProcedimiento")) + Number(1),
-                                   tipo:'ultima'
+                                   version: "1.0",
+                                   tipo:'ultima',
+                                   areaaplica: "No aplica",
+                                   aceptada:"Aun no se acepta Política"
                               }
-                             var posicion = procedimientoID.indexOf("_");
-     												 var minutanumero = procedimientoID.substring(0,posicion);
-     												 var aumento = Number($.cookie("versionProcedimiento")) + 1
-     												 var res = procedimientoID.replace(procedimientoID, minutanumero + "_Version_" + aumento);
-                             var ref = database.ref("procedimientos").child(res);
+                             var ref = database.ref("politicas").child(politicaID);
                              ref.update(objeto)
-
-                             var objeto1 = {
-                                  nombreProcedimiento: nombreProcedimiento,
-                                  objetivoProcedimiento: objetivoProcedimiento,
-                                  alcanceProcedimiento: alcanceProcedimiento,
-                                  arearresponsableproceso: arearresponsableproceso,
-                                  responsableproceso: responsableproceso,
-                                  emitio: emitio,
-                                  procedimientoid: procedimientoID,
-                                  usuario: userName,
-                                  usuarioID: user,
-                                  fechaModificacion: moment().format('LL'),
-                                  version: Number($.cookie("versionProcedimiento")) + Number(1),
-                                  tipo:''
-                             }
-                             var posicionLast = procedimientoID.lastIndexOf("_");
-    												 var conteo = procedimientoID.length;
-    												 var minutanumeroLast = procedimientoID.substring(posicionLast,conteo);
-    												 var resu = minutanumeroLast.replace("_", "");
-
-    												 if(resu == 1){
-
-    													 var versionU = resu
-    													 console.log("p" ,minutanumeroLast);
-    													 console.log("r1" , resu);
-    													 console.log("v1" ,versionU);
-    												 }if(resu >= 2){
-    													 var versionU = resu
-    													 console.log("r" , resu);
-    													 console.log("v" ,versionU);
-    													 console.log("p" ,posicionLast);
-    												 }
-
-    												var ref = database.ref("procedimientos").child(minutanumero +"_Version_" + versionU);
-    												ref.update(objeto1)
-
-                             window.location.href = "/procedimientos"
+                             window.location.href = "/politicas"
                   }
               });
 
@@ -1086,7 +860,6 @@ function addProcedimiento(){
   }
 
 }
-
 function select(arrar){
   var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
                     '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
@@ -1148,8 +921,6 @@ function select(arrar){
 
 
 }
-
-
 function notification(campo){
         var notification = new NotificationFx({
           message : '<p>Error!</p></br><p>El campo ' + campo + ' no puede estar vacio. </p>',
@@ -1162,7 +933,7 @@ function notification(campo){
         });
         notification.show();
   }
-  function redirecciona(url){
-  	window.location.href = url
-  }
+	function redirecciona(url){
+		window.location.href = url
+	}
 </script>

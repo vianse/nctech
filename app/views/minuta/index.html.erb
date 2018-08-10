@@ -158,7 +158,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<div class="col-sm-12 text-center">
-					<h3 class="modal-title ng-binding" id="modal-title">Version Minuta </h3>
+					<h3 class="modal-title ng-binding" id="modal-title">Versiones de Minuta </h3>
 				</div>
 			</div>
 			<div class="modal-body" id="modal-body">
@@ -399,7 +399,7 @@ class Minutas extends React.Component{
 									<td className="ng-scope gris2 even" role="row">
 									{i + 1}
 									</td>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.nombre}
 									</td>
 									<td  className="ng-scope gris2 even" role="row">
@@ -580,6 +580,7 @@ function redirecciona(url){
 
 setTimeout(function(){
 	$('#example').DataTable({
+		"order": [[ 0, "desc" ]],
 		"language":
 			{
 	"sProcessing":     "Procesando...",
