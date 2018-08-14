@@ -94,6 +94,14 @@ Rails.application.routes.draw do
   get 'usuarios/crear' => 'usuarios#crear', as: :crear_usuarios
   get 'editar/usuarios' => 'usuarios#editar', as: :editar_usuarios
   get 'ver/usuarios' => 'usuarios#ver', as: :ver_usuarios
+  get 'grupos' => 'roles#index', as: :roles
+  get 'grupo/crear' => 'roles#crear', as: :crear_roles
+  get 'editar/grupo' => 'roles#editar', as: :editar_roles
+  get 'ver/grupo' => 'roles#ver', as: :ver_roles
+  get 'archivos' => 'archivos#index', as: :archivos
+  get 'archivos/crear' => 'archivos#crear', as: :crear_archivos
+  get 'editar/archivos' => 'archivos#editar', as: :editar_archivos
+  get 'ver/archivos' => 'archivos#ver', as: :ver_archivos
   namespace :api do
       namespace :v1 do
         resources :get_user, path: "get_user"
