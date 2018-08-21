@@ -9,6 +9,8 @@
 	<title>NC Tech | Portal Endomarketing</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+
+
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/js/bootstrap-switch.js"></script>
@@ -20,109 +22,37 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
-	<style id="svelte-1eldsjg-style">body > .ui-pnotify{position:fixed;z-index:100040}body > .ui-pnotify.ui-pnotify-modal{z-index:100042}.ui-pnotify{position:absolute;height:auto;z-index:1;display:none}.ui-pnotify.ui-pnotify-modal{z-index:3}.ui-pnotify.ui-pnotify-in{display:block}.ui-pnotify.ui-pnotify-initial-hidden{display:block;visibility:hidden}.ui-pnotify.ui-pnotify-move{transition:left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-slow{transition:opacity .4s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-slow.ui-pnotify.ui-pnotify-move{transition:opacity .4s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-normal{transition:opacity .25s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-normal.ui-pnotify.ui-pnotify-move{transition:opacity .25s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-fast{transition:opacity .1s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-fast.ui-pnotify.ui-pnotify-move{transition:opacity .1s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-in{opacity:1}.ui-pnotify .ui-pnotify-shadow{-webkit-box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1);-moz-box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1);box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1)}.ui-pnotify-container{background-position:0 0;padding:.8em;height:100%;margin:0}.ui-pnotify-container:after{content:" ";visibility:hidden;display:block;height:0;clear:both}.ui-pnotify-container.ui-pnotify-sharp{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.ui-pnotify-title{display:block;white-space:pre-line;margin-bottom:.4em;margin-top:0}.ui-pnotify.ui-pnotify-with-icon .ui-pnotify-title,.ui-pnotify.ui-pnotify-with-icon .ui-pnotify-text{margin-left:24px}[dir=rtl] .ui-pnotify.ui-pnotify-with-icon .ui-pnotify-title,[dir=rtl] .ui-pnotify.ui-pnotify-with-icon .ui-pnotify-text{margin-right:24px;margin-left:0}.ui-pnotify-title-bs4{font-size:1.2rem}.ui-pnotify-text{display:block;white-space:pre-line}.ui-pnotify-icon,.ui-pnotify-icon span{display:block;float:left}[dir=rtl] .ui-pnotify-icon,[dir=rtl] .ui-pnotify-icon span{float:right}.ui-pnotify-icon-bs3 > span{position:relative;top:2px}.ui-pnotify-icon-bs4 > span{position:relative;top:4px}.ui-pnotify-modal-overlay{background-color:rgba(0, 0, 0, .4);top:0;left:0;position:absolute;height:100%;width:100%;z-index:2}body > .ui-pnotify-modal-overlay{position:fixed;z-index:100041}
-  
+    <style id="svelte-1eldsjg-style">body > .ui-pnotify{position:fixed;z-index:100040}body > .ui-pnotify.ui-pnotify-modal{z-index:100042}.ui-pnotify{position:absolute;height:auto;z-index:1;display:none}.ui-pnotify.ui-pnotify-modal{z-index:3}.ui-pnotify.ui-pnotify-in{display:block}.ui-pnotify.ui-pnotify-initial-hidden{display:block;visibility:hidden}.ui-pnotify.ui-pnotify-move{transition:left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-slow{transition:opacity .4s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-slow.ui-pnotify.ui-pnotify-move{transition:opacity .4s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-normal{transition:opacity .25s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-normal.ui-pnotify.ui-pnotify-move{transition:opacity .25s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-fast{transition:opacity .1s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-fast.ui-pnotify.ui-pnotify-move{transition:opacity .1s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-in{opacity:1}.ui-pnotify .ui-pnotify-shadow{-webkit-box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1);-moz-box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1);box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1)}.ui-pnotify-container{background-position:0 0;padding:.8em;height:100%;margin:0}.ui-pnotify-container:after{content:" ";visibility:hidden;display:block;height:0;clear:both}.ui-pnotify-container.ui-pnotify-sharp{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.ui-pnotify-title{display:block;white-space:pre-line;margin-bottom:.4em;margin-top:0}.ui-pnotify.ui-pnotify-with-icon .ui-pnotify-title,.ui-pnotify.ui-pnotify-with-icon .ui-pnotify-text{margin-left:24px}[dir=rtl] .ui-pnotify.ui-pnotify-with-icon .ui-pnotify-title,[dir=rtl] .ui-pnotify.ui-pnotify-with-icon .ui-pnotify-text{margin-right:24px;margin-left:0}.ui-pnotify-title-bs4{font-size:1.2rem}.ui-pnotify-text{display:block;white-space:pre-line}.ui-pnotify-icon,.ui-pnotify-icon span{display:block;float:left}[dir=rtl] .ui-pnotify-icon,[dir=rtl] .ui-pnotify-icon span{float:right}.ui-pnotify-icon-bs3 > span{position:relative;top:2px}.ui-pnotify-icon-bs4 > span{position:relative;top:4px}.ui-pnotify-modal-overlay{background-color:rgba(0, 0, 0, .4);top:0;left:0;position:absolute;height:100%;width:100%;z-index:2}body > .ui-pnotify-modal-overlay{position:fixed;z-index:100041}
     </style>
-	<style>
+    <style>
         #addMinuta{
             margin-right: 0%;
         }
         .avatar{
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-        .cabecera{
-            background-color: #DCDCDD!important;
-            height:150px;
-        }
-        .color{
-            background-color: #DCDCDD!important;
-            border-style: none;
-            font-size: 16px;
-        }
-        input.middle:focus {
-            outline-width: 0;
-        }
-        .footer_cabecera{
-            background-color: #F7941D!important;
-            height:40px;
-        }
-        .cabecera_extracto{
-            margin-top:10px;
-            background-color: #DCDCDD!important;
-            height:550px;
-            
-        }
-        .footer_body{
-            display:flex;
-            background-color: #F7941D!important;
-            height:40px;
-            align-items: center;
-            
-        }
-        .titulo_perfil{
+            width: 100px;
+            height: 100px;
             margin-left: 10px;
         }
-        .cabecera_sobremi{
-            margin-top:10px;
-            background-color: #DCDCDD!important;
-            height:250px;
-           
-            
+        .visible{
+            display:none!important;
         }
-        .cabecera_formacion{
-            margin-top:10px;
-            background-color: #DCDCDD!important;
-            height:250px;
-            
+        table.dataTable tbody tr {
+            background-color: #BCBEC0!important;
         }
-        .area{
-            height:550px!important;
-            background-color: #DCDCDD!important;
-        }
-        .area_sobremi{
-            height:250px!important;
-            background-color: #DCDCDD!important;
-        }
-        img#mapa{
-            max-width:100%;
-            max-height:87%;
-        }
-        .upload{
-            width: 0.1px;
-            height: 0.1px;
-            opacity: 0;
-            overflow: hidden;
-            position: absolute;
-            z-index: -1;
-        }
-        .label_file{
-            cursor: pointer;
+
+        .t{
+            padding:10px;
+            border-bottom-style:solid;
+            border-width:15px!important;
+            border-bottom-color:#757A7F;
+            width:100%;
+            margin-left: 0px;
         }
         span{
-            font-size:11px!important;
+            font-size: 15px;
         }
-     
-        .note-editable{
-            background-color: #DCDCDD!important;
-            min-height:110px;
-            max-height:111px;
-            text-align:left;
-            
-        }
-        .note-resizebar{
-            display:none;
-        }
-        .note-toolbar{
-            background-color:#F7941D;
-        }
-        .note-btn{
-            left: 0px;
-        }
+        
+      
         
 	</style>
 </head>
@@ -133,7 +63,6 @@
 		<span class="float-left">
 			<div id="log-int">
                 <img src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Flogo-cabecera.png?alt=media&token=2d197f6d-6d72-495f-b820-8816ad1c277b" onClick="javascript:redirecciona('/')" style="cursor:pointer;">
-
 			</div>
 		</span>
 		<span class="float-right">
@@ -162,46 +91,43 @@
 			</div>
 		</span>
 	</div>
-</div></site-header><!-- end ngIf: showHeader -->
+</div>
+</site-header>
 
 	<!-- uiView: --><ui-view class="main-content-view ng-scope" style=""><div id="gral" class="cont-gral ng-scope">
 	<div class="soy90">
 		<div class="row">
 			<div class="col-md-2 text-center">
-				<img class="img100 icono-int" src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Ficono01.png?alt=media&token=78971291-4a12-4e24-8d7d-f217eda0f753">
+			<img class="img100 icono-int" src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Ficono01.png?alt=media&token=78971291-4a12-4e24-8d7d-f217eda0f753">
 				<div class="col-md-2 color-blanco text-center">
-					<h4></h4>
+					<h4>HERRAMIENTAS</h4>
 					<div class="lineadw linea-verde linea-int"></div>
 					<div id="sub-izq" class="row">
-						<div class="" aria-labelledby="dropdownMenuLink">
-							<button class="dropdown-item" type="button">Mi equipo</button>
-							<button class="dropdown-item" type="button">Perfil personal</button>
-							
-						</div>
+					<div class="" aria-labelledby="dropdownMenuLink">
+						<button class="dropdown-item" type="button">Mi equipo</button>
+						<button class="dropdown-item" type="button">Perfil personal</button>	
+					</div>
 					</div><!--subizq-->
 				</div>
 			</div>
 			<div class="col-md-10 text-center color-blanco">
 				<div class="row">
 					<div class="col-md-4 text-left">
-						
+						<button class="btn btn-xs btn-default color-blanco btn-atras" style="background-color: transparent;" onClick="javascript:redirecciona('/');"><svg class="svg-inline--fa fa-arrow-alt-circle-left fa-w-16 fa-2x color-blanco" aria-hidden="true" data-prefix="fa" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z"></path></svg><!-- <i class="fa fa-arrow-alt-circle-left fa-2x color-blanco"></i> --></button>
 					</div>
-                    <div class="col-md-4 text-center"><h3>KNOWLEDGE BASE</h3></div>
-                    <hr>
+					<div class="col-md-4 text-center"><h3>DIRECTORIO</h3></div>
 					<div class="col-md-4"></div>
 				</div>
 
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
-                             <div id="cabecera"></div>
-
-                             
+              <div id="link"></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
-                            <div id="body"></div>
+              <div id="minutas"></div>
 						</div>
 					</div>
 				</div>
@@ -211,6 +137,30 @@
 </div>
 
 
+<!--Modal Versionamiento de Minuta-->
+
+<div class="modal ng-scope" tabindex="-1" role="dialog" id="modal-versionMinuta">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="col-sm-12 text-center">
+					<h3 class="modal-title ng-binding" id="modal-title">Versiones Check List </h3>
+				</div>
+			</div>
+			<div class="modal-body" id="modal-body">
+				<div class="row">
+					<div class="col-sm-12">
+
+						<div id="versiones"></div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger" class="btn btn-default" data-dismiss="modal">CERRAR</button>
+			</div>
+		</div>
+	</div>
+</div>
 </ui-view>
 
 	<!-- ngIf: showFooter --><site-footer ng-if="showFooter" class="ng-scope"><div id="pie-sitio">
@@ -229,6 +179,8 @@
 
 <script>
 
+
+
 firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             $("#usuario").text(user.displayName);
@@ -240,98 +192,116 @@ firebase.auth().onAuthStateChanged(function(user) {
 </script>
 <script type="text/jsx">
 
-class Perfil extends React.Component{
+class Minutas extends React.Component{
 	constructor(props) {
 			 super(props);
 			 this.state = {
-                 data:[],
-                 imagen: "",
-                 nombre: "",
-                 puesto: "",
-                 responsabilidad: "",
-                 fechaIngreso: ""
+				 data:[],
+				 text: '',
+				 limitar: ''
 			 }
 	}
 	componentWillMount() {
-        firebase.auth().onAuthStateChanged( firebaseUser => {
-            if(firebaseUser) {
-            var database = firebase.database();
-            var user    = firebaseUser.uid;
-            var ref = database.ref("usuarios").child(user);
-                    ref.on('value', snap => {
-                    const myPerfil = {
-                            id: snap.key,
-                            data: snap.val(),
-                      };
-                      this.setState({
-                          imagen: myPerfil.data.foto
-                      })
-                      $("#nombre").val(myPerfil.data.nombre);
-                      $("#puesto").val(myPerfil.data.puesto);
-                      $("#responsabilidad").val(myPerfil.data.responsabilidad);
-                      $("#fechaIngreso").val(myPerfil.data.fechaIngreso);
-                      
-                    });
-                }
-        });
+		firebase.auth().onAuthStateChanged( firebaseUser => {
+				if(firebaseUser) {
+				var database = firebase.database();
+				var user    = firebaseUser.uid;
+				var ref = database.ref("usuarios");
+						ref.on('child_added', snap => {
+						const newReceta = {
+								id: snap.key,
+								data: snap.val(),
+						};
+						var newArr = this.state.data;
+								newArr.push(newReceta);
+								this.setState({
+										 data: this.state.data, arr:newArr
+								});
+						});
+				}
+		});		
 	}
+
 	render() {
-        var imagen = this.state.imagen
-        var nombre = this.state.nombre
-        var puesto = this.state.puesto
-        var responsabilidad = this.state.responsabilidad
-        var fechaIngreso = this.state.fechaIngreso
-        return (<div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="cabecera">
-                                <div id="summernote"></div>
+		var arr = this.state.data
+		var options = arr.map(function(object, i){
+		var url = "ver/perfil?id=" + object.id
+		
+			return  <tr>
+                        <td className="text-left" role="row">
+                        <a href={url}>
+                        <div className="row t">
+                                <div className="col-md-2">
+                                    <img src={object.data.foto} className="avatar"/>
+                                </div>
+                                <div className="col-md-10">
+                                    <span>{object.data.nombre}</span><br/>
+                                    <span>{object.data.puesto}</span><br/>
+                                    <span>{object.data.responsabilidad}</span><br/>
+                                    <span>{object.data.area}</span><br/>
+                                    <span>{object.data.fechaIngreso}</span><br/>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>)
-	}
+                        </a>
+						</td>
+					</tr>
+			})
+			return (
+					<table id="example" className="table" style={{width:"80%"}}>
+						<thead className="ng-scope">
+							<tr role="row">
+								<th className="visible"></th>
+							</tr>
+						</thead>
+						<tbody className="ng-scope">
+						 {options}
+						</tbody>
+					</table>
+
+			)
+		}
 }
 
 ReactDOM.render(
-	<Perfil  />,
-	document.getElementById('cabecera')
+	<Minutas  />,
+	document.getElementById('minutas')
 );
 
 
-setTimeout(function(){
-    $('#summernote').summernote({
-        toolbar: [
-          // [groupName, [list of button]]
-          ['picture'],
-          ['video'],
-          ['link'],
-          ['file']
-        ],
-        buttons: {
-                hello: Attachment
-            }
-      });
-},1000)
 
 function redirecciona(url){
 	window.location.href = url
 }
 
-var Attachment = function (context) {
-  var ui = $.summernote.ui;
-
-  // create button
-  var button = ui.button({
-    contents: '<i class="fa fa-child"/> Hello',
-    tooltip: 'hello',
-    click: function () {
-      // invoke insertText method with 'hello' on editor module.
-      context.invoke('editor.insertText', 'hello');
-    }
-  });
-
-  return button.render();   // return button as jquery object
+setTimeout(function(){
+	$('#example').DataTable({
+		"language":
+			{
+	"sProcessing":     "Procesando...",
+	"sLengthMenu":     "Mostrar _MENU_ registros",
+	"sZeroRecords":    "No se encontraron resultados",
+	"sEmptyTable":     "Ningún dato disponible en esta tabla",
+	"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+	"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+	"sInfoPostFix":    "",
+	"sSearch":         "Buscar:",
+	"sUrl":            "",
+	"sInfoThousands":  ",",
+	"sLoadingRecords": "Cargando...",
+	"oPaginate": {
+		"sFirst":    "Primero",
+		"sLast":     "Último",
+		"sNext":     "Siguiente",
+		"sPrevious": "Anterior"
+	},
+	"oAria": {
+		"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+		"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	}
 }
+
+	});
+},2000)
 
 </script>

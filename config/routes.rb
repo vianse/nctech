@@ -5,6 +5,22 @@ Rails.application.routes.draw do
 
 
 
+  get 'directorio/index'
+
+  get 'directorio/crear'
+
+  get 'directorio/editar'
+
+  get 'directorio/ver'
+
+  get 'perfil/index'
+
+  get 'perfil/crear'
+
+  get 'perfil/editar'
+
+  get 'perfil/ver'
+
   get 'newsletter/index'
 
   get 'newsletter/crear'
@@ -102,6 +118,10 @@ Rails.application.routes.draw do
   get 'archivos/crear' => 'archivos#crear', as: :crear_archivos
   get 'editar/archivos' => 'archivos#editar', as: :editar_archivos
   get 'ver/archivos' => 'archivos#ver', as: :ver_archivos
+  get 'perfil' => 'perfil#index', as: :perfil
+  get 'ver/perfil' => 'perfil#ver', as: :ver_perfil
+  get 'directorio' => 'directorio#index', as: :directorio
+  get 'knowledge_base' => 'conocimiento#index', as: :knowledge_base
   namespace :api do
       namespace :v1 do
         resources :get_user, path: "get_user"
