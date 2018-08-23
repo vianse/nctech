@@ -43,8 +43,12 @@
             border-radius: 50%;
         }
         .cabecera{
-            background-color: #DCDCDD!important;
-            height:0px;
+            
+        }
+        .note-editor.note-frame {
+            border: 1px solid hsl(0, 0%, 66%);
+            left: 15px;
+            width:97%;
         }
         .color{
             background-color: #DCDCDD!important;
@@ -183,21 +187,26 @@
 	</div>
 </div></site-header><!-- end ngIf: showHeader -->
 
-	<!-- uiView: --><ui-view class="main-content-view ng-scope" style=""><div id="gral" class="cont-gral ng-scope">
+    <ui-view class="main-content-view ng-scope" style="">
+    <div id="gral" class="cont-gral ng-scope">
 	<div class="soy90">
 		<div class="row">
 			<div class="col-md-2 text-center">
-				<img class="img100 icono-int" src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Ficono01.png?alt=media&token=78971291-4a12-4e24-8d7d-f217eda0f753">
-				<div class="col-md-2 color-blanco text-center">
-					<h4></h4>
-					<div class="lineadw linea-verde linea-int"></div>
+				<img class="img100 icono-int" src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Ficono03.png?alt=media&token=3ce3c4aa-7213-49d8-abc0-1572cdb8c5b9">
+				<div class="col-md-12 color-blanco text-center">
+					<h4>HERRAMIENTAS</h4>
+					<div class="lineadw linea-morada linea-int"></div>
 					<div id="sub-izq" class="row">
 						<div class="" aria-labelledby="dropdownMenuLink">
-							<button class="dropdown-item" type="button">Mi equipo</button>
-							<button class="dropdown-item" type="button">Perfil personal</button>
+                        <button class="dropdown-item" type="button">Galeria NC Tech</button>
+                        <button class="dropdown-item" type="button">Chat de negocios</button>
+                        <button class="dropdown-item menu-activo" type="button" ng-click="goToPath('/app/documentos')">Documentos</button>
+                        <button class="dropdown-item" type="button">Newsletter</button>
+                        <a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&amp;service=mail&amp;sacu=1&amp;rip=1&amp;flowName=GlifWebSignIn&amp;flowEntry=ServiceLogin" target="_blank"><button class="dropdown-item" type="button">Correo</button></a>
+
 							
 						</div>
-					</div><!--subizq-->
+					</div>
 				</div>
 			</div>
 			<div class="col-md-10 text-center color-blanco">
@@ -215,10 +224,10 @@
 						<div class="col-md-12">
                              <div id="cabecera"></div>
 						</div>
-                    </div></br></br></br>
+                    </div></br>
                     <div class="row">
 						<div class="col-md-12"><br>
-                             <h4 class="text-left">Publicaciones Recientes</h4>
+                             <h4 >Publicaciones Recientes</h4>
 						</div>
 					</div>
 					<div class="row">
@@ -405,11 +414,6 @@ class Body extends React.Component{
 								</path>
 							</svg>
 							</a>
-							<a href={url} data-toggle="modal" data-target="#modal-versionMinuta" className="btn btn-sm btn-warning ng-scope" onClick={()=>pasar(object.id)}>
-								<svg className="svg-inline--fa fa-clock fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-									<path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm57.1 350.1L224.9 294c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h48c6.6 0 12 5.4 12 12v137.7l63.5 46.2c5.4 3.9 6.5 11.4 2.6 16.8l-28.2 38.8c-3.9 5.3-11.4 6.5-16.8 2.6z"></path>
-								</svg>
-							</a>
 						</td>
 					</tr>
 			})
@@ -450,10 +454,7 @@ setTimeout(function(){
         lang: 'es-ES',
         toolbar: [
           // [groupName, [list of button]]
-          ['picture'],
-          ['video'],
-          ['file'],
-          ['mybutton', ['hello']],
+         
           ['mybutton1', ['publicar'],['boton']]
         ],
         buttons: {
@@ -595,22 +596,19 @@ function modal(id){
 						<div className="text-left"> ÁREA</div>
 					<select className="form-control" placeholder="Selecciona uno" id="area">
 					<option disabled selected>Selecciona una opción</option>
-										  <option>CAPITAL HUMANO</option>
-										  <option>SOPORTE TECNICO</option>
-										  <option>MARKETING</option>
-										  <option>ADMINISTRACION</option>
-										  <option>VENTAS</option>
-										  <option>ATENCION AL CLIENTE</option>
-										  <option>XPERTCAD</option>
+										  <option>ÁREA COMERCIAL</option>
+										  <option>ÁREA EDUCACIONAL</option>
+										  
 				  	</select><br/>
 					  <div className="text-left"> TIPO</div>
 					  <select className="form-control" placeholder="Selecciona uno" id="tipo">
 					  <option disabled selected>Selecciona una opción</option>
 											<option>PDF</option>
 											<option>EXCEL</option>
-											<option>POWER POINT</option>
+											<option>PPT</option>
 											<option>WORD</option>
-											<option>IMAGEN</option>
+                                            <option>IMAGEN</option>
+                                            <option>VIDEO</option>
 											<option>OTRO</option>
 											
 						</select><br/>

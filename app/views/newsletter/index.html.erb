@@ -43,8 +43,12 @@
             border-radius: 50%;
         }
         .cabecera{
-            background-color: #DCDCDD!important;
-            height:150px;
+            
+        }
+        .note-editor.note-frame {
+            border: 1px solid hsl(0, 0%, 66%);
+            left: 15px;
+            width:97%;
         }
         .color{
             background-color: #DCDCDD!important;
@@ -116,13 +120,12 @@
      
         .note-editable{
             background-color: #DCDCDD!important;
-            min-height:110px;
-            max-height:111px;
+            
             text-align:left;
             
         }
         .note-resizebar{
-            display:none;
+            #display:none;
         }
         .note-toolbar{
             background-color:#F7941D;
@@ -186,14 +189,18 @@
 	<div class="soy90">
 		<div class="row">
 			<div class="col-md-2 text-center">
-				<img class="img100 icono-int" src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Ficono01.png?alt=media&token=78971291-4a12-4e24-8d7d-f217eda0f753">
-				<div class="col-md-2 color-blanco text-center">
-					<h4></h4>
-					<div class="lineadw linea-verde linea-int"></div>
+				<img class="img100 icono-int" src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Ficono03.png?alt=media&token=3ce3c4aa-7213-49d8-abc0-1572cdb8c5b9">
+				<div class="col-md-12 color-blanco text-center">
+					<h4>HERRAMIENTAS</h4>
+					<div class="lineadw linea-morada linea-int"></div>
 					<div id="sub-izq" class="row">
 						<div class="" aria-labelledby="dropdownMenuLink">
-							<button class="dropdown-item" type="button">Mi equipo</button>
-							<button class="dropdown-item" type="button">Perfil personal</button>
+                        <button class="dropdown-item" type="button" ng-click="goToPath('/app/galeria')">Galeria NC Tech</button>
+						<a href="https://nctech.slack.com/" target="_blank"><button class="dropdown-item" type="button">Chat de negocios</button></a>
+                        <button class="dropdown-item" onClick="javascript:redirecciona('/documentos');" type="button">Aplicaciones</button>
+						<a href="/newsletter"><button class="dropdown-item" type="button" ng-click="goToPath('/app/newsletter')">Newsletter</button></a>
+						<a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&amp;service=mail&amp;sacu=1&amp;rip=1&amp;flowName=GlifWebSignIn&amp;flowEntry=ServiceLogin" target="_blank"><button class="dropdown-item" type="button">Correo</button></a>
+
 							
 						</div>
 					</div><!--subizq-->
@@ -376,31 +383,24 @@ class Body extends React.Component{
 		var arr = this.state.data
 		var options = arr.map(function(object, i){
 		var url = "editar/minuta?id=" + object.id
-		var url_ver = "ver/knowledge_base?id=" + object.id
+		var url_ver = "ver/newsletter?id=" + object.id
 				return  <tr>
-							<td className="ng-scope gris2 even" role="row">
+							<td className="ng-scope gris2 even text-left" role="row">
 								{object.data.fecha}
 							</td>
 							<td  className="ng-scope gris2 even text-left" role="row">
 								{object.data.autor}
 							</td>
-							<td  className="ng-scope gris2 even" role="row">
-								{object.data.nombre}
+							<td  className="ng-scope gris2 even text-left" role="row">
+								{object.data.titulo}
 							</td>
-							<td  className="ng-scope gris2 even" role="row">
-								{object.data.descripcion}
+							<td  className="ng-scope gris2 even text-left" role="row">
+								{object.data.sector}
 							</td>
-							<td  className="ng-scope gris2 even" role="row">
-								{object.data.categoria}
+							<td  className="ng-scope gris2 even text-left" role="row">
+								{object.data.producto}
                             </td>
-                            <td  className="ng-scope gris2 even" role="row">
-								{object.data.subcategoria}
-							</td>
-							<td  className="ng-scope gris2 even" role="row">
-                                <div className="puntuaciones"></div>
-                             
-                                
-							</td>
+
 						<td  className="ng-scope gris2 even" role="row">
 							<a href={url_ver} className="btn btn-sm btn-primary ng-scope">
 							<svg className="svg-inline--fa fa-edit fa-w-18" aria-hidden="true" data-prefix="fa" data-icon="edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
@@ -408,11 +408,7 @@ class Body extends React.Component{
 								</path>
 							</svg>
 							</a>
-							<a href={url} data-toggle="modal" data-target="#modal-versionMinuta" className="btn btn-sm btn-warning ng-scope" onClick={()=>pasar(object.id)}>
-								<svg className="svg-inline--fa fa-clock fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-									<path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm57.1 350.1L224.9 294c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h48c6.6 0 12 5.4 12 12v137.7l63.5 46.2c5.4 3.9 6.5 11.4 2.6 16.8l-28.2 38.8c-3.9 5.3-11.4 6.5-16.8 2.6z"></path>
-								</svg>
-							</a>
+							
 						</td>
 					</tr>
 			})
@@ -424,11 +420,9 @@ class Body extends React.Component{
 							<tr>
 								<th>Fecha</th>
 								<th>Autor</th>
-								<th>Nombre de la solución</th>
-								<th>Descripción</th>
-                                <th>Categoría</th>
-                                <th>Sub-Categoría</th>
-								<th>Valoración</th>
+								<th>Título</th>
+								<th>Sector</th>
+                                <th>Producto</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -554,28 +548,26 @@ function modal(id){
                 if(firebaseUser) {
                     var user    = firebaseUser.uid;
                     var solucion = $(".note-editable").html();
-                    var nombre = $("#nombreSolucion").val();
-                    var descripcion = $("#descripcion").val();
-                    var categoria = $("#categoria").val();
-                    var subcategoria = $("#subcategoria").val();
+                    var titulo = $("#titulo").val();
+                    var sector = $("#sector").val();
+                    var producto = $("#producto").val();
+                 
                     
                     var objeto = {
                                     fecha: moment().format('L'),
                                     autor: firebaseUser.displayName,
-                                    nombre: nombre,
-                                    descripcion: descripcion,
-                                    categoria: categoria,
-                                    subcategoria: subcategoria,
-                                    valoracion: 0,
+                                    titulo: titulo,
+                                    sector: sector,
+                                    producto: producto,
                                     solucion: solucion,
                                     usuario: user,
                                 }
                     var database = firebase.database();
-                    var ref = database.ref("knowledge").push();
+                    var ref = database.ref("newsletter").push();
                     ref.set(objeto)
                 }
                 setTimeout(function(){
-                    window.location.href = "/knowledge_base"
+                    window.location.href = "/newsletter"
                 },500)
             });
            
@@ -584,10 +576,9 @@ function modal(id){
             var publicar = this.guardar.bind(this)
 			return(
                     <form>
-                        <input type="text" placeholder="Nombre de la Solución" className="form-control" id="nombreSolucion"/><br/>
-                        <input type="text" placeholder="Descripción" className="form-control" id="descripcion"/><br/>
-                        <input type="text" placeholder="Categoría" className="form-control" id="categoria"/><br/>
-                        <input type="text" placeholder="Subcategoría" className="form-control" id="subcategoria"/><br/>
+                        <input type="text" placeholder="Título" className="form-control" id="titulo"/><br/>
+                        <input type="text" placeholder="Sector" className="form-control" id="sector"/><br/>
+                        <input type="text" placeholder="Producto" className="form-control" id="producto"/><br/>
                         <a href="#" className="btn btn-success" onClick={publicar}>Guardar</a>
                     </form>
                 )	

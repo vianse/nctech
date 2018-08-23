@@ -45,8 +45,12 @@
             border-radius: 50%;
         }
         .cabecera{
-            background-color: #DCDCDD!important;
-            height:0px;
+            
+        }
+        .note-editor.note-frame {
+            border: 1px solid hsl(0, 0%, 66%);
+            left: 10px;
+            width:98%;
         }
         .color{
             background-color: #DCDCDD!important;
@@ -144,6 +148,18 @@
             width:100%;
             height:100%;
         }
+        .links{
+            color:#39393A!important;
+        }
+        .links_titulo{
+            font-weight:bold;
+        }
+        h4.title{
+            left: 15px!important;
+        }
+        .linea-int {
+            width: 110%!important;
+        }
         
 	</style>
 </head>
@@ -189,14 +205,15 @@
 	<div class="soy90">
 		<div class="row">
 			<div class="col-md-2 text-center">
-				<img class="img100 icono-int" src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Ficono01.png?alt=media&token=78971291-4a12-4e24-8d7d-f217eda0f753">
-				<div class="col-md-2 color-blanco text-center">
-					<h4></h4>
-					<div class="lineadw linea-verde linea-int"></div>
+				<img class="img100 icono-int" src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Ficono05.png?alt=media&token=b6faec2c-b656-448e-8c12-81c148b387ca">
+				<div class="col-md-12 color-blanco text-center">
+                    <h4>CONOCIMIENTO</h4>
+					<div class="lineadw linea-amarilla linea-int"></div>
 					<div id="sub-izq" class="row">
 						<div class="" aria-labelledby="dropdownMenuLink">
-							<button class="dropdown-item" type="button">Mi equipo</button>
-							<button class="dropdown-item" type="button">Perfil personal</button>
+                        <a href="http://academy.xpertcad.com/" target="_blank"><button class="dropdown-item" type="button">NC Tech University</button></a>
+						<a href="/knowledge_base"><button class="dropdown-item" type="button">Knowledge Base</button></a>
+						<a href="/enlaces"><button class="dropdown-item" type="button">Artículos relevantes</button></a>
 							
 						</div>
 					</div><!--subizq-->
@@ -207,7 +224,7 @@
 					<div class="col-md-4 text-left">
 						
 					</div>
-                    <div class="col-md-4 text-center"><h3>ARTICULOS RELEVANTES</h3></div>
+                    <div class="col-md-4 text-center titulo"><h3>ARTICULOS RELEVANTES</h3></div>
                     <hr>
 					<div class="col-md-4"></div>
 				</div>
@@ -217,10 +234,10 @@
 						<div class="col-md-12">
                              <div id="cabecera"></div>
 						</div>
-                    </div></br></br></br>
+                    </div>
                     <div class="row">
 						<div class="col-md-12"><br>
-                             <h4 class="text-left">Publicaciones Recientes</h4>
+                             <h4 class="title">Publicaciones Recientes</h4>
 						</div>
 					</div>
 					<div class="row">
@@ -379,9 +396,6 @@ class Body extends React.Component{
 		var arr = this.state.data
 		var options = arr.map(function(object, i){
 
-                
-           
-
 		var url = "editar/minuta?id=" + object.id
         var url_ver = "ver/knowledge_base?id=" + object.id
         var ids = object.id + "_preview"
@@ -393,14 +407,14 @@ class Body extends React.Component{
 								{object.data.autor}
 							</td>
 							<td  className="ng-scope gris2 even" role="row">
-                            <a href={object.data.url} target="blank">
+                            <a href={object.data.url} className="links" target="blank">
                                 <div className='row'>
                                     <div className='col-md-2'>
-                                        <img src={object.data.imagen} height='60' width='60'/>
+                                        <img src={object.data.imagen} className="text-right" height='60' width='60'/>
                                      </div>
                                     <div className='col-md-10'>
-                                         <div>{object.data.titulo}</div>
-                                        <div>{object.data.description}</div>
+                                         <div className="links_titulo text-left">{object.data.titulo}</div>
+                                        <div className="text-left">{object.data.description}</div>
                                      </div>
                                  </div>
                            </a>

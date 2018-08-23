@@ -43,8 +43,12 @@
             border-radius: 50%;
         }
         .cabecera{
-            background-color: #DCDCDD!important;
-            height:150px;
+            
+        }
+        .note-editor.note-frame {
+            border: 1px solid hsl(0, 0%, 66%);
+            left: 10px;
+            width:98%;
         }
         .color{
             background-color: #DCDCDD!important;
@@ -141,7 +145,15 @@
             width:100%;
             height:100%;
         }
-        
+        .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+            position: relative;
+            width: 100%;
+            min-height: 1px;
+            padding-right: 0px;
+            padding-left: 0px;
+        } 
+          
+    
 	</style>
 </head>
 <body class="page-body">
@@ -185,18 +197,18 @@
 	<!-- uiView: --><ui-view class="main-content-view ng-scope" style=""><div id="gral" class="cont-gral ng-scope">
 	<div class="soy90">
 		<div class="row">
-			<div class="col-md-2 text-center">
-				<img class="img100 icono-int" src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Ficono01.png?alt=media&token=78971291-4a12-4e24-8d7d-f217eda0f753">
-				<div class="col-md-2 color-blanco text-center">
-					<h4></h4>
-					<div class="lineadw linea-verde linea-int"></div>
+			<div class="col-md-2">
+				<img class="img100 icono-int" src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Ficono05.png?alt=media&token=b6faec2c-b656-448e-8c12-81c148b387ca">
+				<div class="col-md-9 color-blanco text-center">
+					<h4>CONOCIMIENTO</h4>
+					<div class="lineadw linea-amarilla linea-int"></div>
 					<div id="sub-izq" class="row">
 						<div class="" aria-labelledby="dropdownMenuLink">
-							<button class="dropdown-item" type="button">Mi equipo</button>
-							<button class="dropdown-item" type="button">Perfil personal</button>
-							
+                        <a href="http://academy.xpertcad.com/" target="_blank"><button class="dropdown-item" type="button">NC Tech University</button></a>
+						<a href="/knowledge_base"><button class="dropdown-item" type="button">Knowledge Base</button></a>
+						<a href="/enlaces"><button class="dropdown-item" type="button">Artículos relevantes</button></a>
 						</div>
-					</div><!--subizq-->
+					</div>
 				</div>
 			</div>
 			<div class="col-md-10 text-center color-blanco">
@@ -376,22 +388,22 @@ class Body extends React.Component{
 		var url = "editar/minuta?id=" + object.id
 		var url_ver = "ver/knowledge_base?id=" + object.id
 				return  <tr>
-							<td className="ng-scope gris2 even" role="row">
+							<td className="ng-scope gris2 even text-left" role="row">
 								{object.data.fecha}
 							</td>
 							<td  className="ng-scope gris2 even text-left" role="row">
 								{object.data.autor}
 							</td>
-							<td  className="ng-scope gris2 even" role="row">
+							<td  className="ng-scope gris2 even text-left" role="row">
 								{object.data.nombre}
 							</td>
-							<td  className="ng-scope gris2 even" role="row">
+							<td  className="ng-scope gris2 even text-left" role="row">
 								{object.data.descripcion}
 							</td>
-							<td  className="ng-scope gris2 even" role="row">
+							<td  className="ng-scope gris2 even text-left" role="row">
 								{object.data.categoria}
                             </td>
-                            <td  className="ng-scope gris2 even" role="row">
+                            <td  className="ng-scope gris2 even text-left" role="row">
 								{object.data.subcategoria}
 							</td>
 							<td  className="ng-scope gris2 even" role="row">
@@ -406,11 +418,7 @@ class Body extends React.Component{
 								</path>
 							</svg>
 							</a>
-							<a href={url} data-toggle="modal" data-target="#modal-versionMinuta" className="btn btn-sm btn-warning ng-scope" onClick={()=>pasar(object.id)}>
-								<svg className="svg-inline--fa fa-clock fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-									<path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm57.1 350.1L224.9 294c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h48c6.6 0 12 5.4 12 12v137.7l63.5 46.2c5.4 3.9 6.5 11.4 2.6 16.8l-28.2 38.8c-3.9 5.3-11.4 6.5-16.8 2.6z"></path>
-								</svg>
-							</a>
+							
 						</td>
 					</tr>
 			})
@@ -452,8 +460,6 @@ setTimeout(function(){
           // [groupName, [list of button]]
           ['picture'],
           ['video'],
-          ['file'],
-          ['mybutton', ['hello']],
           ['mybutton1', ['publicar'],['boton']]
         ],
         buttons: {

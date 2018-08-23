@@ -140,6 +140,9 @@
             width:100%;
             height:100%;
         }
+        .linea-int {
+            width: 110%!important;
+        }
         
 	</style>
 </head>
@@ -184,20 +187,20 @@
 	<!-- uiView: --><ui-view class="main-content-view ng-scope" style=""><div id="gral" class="cont-gral ng-scope">
 	<div class="soy90">
 		<div class="row">
-			<div class="col-md-2 text-center">
-				<img class="img100 icono-int" src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Ficono01.png?alt=media&token=78971291-4a12-4e24-8d7d-f217eda0f753">
-				<div class="col-md-2 color-blanco text-center">
-					<h4></h4>
-					<div class="lineadw linea-verde linea-int"></div>
-					<div id="sub-izq" class="row">
-						<div class="" aria-labelledby="dropdownMenuLink">
-							<button class="dropdown-item" type="button">Mi equipo</button>
-							<button class="dropdown-item" type="button">Perfil personal</button>
-							
-						</div>
-					</div><!--subizq-->
-				</div>
-			</div>
+        <div class="col-md-2 text-center">
+                <img class="img100 icono-int" src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Ficono05.png?alt=media&token=b6faec2c-b656-448e-8c12-81c148b387ca">
+                <div class="col-md-12 color-blanco text-center">
+                    <h4>CONOCIMIENTO</h4>
+                    <div class="lineadw linea-amarilla linea-int"></div>
+                    <div id="sub-izq" class="row">
+                        <div class="" aria-labelledby="dropdownMenuLink">
+                        <a href="http://academy.xpertcad.com/" target="_blank"><button class="dropdown-item" type="button">NC Tech University</button></a>
+                        <a href="/knowledge_base"><button class="dropdown-item" type="button">Knowledge Base</button></a>
+                        <a href="/enlaces"><button class="dropdown-item" type="button">Artículos relevantes</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 			<div class="col-md-10 text-center color-blanco">
 				<div class="row">
 					<div class="col-md-4 text-left">
@@ -313,7 +316,7 @@ class Perfil extends React.Component{
                     });
                 }
         });
-        },1500)
+        },2000)
 	}
 	render() {
         var imagen = this.state.imagen
