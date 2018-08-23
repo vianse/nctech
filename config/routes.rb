@@ -5,6 +5,14 @@ Rails.application.routes.draw do
 
 
 
+  get 'enlaces/index'
+
+  get 'enlaces/ver'
+
+  get 'enlaces/crear'
+
+  get 'enlaces/eliminar'
+
   get 'directorio/index'
 
   get 'directorio/crear'
@@ -122,6 +130,11 @@ Rails.application.routes.draw do
   get 'ver/perfil' => 'perfil#ver', as: :ver_perfil
   get 'directorio' => 'directorio#index', as: :directorio
   get 'knowledge_base' => 'conocimiento#index', as: :knowledge_base
+  get 'ver/knowledge_base' => 'conocimiento#ver', as: :ver_knowledge_base
+  get 'enlaces' => 'enlaces#index', as: :enlaces
+  get 'ver/enlaces' => 'enlaces#ver', as: :ver_enlaces
+  get 'newsletter' => 'newsletter#index', as: :newsletter
+  get 'ver/newsletter' => 'newsletter#ver', as: :ver_newsletter
   namespace :api do
       namespace :v1 do
         resources :get_user, path: "get_user"

@@ -8,6 +8,7 @@
 
 	<title>NC Tech | Portal Endomarketing</title>
 
+  
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
@@ -20,7 +21,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
     <script src="https://summernote.org/vendors/summernote/lang/summernote-es-ES.js"></script>
@@ -29,6 +30,7 @@
 
     <script src="http://statics.minubeinformatica.com/js/valoraciones/valoraciones.min.js?v=1.33"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+
     
 	<style id="svelte-1eldsjg-style">body > .ui-pnotify{position:fixed;z-index:100040}body > .ui-pnotify.ui-pnotify-modal{z-index:100042}.ui-pnotify{position:absolute;height:auto;z-index:1;display:none}.ui-pnotify.ui-pnotify-modal{z-index:3}.ui-pnotify.ui-pnotify-in{display:block}.ui-pnotify.ui-pnotify-initial-hidden{display:block;visibility:hidden}.ui-pnotify.ui-pnotify-move{transition:left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-slow{transition:opacity .4s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-slow.ui-pnotify.ui-pnotify-move{transition:opacity .4s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-normal{transition:opacity .25s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-normal.ui-pnotify.ui-pnotify-move{transition:opacity .25s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-fast{transition:opacity .1s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-fast.ui-pnotify.ui-pnotify-move{transition:opacity .1s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-in{opacity:1}.ui-pnotify .ui-pnotify-shadow{-webkit-box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1);-moz-box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1);box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1)}.ui-pnotify-container{background-position:0 0;padding:.8em;height:100%;margin:0}.ui-pnotify-container:after{content:" ";visibility:hidden;display:block;height:0;clear:both}.ui-pnotify-container.ui-pnotify-sharp{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.ui-pnotify-title{display:block;white-space:pre-line;margin-bottom:.4em;margin-top:0}.ui-pnotify.ui-pnotify-with-icon .ui-pnotify-title,.ui-pnotify.ui-pnotify-with-icon .ui-pnotify-text{margin-left:24px}[dir=rtl] .ui-pnotify.ui-pnotify-with-icon .ui-pnotify-title,[dir=rtl] .ui-pnotify.ui-pnotify-with-icon .ui-pnotify-text{margin-right:24px;margin-left:0}.ui-pnotify-title-bs4{font-size:1.2rem}.ui-pnotify-text{display:block;white-space:pre-line}.ui-pnotify-icon,.ui-pnotify-icon span{display:block;float:left}[dir=rtl] .ui-pnotify-icon,[dir=rtl] .ui-pnotify-icon span{float:right}.ui-pnotify-icon-bs3 > span{position:relative;top:2px}.ui-pnotify-icon-bs4 > span{position:relative;top:4px}.ui-pnotify-modal-overlay{background-color:rgba(0, 0, 0, .4);top:0;left:0;position:absolute;height:100%;width:100%;z-index:2}body > .ui-pnotify-modal-overlay{position:fixed;z-index:100041}
   
@@ -115,10 +117,10 @@
         }
      
         .note-editable{
-			display:none;
+            display:none;
             background-color: #DCDCDD!important;
-            min-height:110px;
-            max-height:111px;
+            height:0px;
+ 
             text-align:left;
             
         }
@@ -205,7 +207,7 @@
 					<div class="col-md-4 text-left">
 						
 					</div>
-                    <div class="col-md-4 text-center"><h3>DOCUMENTOS</h3></div>
+                    <div class="col-md-4 text-center"><h3>ARTICULOS RELEVANTES</h3></div>
                     <hr>
 					<div class="col-md-4"></div>
 				</div>
@@ -237,6 +239,7 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="close">×</button>
+     
     </div>
     <div class="modal-body">
         <div id="Publicar"></div>
@@ -350,7 +353,7 @@ class Body extends React.Component{
 			if(firebaseUser) {
 				var database = firebase.database();
 				var user    = firebaseUser.uid;
-				var ref = database.ref("archivos");
+				var ref = database.ref("articulosRelevantes");
 						ref.on('child_added', snap => {
 						const newReceta = {
 								id: snap.key,
@@ -360,12 +363,13 @@ class Body extends React.Component{
 							newArr.push(newReceta);
 							this.setState({
 								data: this.state.data, arr:newArr
-							});
+                            });
+                            
+                
 						});
                 }
                
-		});
-       
+        });
 	}
 	pasarId(id){
 		modal(id)
@@ -374,8 +378,13 @@ class Body extends React.Component{
 		var pasar = this.pasarId.bind(this)
 		var arr = this.state.data
 		var options = arr.map(function(object, i){
+
+                
+           
+
 		var url = "editar/minuta?id=" + object.id
-		var url_ver = "ver/knowledge_base?id=" + object.id
+        var url_ver = "ver/knowledge_base?id=" + object.id
+        var ids = object.id + "_preview"
 				return  <tr>
 							<td className="ng-scope gris2 even" role="row">
 								{object.data.fecha}
@@ -384,32 +393,21 @@ class Body extends React.Component{
 								{object.data.autor}
 							</td>
 							<td  className="ng-scope gris2 even" role="row">
-								{object.data.departamento}
+                            <a href={object.data.url} target="blank">
+                                <div className='row'>
+                                    <div className='col-md-2'>
+                                        <img src={object.data.imagen} height='60' width='60'/>
+                                     </div>
+                                    <div className='col-md-10'>
+                                         <div>{object.data.titulo}</div>
+                                        <div>{object.data.description}</div>
+                                     </div>
+                                 </div>
+                           </a>
 							</td>
-							<td  className="ng-scope gris2 even" role="row">
-								{object.data.titulo}
-							</td>
-							<td  className="ng-scope gris2 even" role="row">
-								{object.data.descripcion}
-                            </td>
-                            <td  className="ng-scope gris2 even" role="row">
-								{object.data.area}
-							</td>
-							<td  className="ng-scope gris2 even" role="row">
-							{object.data.tipo}
-							</td>
+							
 						<td  className="ng-scope gris2 even" role="row">
-							<a href={url_ver} className="btn btn-sm btn-primary ng-scope">
-							<svg className="svg-inline--fa fa-edit fa-w-18" aria-hidden="true" data-prefix="fa" data-icon="edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
-								<path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z">
-								</path>
-							</svg>
-							</a>
-							<a href={url} data-toggle="modal" data-target="#modal-versionMinuta" className="btn btn-sm btn-warning ng-scope" onClick={()=>pasar(object.id)}>
-								<svg className="svg-inline--fa fa-clock fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-									<path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm57.1 350.1L224.9 294c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h48c6.6 0 12 5.4 12 12v137.7l63.5 46.2c5.4 3.9 6.5 11.4 2.6 16.8l-28.2 38.8c-3.9 5.3-11.4 6.5-16.8 2.6z"></path>
-								</svg>
-							</a>
+							
 						</td>
 					</tr>
 			})
@@ -421,12 +419,8 @@ class Body extends React.Component{
 							<tr>
 								<th>Fecha</th>
 								<th>Autor</th>
-								<th>Departamento</th>
-								<th>Título</th>
-                                <th>Descripción</th>
-                                <th>Area</th>
-								<th>Tipo</th>
-							
+								<th>URL del Articulo</th>
+								
 								<th></th>
 							</tr>
 						</thead>
@@ -450,10 +444,6 @@ setTimeout(function(){
         lang: 'es-ES',
         toolbar: [
           // [groupName, [list of button]]
-          ['picture'],
-          ['video'],
-          ['file'],
-          ['mybutton', ['hello']],
           ['mybutton1', ['publicar'],['boton']]
         ],
         buttons: {
@@ -483,7 +473,7 @@ var Publicar = function (context) {
   var ui = $.summernote.ui;
   // create button
   var button = ui.button({
-    contents: '<button id="publicar" class="btn btn-success" data-toggle="modal" data-target="#modal-versionMinuta">Publicar</button>',
+    contents: '<button id="publicar" class="btn btn-success" data-toggle="modal" data-target="#modal-versionMinuta">Compartir Articulo</button>',
     tooltip: 'Publicar',
     click: function () {
         modal();
@@ -543,77 +533,50 @@ function modal(id){
 
 		}
         guardar(){
-           
-            firebase.auth().onAuthStateChanged( firebaseUser => {
-                if(firebaseUser) {
-                    var user    = firebaseUser.uid;
-                    var solucion = $(".note-editable").html();
-                    var departamento = $("#departamento").val();
-                    var titulo = $("#titulo").val();
-                    var descripcion = $("#descripcion").val();
-					var area = $("#area").val();
-					var tipo = $("#tipo").val();
-                    
-                    var objeto = {
-                                    fecha: moment().format('L'),
-                                    autor: firebaseUser.displayName,
-                                    departamento: departamento,
-                                    titulo: titulo,
-                                    descripcion: descripcion,
-                                    area: area,
-                                    tipo: tipo,
-                                    solucion: solucion,
-                                    usuario: user,
+            var target = $("#articulo").val();
+                    $.ajax({
+                     method: "GET",
+                     url: "https://api.linkpreview.net",
+                                dataType: 'jsonp',
+                                contentType: "application/json; charset=utf-8",
+                                data: {q: target, key: "5b7ca57f6b69b020e3e36116fa2175efc76885d034450"},
+                                success: function (response) {
+                                    firebase.auth().onAuthStateChanged( firebaseUser => {
+                                        if(firebaseUser) {
+                                            var user    = firebaseUser.uid;
+                                          
+                                            var articulo = $("#articulo").val();
+                                          
+                                            var objeto = {
+                                                            fecha: moment().format('L'),
+                                                            autor: firebaseUser.displayName,
+                                                            titulo: response.title,
+                                                            imagen: response.image,
+                                                            description: response.description,
+                                                            url: response.url,
+                                                            usuario: user,
+                                                        }
+                                            var database = firebase.database();
+                                            var ref = database.ref("articulosRelevantes").push();
+                                            ref.set(objeto)
+                                        }
+                                        setTimeout(function(){
+                                            window.location.href = "/enlaces"
+                                        },500)
+                                    });
+                                },error: function (jqXHR, textStatus, errorThrown) {
+                
                                 }
-                    var database = firebase.database();
-                    var ref = database.ref("archivos").push();
-                    ref.set(objeto)
-                }
-                setTimeout(function(){
-                    window.location.href = "/archivos"
-                },500)
-            });
+                            });
+           
+           
            
         }
 		render() {
             var publicar = this.guardar.bind(this)
 			return(
                     <form>
-					<div className="text-left"> Departamento</div>
-					<select className="form-control" placeholder="Selecciona uno" id="departamento">
-					<option disabled selected>Selecciona una opción</option>
-										  <option>CAPITAL HUMANO</option>
-										  <option>SOPORTE TECNICO</option>
-										  <option>MARKETING</option>
-										  <option>ADMINISTRACION</option>
-										  <option>VENTAS</option>
-										  <option>ATENCION AL CLIENTE</option>
-										  <option>XPERTCAD</option>
-				  	</select><br/>
-                        <input type="text" placeholder="Título" className="form-control" id="titulo"/><br/>
-                        <input type="text" placeholder="Descripcion" className="form-control" id="descripcion"/><br/>
-						<div className="text-left"> ÁREA</div>
-					<select className="form-control" placeholder="Selecciona uno" id="area">
-					<option disabled selected>Selecciona una opción</option>
-										  <option>CAPITAL HUMANO</option>
-										  <option>SOPORTE TECNICO</option>
-										  <option>MARKETING</option>
-										  <option>ADMINISTRACION</option>
-										  <option>VENTAS</option>
-										  <option>ATENCION AL CLIENTE</option>
-										  <option>XPERTCAD</option>
-				  	</select><br/>
-					  <div className="text-left"> TIPO</div>
-					  <select className="form-control" placeholder="Selecciona uno" id="tipo">
-					  <option disabled selected>Selecciona una opción</option>
-											<option>PDF</option>
-											<option>EXCEL</option>
-											<option>POWER POINT</option>
-											<option>WORD</option>
-											<option>IMAGEN</option>
-											<option>OTRO</option>
-											
-						</select><br/>
+                        <input type="text" placeholder="URL del Articulo a compartir" className="form-control" id="articulo"/><br/>
                         <a href="#" className="btn btn-success" onClick={publicar}>Guardar</a>
                     </form>
                 )	
