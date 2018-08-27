@@ -406,8 +406,9 @@ class Body extends React.Component{
                             <td  className="ng-scope gris2 even text-left" role="row">
 								{object.data.subcategoria}
 							</td>
-							<td  className="ng-scope gris2 even" role="row">
-                                <div className="puntuaciones"></div>
+							<td  className="ng-scope gris2 even text-left" role="row">
+                                <div>Útil: <strong>{object.data.util}</strong></div>
+                                <div>No útil: <strong>{object.data.noutil}</strong></div>
                              
                                 
 							</td>
@@ -569,6 +570,8 @@ function modal(id){
                                     valoracion: 0,
                                     solucion: solucion,
                                     usuario: user,
+                                    util: 0,
+                                    noutil: 0
                                 }
                     var database = firebase.database();
                     var ref = database.ref("knowledge").push();

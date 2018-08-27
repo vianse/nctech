@@ -114,7 +114,7 @@
 					<div class="col-md-4 text-left">
 						<button class="btn btn-xs btn-default color-blanco btn-atras" style="background-color: transparent;" onClick="javascript:redirecciona('/minuta')"><svg class="svg-inline--fa fa-arrow-alt-circle-left fa-w-16 fa-2x color-blanco" aria-hidden="true" data-prefix="fa" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z"></path></svg><!-- <i class="fa fa-arrow-alt-circle-left fa-2x color-blanco"></i> --></button>
 					</div>
-					<!-- ngIf: !isEdit --><div class="col-md-4 text-center ng-scope" ng-if="!isEdit"><h3>NUEVO GRUPO</h3></div><!-- end ngIf: !isEdit -->
+					<!-- ngIf: !isEdit --><div class="col-md-4 text-center ng-scope" ng-if="!isEdit"><h3>CONFIGURAR ROL</h3></div><!-- end ngIf: !isEdit -->
 					<!-- ngIf: isEdit -->
 					<div class="col-md-4"></div>
 				</div>
@@ -332,28 +332,28 @@ $.cookie('grupoid' , grupoid)
                   <td>
                       <div>
                           <label>Agregar <br/>
-                          <input type="checkbox" id="agregarMinuta"/>
+                          <input type="checkbox" className="checkbox" id="agregarMinuta"/>
                           </label>
                       </div>
                   </td>
                   <td>
                       <div>
                             <label>Editar <br/>
-                            <input type="checkbox" id="editarMinuta"/>
+                            <input type="checkbox" className="checkbox" id="editarMinuta"/>
                             </label>
                       </div>
                   </td>
                   <td>
                       <div>
                             <label>Vizualizar <br/>
-                            <input type="checkbox" id="verMinuta"/>
+                            <input type="checkbox" className="checkbox" id="verMinuta"/>
                             </label>
                       </div>
                   </td>
                   <td>
                       <div>
                             <label>Versiones <br/>
-                            <input type="checkbox" id="versionesMinuta"/>
+                            <input type="checkbox" className="checkbox" id="versionesMinuta"/>
                             </label>
                       </div>
                   </td>
@@ -363,28 +363,28 @@ $.cookie('grupoid' , grupoid)
                   <td>
                       <div>
                           <label>Agregar <br/>
-                          <input type="checkbox" id="agregarPoliticas"/>
+                          <input type="checkbox" className="checkbox" id="agregarPoliticas"/>
                           </label>
                       </div>
                   </td>
                   <td>
                       <div>
                             <label>Editar <br/>
-                            <input type="checkbox" id="editarPoliticas"/>
+                            <input type="checkbox" className="checkbox" id="editarPoliticas"/>
                             </label>
                       </div>
                   </td>
                   <td>
                       <div>
                             <label>Vizualizar <br/>
-                            <input type="checkbox" id="verPoliticas"/>
+                            <input type="checkbox" className="checkbox" id="verPoliticas"/>
                             </label>
                       </div>
                   </td>
                   <td>
                       <div>
                             <label>Versiones <br/>
-                            <input type="checkbox" id="versionesPoliticas"/>
+                            <input type="checkbox" className="checkbox" id="versionesPoliticas"/>
                             </label>
                       </div>
                   </td>
@@ -394,28 +394,28 @@ $.cookie('grupoid' , grupoid)
                   <td>
                       <div>
                           <label>Agregar <br/>
-                          <input type="checkbox" id="agregarProcedimientos"/>
+                          <input type="checkbox" className="checkbox" id="agregarProcedimientos"/>
                           </label>
                       </div>
                   </td>
                   <td>
                       <div>
                             <label>Editar <br/>
-                            <input type="checkbox" id="editarProcedimientos"/>
+                            <input type="checkbox" className="checkbox" id="editarProcedimientos"/>
                             </label>
                       </div>
                   </td>
                   <td>
                       <div>
                             <label>Vizualizar <br/>
-                            <input type="checkbox" id="verProcedimientos"/>
+                            <input type="checkbox" className="checkbox" id="verProcedimientos"/>
                             </label>
                       </div>
                   </td>
                   <td>
                       <div>
                             <label>Versiones <br/>
-                            <input type="checkbox" id="versionesProcedimientos"/>
+                            <input type="checkbox" className="checkbox" id="versionesProcedimientos"/>
                             </label>
                       </div>
                   </td>
@@ -425,28 +425,28 @@ $.cookie('grupoid' , grupoid)
                 <td>
                     <div>
                         <label>Agregar <br/>
-                        <input type="checkbox" id="agregarCheckList"/>
+                        <input type="checkbox" className="checkbox" id="agregarCheckList"/>
                         </label>
                     </div>
                 </td>
                 <td>
                     <div>
                           <label>Editar <br/>
-                          <input type="checkbox" id="editarCheckList"/>
+                          <input type="checkbox" className="checkbox" id="editarCheckList"/>
                           </label>
                     </div>
                 </td>
                 <td>
                     <div>
                           <label>Vizualizar <br/>
-                          <input type="checkbox" id="verCheckList"/>
+                          <input type="checkbox" className="checkbox" id="verCheckList"/>
                           </label>
                     </div>
                 </td>
                 <td>
                     <div>
                           <label>Versiones <br/>
-                          <input type="checkbox" id="versionesCheckList"/>
+                          <input type="checkbox" className="checkbox" id="versionesCheckList"/>
                           </label>
                     </div>
                 </td>
@@ -456,28 +456,28 @@ $.cookie('grupoid' , grupoid)
               <td>
                   <div>
                       <label>Agregar <br/>
-                      <input type="checkbox" id="agregarDocumentos"/>
+                      <input type="checkbox" className="checkbox" id="agregarDocumentos"/>
                       </label>
                   </div>
               </td>
               <td>
                   <div>
                         <label>Editar <br/>
-                        <input type="checkbox" id="editarDocumentos"/>
+                        <input type="checkbox" className="checkbox" id="editarDocumentos"/>
                         </label>
                   </div>
               </td>
               <td>
                   <div>
                         <label>Vizualizar <br/>
-                        <input type="checkbox" id="verDocumentos"/>
+                        <input type="checkbox" className="checkbox" id="verDocumentos"/>
                         </label>
                   </div>
               </td>
               <td>
                   <div>
                         <label>Versiones <br/>
-                        <input type="checkbox" id="versionesDocumentos"/>
+                        <input type="checkbox" className="checkbox" id="versionesDocumentos"/>
                         </label>
                   </div>
               </td>
@@ -543,26 +543,173 @@ function addMinuta(){
                             var cumplido2 = "No";
                             console.log(cumplido);
                         }
+                        if ($('input#agregarCheckList').is(':checked')) {
+                          var cumplido3 = "Sí";
+                          console.log(cumplido3);
+                        }
+                        else {
+                            var cumplido3 = "No";
+                            console.log(cumplido3);
+                        }
+                        if ($('input#agregarProcedimientos').is(':checked')) {
+                            var cumplido4 = "Sí";
+                            console.log(cumplido4);
+                        }
+                        else {
+                            var cumplido4 = "No";
+                            console.log(cumplido4);
+                        }
+                        if ($('input#agregarDocumentos').is(':checked')) {
+                          var cumplido5 = "Sí";
+                          console.log(cumplido5);
+                        }
+                        else {
+                          var cumplido5 = "No";
+                          console.log(cumplido5);
+                        }
+                        if ($('input#editarMinuta').is(':checked')) {
+                          var cumplido6 = "Sí";
+                          console.log(cumplido6);
+                        }
+                        else {
+                            var cumplido6 = "No";
+                            console.log(cumplido6);
+                        }
+                        if ($('input#editarPoliticas').is(':checked')) {
+                            var cumplido7 = "Sí";
+                            console.log(cumplido7);
+                        }
+                        else {
+                            var cumplido7 = "No";
+                            console.log(cumplido7);
+                        }
+                        if ($('input#editarCheckList').is(':checked')) {
+                          var cumplido8 = "Sí";
+                          console.log(cumplido8);
+                        }
+                        else {
+                            var cumplido8 = "No";
+                            console.log(cumplido8);
+                        }
+                        if ($('input#editarProcedimientos').is(':checked')) {
+                            var cumplido9 = "Sí";
+                            console.log(cumplido9);
+                        }
+                        else {
+                            var cumplido9 = "No";
+                            console.log(cumplido9);
+                        }
+                        if ($('input#editarDocumentos').is(':checked')) {
+                          var cumplido10 = "Sí";
+                          console.log(cumplido10);
+                        }
+                        else {
+                          var cumplido10 = "No";
+                          console.log(cumplido10);
+                        }
+                        if ($('input#verMinuta').is(':checked')) {
+                          var cumplido11 = "Sí";
+                          console.log(cumplido11);
+                        }
+                        else {
+                            var cumplido11 = "No";
+                            console.log(cumplido11);
+                        }
+                        if ($('input#verPoliticas').is(':checked')) {
+                            var cumplido12 = "Sí";
+                            console.log(cumplido12);
+                        }
+                        else {
+                            var cumplido12 = "No";
+                            console.log(cumplido12);
+                        }
+                        if ($('input#verCheckList').is(':checked')) {
+                          var cumplido13 = "Sí";
+                          console.log(cumplido13);
+                        }
+                        else {
+                            var cumplido13 = "No";
+                            console.log(cumplido13);
+                        }
+                        if ($('input#verProcedimientos').is(':checked')) {
+                            var cumplido14 = "Sí";
+                            console.log(cumplido14);
+                        }
+                        else {
+                            var cumplido14 = "No";
+                            console.log(cumplido14);
+                        }
+                        if ($('input#verDocumentos').is(':checked')) {
+                          var cumplido15 = "Sí";
+                          console.log(cumplido15);
+                        }
+                        else {
+                          var cumplido15 = "No";
+                          console.log(cumplido15);
+                        }
+
+                        if ($('input#versionesMinuta').is(':checked')) {
+                          var cumplido16 = "Sí";
+                          console.log(cumplido16);
+                        }
+                        else {
+                            var cumplido16 = "No";
+                            console.log(cumplido16);
+                        }
+                        if ($('input#versionesPoliticas').is(':checked')) {
+                            var cumplido17 = "Sí";
+                            console.log(cumplido17);
+                        }
+                        else {
+                            var cumplido17 = "No";
+                            console.log(cumplido17);
+                        }
+                        if ($('input#versionesCheckList').is(':checked')) {
+                          var cumplido18 = "Sí";
+                          console.log(cumplido18);
+                        }
+                        else {
+                            var cumplido18 = "No";
+                            console.log(cumplido18);
+                        }
+                        if ($('input#versionesProcedimientos').is(':checked')) {
+                            var cumplido19 = "Sí";
+                            console.log(cumplido19);
+                        }
+                        else {
+                            var cumplido19 = "No";
+                            console.log(cumplido19);
+                        }
+                        if ($('input#versionesDocumentos').is(':checked')) {
+                          var cumplido20 = "Sí";
+                          console.log(cumplido20);
+                        }
+                        else {
+                          var cumplido20 = "No";
+                          console.log(cumplido20);
+                        }
+                    
+
                         var agregarMinuta = cumplido;
                         var agregarPoliticas = cumplido2;
-                        var agregarCheckList = $("#agregarCheckList").val();
-                        var agregarProcedimientos = $("#agregarProcedimientos").val();
-                        var agregarDocumentos = $("#agregarDocumentos").val();
-                        var editarMinuta = $("#editarMinuta").val();
-                        var editarPoliticas = $("#editarPoliticas").val();
-                        var editarCheckList = $("#editarCheckList").val();
-                        var editarProcedimientos = $("#editarProcedimientos").val();
-                        var editarDocumentos = $("#editarDocumentos").val();
-                        var verMinuta = $("#verMinuta").val();
-                        var verPoliticas = $("#verPoliticas").val();
-                        var verCheckList = $("#verCheckList").val();
-                        var verProcedimientos = $("#verProcedimientos").val();
-                        var verDocumentos = $("#verDocumentos").val();
-                        var versionesMinuta = $("#versionesMinuta").val();
-                        var versionesPoliticas = $("#versionesPoliticas").val();
-                        var versionesCheckList = $("#versionesCheckList").val();
-                        var versionesProcedimientos = $("#versionesProcedimientos").val();
-                        var versionesDocumentos = $("#versionesDocumentos").val();
+                        var agregarCheckList = cumplido3;
+                        var agregarProcedimientos = cumplido4;
+                        var agregarDocumentos = cumplido5;
+                        var editarMinuta = cumplido6;
+                        var editarPoliticas = cumplido7;
+                        var editarCheckList = cumplido8;
+                        var editarProcedimientos = cumplido9;
+                        var editarDocumentos = cumplido10;
+                        var verMinuta = cumplido11;
+                        var verPoliticas = cumplido12;
+                        var verCheckList = cumplido13;
+                        var verProcedimientos = cumplido14;
+                        var verDocumentos = cumplido15;
+                        var versionesMinuta = cumplido16;
+                        var versionesPoliticas = cumplido17;
+                        var versionesCheckList = cumplido18;
+                        var versionesProcedimientos = cumplido19;
+                        var versionesDocumentos = cumplido20;
                         var grupo = $("#nombreGrupo").val();
                         var descripcion = $("#descripcion").val();
                         

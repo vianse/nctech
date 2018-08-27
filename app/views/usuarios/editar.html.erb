@@ -222,7 +222,8 @@ var usuarioID = getUrlParameter('id');
 	    constructor(props) {
 	         super(props);
 	         this.state = {
-	           data:[],
+						 data:[],
+						 grupos:[]
 
 
 	         }
@@ -257,9 +258,26 @@ var usuarioID = getUrlParameter('id');
                     $("#telefono").val(newReceta.data.telefono)
                     $("#correo").val(newReceta.data.correo)
                     $("#area").val(newReceta.data.area)
+										$("#puesto").val(newReceta.data.puesto)
+
+									});
+									
+
+									var ref = database.ref("grupos");
+									ref.on('child_added', snap => {
+									const roles = {
+											id: snap.key,
+											data: snap.val(),
+									};
+									var newArr = this.state.grupos;
+									newArr.push(roles);
+									this.setState({
+											 grupos: this.state.grupos, arr:newArr
+									});
 
 
-                  });
+
+								});
 
 	              }
 	            });
@@ -267,6 +285,11 @@ var usuarioID = getUrlParameter('id');
 	        }
 
 	    render() {
+				var gru = this.state.grupos
+
+	        var gr = gru.map(function(object){
+	          return  <option value={object.data.grupo} id="roles">{object.data.grupo}</option>
+	        })
 	      var arr = this.state.data
 
 	        var options = arr.map(function(object){
@@ -331,13 +354,7 @@ var usuarioID = getUrlParameter('id');
 
                 <select className="form-control" placeholder="Selecciona uno" id="rol">
                   <option disabled selected>Selecciona una opción</option>
-                  <option>CAPITAL HUMANO</option>
-                  <option>SOPORTE TECNICO</option>
-                  <option>MARKETING</option>
-                  <option>ADMINISTRACION</option>
-                  <option>VENTAS</option>
-                  <option>ATENCION AL CLIENTE</option>
-                  <option>XPERTCAD</option>
+                  {gr}
                 </select>
                 </td>
 	              </tr>

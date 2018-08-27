@@ -21,11 +21,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.default.css">
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script>
-
-
 <link rel="stylesheet" type="text/css" href="https://firebasestorage.googleapis.com/v0/b/agencias-app.appspot.com/o/css%2Fns-default.css?alt=media&token=68b95a10-9c2e-4989-abab-e469c30c9e7d" />
 <link rel="stylesheet" type="text/css" href="https://firebasestorage.googleapis.com/v0/b/agencias-app.appspot.com/o/css%2Fns-style-growl.css?alt=media&token=947337d1-08b2-4a29-a3f0-30f34539a5ec" />
 <script src="https://firebasestorage.googleapis.com/v0/b/agencias-app.appspot.com/o/js%2Fmodernizr.custom.js?alt=media&token=0279d02f-0fcd-4354-b665-bfe441d670bf"></script>
@@ -130,6 +127,9 @@
 						<div class="col-md-12">
               <div id="participantes">
               </div>
+              <input id="idparticipantes"  class="ocultar"/> 
+              <input id="idresponsables"  class="ocultar"/> 
+              <input id="idcoresponsables"  class="ocultar"/> 
 						</div>
 					</div>
           <div class="row">
@@ -235,7 +235,7 @@ var minutaID = getUrlParameter('id');
 $.cookie('minutaid' , minutaID)
 
 
-	class Minutas extends React.Component{
+class Minutas extends React.Component{
 	    constructor(props) {
 	         super(props);
 	         this.state = {
@@ -248,7 +248,8 @@ $.cookie('minutaid' , minutaID)
 	           buttonExterno: "ocultar"
 	         }
 	        this.changeInterno = this.changeInterno.bind(this);
-	         }
+           }
+      
 	    componentDidMount() {
 	      firebase.auth().onAuthStateChanged( firebaseUser => {
 	          if(firebaseUser) {
@@ -268,7 +269,25 @@ $.cookie('minutaid' , minutaID)
 
 	              });
 	              }
-	            });
+              });
+              
+            var url = "/api/v1/get_user"
+            $.ajax({
+               url: url,
+               method: "get",
+               dataType: "json",
+               crossDomain: true,
+               contentType: "application/json; charset=utf-8",
+               success: function (data) {
+                 console.log(data);
+                 selectOrganizador(data);
+                 selectSecretario(data);
+                 select(data);
+               },
+               error: function (jqXHR, textStatus, errorThrown) {
+    
+               }
+           });
 
 	        }
 	    changeInterno(e){
@@ -366,7 +385,7 @@ $.cookie('minutaid' , minutaID)
 	              <tr>
 	              <td>Organizador</td>
 	              <td>
-									<div id="select-to_organizador"></div>
+                <input type="text" id="select-to_organizador" />
 
 	              </td>
 
@@ -387,56 +406,61 @@ $.cookie('minutaid' , minutaID)
 	  ReactDOM.render(
 	    <Minutas  />,
 	    document.getElementById('cabeceraMinuta')
-	  );
+);
 
-  class Participantes extends React.Component{
+class Participantes extends React.Component{
     constructor(props) {
          super(props);
          this.state = {
            data:[],
            data1:[],
          }
-
-         }
+    }
     componentDidMount() {
       firebase.auth().onAuthStateChanged( firebaseUser => {
           if(firebaseUser) {
-          var database = firebase.database();
-          var user    = firebaseUser.uid;
-          var ref = database.ref("usuarios");
-              ref.on('child_added', snap => {
-              const newReceta = {
-                  id: snap.key,
-                  data: snap.val(),
-              };
-              var newArr = this.state.data;
-                  newArr.push(newReceta);
-                  this.setState({
-                       data: this.state.data, arr:newArr
-                  });
-
-              });
-
-              }
-            });
-
-        }
+            var database = firebase.database();
+            var user    = firebaseUser.uid;
+            var ref = database.ref("usuarios");
+                ref.on('child_added', snap => {
+                const newReceta = {
+                    id: snap.key,
+                    data: snap.val(),
+                };
+                var newArr = this.state.data;
+                    newArr.push(newReceta);
+                    this.setState({
+                        data: this.state.data, arr:newArr
+                    });
+                });
+            }
+        });
+    }
 
     componentWillMount(){
       var database = firebase.database();
-
       var ref = database.ref("participantes");
           ref.orderByChild("minutaid").equalTo(minutaID).on('child_added', snap => {
           const newReceta = {
               id: snap.key,
               data: snap.val(),
+             
           };
           var newArr = this.state.data1;
               newArr.push(newReceta);
               this.setState({
                    data1: this.state.data1, arr:newArr
               });
-              console.log(this.state.data1);
+
+              var ma = this.state.data1.map(function(o){
+                     return o.data.uid
+              })
+              var a = JSON.stringify(ma)
+              var v = a.replace("[", "")
+              var c = v.replace("]","")
+            
+              console.log(c);
+              $("#idparticipantes").val(c)
           });
     }
 
@@ -470,7 +494,7 @@ $.cookie('minutaid' , minutaID)
         })
         var arr = this.state.data
         var options = arr.map(function(object){
-          return  <option value={object.data.url} id="usuarios">{object.data.nombre}</option>
+          return  <option value={object.id} id="usuarios">{object.data.nombre}</option>
         })
         return (
           <div>
@@ -525,9 +549,9 @@ $.cookie('minutaid' , minutaID)
   ReactDOM.render(
     <Participantes  />,
     document.getElementById('participantes')
-  );
+);
 
-  class Objetivos extends React.Component{
+class Objetivos extends React.Component{
     constructor(props) {
          super(props);
          this.state = {
@@ -610,8 +634,8 @@ $.cookie('minutaid' , minutaID)
   ReactDOM.render(
     <Objetivos  />,
     document.getElementById('objetivos')
-  );
-  class Actividades extends React.Component{
+);
+class Actividades extends React.Component{
     constructor(props) {
          super(props);
          this.state = {
@@ -665,7 +689,8 @@ $.cookie('minutaid' , minutaID)
 
 
           }
-          select();
+          
+     
         });
 
         }
@@ -700,7 +725,7 @@ $.cookie('minutaid' , minutaID)
 
 				}
         componentWillMount(){
-					select();
+			
           var database = firebase.database();
 
           var ref = database.ref("actividades");
@@ -714,8 +739,29 @@ $.cookie('minutaid' , minutaID)
                   this.setState({
                        data1: this.state.data1, arr:newArr
                   });
-                  console.log(this.state.data1);
-                  //
+
+                  var ma = this.state.data1.map(function(o){
+                     return o.data.uid
+                  })
+                  var a = JSON.stringify(ma)
+                  var v = a.replace("[", "")
+                  var c = v.replace("]","")
+                
+                  console.log(c);
+                  $("#idresponsables").val(c)
+
+
+                  var maa = this.state.data1.map(function(o){
+                     return o.data.coResponsableID
+                  })
+                  var aa = JSON.stringify(maa)
+                  var vv = aa.replace("[", "")
+                  var cc = vv.replace("]","")
+                
+                  console.log(cc);
+                  $("#idcoresponsables").val(cc)
+                  
+                  
               });
         }
 
@@ -743,7 +789,7 @@ $.cookie('minutaid' , minutaID)
               <td>{object.data.responsable}</td>
               <td>{object.data.asunto}</td>
               <td>{object.data.subactividad}</td>
-              <td>{object.data.coResponsable}</td>
+              <td>{object.data.coResponsableID}</td>
               <td>{object.data.fechaCompromiso}</td>
               <td><button className="btn btn-md btn-danger float-right" onClick={()=>eliminar(object.id)}>Eliminar</button>
               </td>
@@ -752,7 +798,7 @@ $.cookie('minutaid' , minutaID)
       })
       var arr = this.state.data
       var options = arr.map(function(object){
-        return  <option value={object.data.nombre} id="usuarios">{object.data.nombre}</option>
+        return  <option value={object.id} id="responsables">{object.data.nombre}</option>
       })
 
 			var asunto = this.state.data3
@@ -829,7 +875,7 @@ $.cookie('minutaid' , minutaID)
   ReactDOM.render(
     <Actividades  />,
     document.getElementById('actividades')
-  );
+);
 
   class BotonCrear extends React.Component{
     constructor(props) {
@@ -873,6 +919,7 @@ function addParticipante(){
       if(firebaseUser) {
                     var user    = firebaseUser.uid;
                     var nombre = $("#nombreParticipante").val();
+                    var nombreDisplay = $("#nombreParticipante option:selected").html();
                     var puesto = $("#puesto").val();
 										if ($('input#asistencia').is(':checked')) {
 											var asistencia = "Sí";
@@ -884,7 +931,8 @@ function addParticipante(){
                     var minutaid = $("#minutaid").val();
                     var database = firebase.database();
                           var objeto = {
-                               nombre: nombre,
+                               uid: nombre,
+                               nombre: nombreDisplay,
                                puesto: puesto,
                                asistencia: asistencia,
                                minutaid: minutaID,
@@ -921,16 +969,19 @@ function addActividad(){
       if(firebaseUser) {
                     var user    = firebaseUser.uid;
                     var responsableActividad = $("#ResponsableActividades").val();
+                    var responsableActividadDisplay = $("#ResponsableActividades option:selected").html();
                     var asuntoActividad = $("#asuntoMinutaActividades").val();
                     var subActividad = $("#subActividadActividades").val();
                     var coResponsable = $("#select-to").val();
+                   
                     var fechaCompromiso = $("#fechaCompromisoActividad").val();
                     var database = firebase.database();
                           var objeto = {
-                               responsable: responsableActividad,
+                               responsable: responsableActividadDisplay,
+                               uid: responsableActividad,
                                asunto: asuntoActividad,
                                subactividad: subActividad,
-                               coResponsable: coResponsable,
+                               coResponsableID: coResponsable,
                                fechaCompromiso: fechaCompromiso,
                                minutaid: minutaID,
                                usuario: user,
@@ -942,6 +993,12 @@ function addActividad(){
           });
 }
 function addMinuta(){
+
+
+
+
+
+
   if(!$("#nombre").val()){
     notification("nombre");
   }
@@ -955,6 +1012,9 @@ function addMinuta(){
     notification("Secretario");
   }
     else{
+
+      var compartir = $("#idparticipantes").val() + "," + $("#idresponsables").val()+ "," + $("#idcoresponsables").val();
+    
       firebase.auth().onAuthStateChanged( firebaseUser => {
           if(firebaseUser) {
                         var userName    = firebaseUser.displayName;
@@ -967,6 +1027,7 @@ function addMinuta(){
                         var fechaProximaReunion = $("#fechaProximaReunion").val();
                         var organizador = $("#select-to_organizador").val();
                         var secretario = $("#select-to_secretario").val();
+                        var compartido = compartir;
                         var database = firebase.database();
                               var objeto = {
                                    fecha: fecha,
@@ -982,10 +1043,11 @@ function addMinuta(){
                                    usuarioID: user,
                                    fechaModificacion: moment().format('L'),
                                    version: "1.0",
-                                   tipo:'ultima'
+                                   tipo:'ultima',
+                                   compartido: compartido
                               }
                              var ref = database.ref("minuta").child(minutaID+  "_Version_" + "1");
-                             ref.set(objeto)
+                            ref.set(objeto)
                             window.location.href = "/minuta"
                   }
               });
@@ -999,172 +1061,79 @@ function addMinuta(){
 
 
 function select(arrar){
-
-	var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
-																				'(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
-
 	$('#select-to').selectize({
-			persist: false,
-			maxItems: null,
-			valueField: 'name',
-			labelField: 'name',
-			searchField: ['name', 'email'],
-			options: [{email:"krlos013@gmail.com", name:"Juan Carlos Santiago"},{"email":"letteromo@gmail.com", name:"Arlette Romo"}]
-	,
-			render: {
-					item: function(item, escape) {
-							return '<div class="menu">' +
-									(item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
-
-							'</div>';
-					},
-					option: function(item, escape) {
-							var label = item.name || item.email;
-							var caption = item.name ? item.email : null;
-							return '<div>' +
-									'<span class="label">' + escape(label) + '</span>' +
-									
-							'</div>';
-					}
-			},
-			createFilter: function(input) {
-					var match, regex;
-
-					// email@address.com
-					regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
-					match = input.match(regex);
-					if (match) return !this.options.hasOwnProperty(match[0]);
-
-					// name <email@address.com>
-					regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
-					match = input.match(regex);
-					if (match) return !this.options.hasOwnProperty(match[2]);
-
-					return false;
-			},
-			create: function(input) {
-					if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
-							return {email: input};
-					}
-					var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
-					if (match) {
-							return {
-									email : match[2],
-									name  : $.trim(match[1])
-							};
-					}
-					alert('Invalid email address.');
-					return false;
-			}
-	});
-
-
-	$('#select-to_organizador').selectize({
-      persist: false,
-      maxItems: null,
-      valueField: 'name',
-      labelField: 'name',
-      searchField: ['name', 'email'],
-      options: [{email:"krlos013@gmail.com", name:"Juan Carlos Santiago"},{"email":"letteromo@gmail.com", name:"Arlette Romo"}],
-      render: {
-          item: function(item, escape) {
-              return '<div class="menu">' +
-                  (item.name ? '<span class="name">' + escape(item.name) + '</span>' : ' ') +
-              '</div>';
-          },
-          option: function(item, escape) {
-              var label = item.name || item.email;
-              var caption = item.name ? item.email : null;
-              return '<div>' +
-                  '<span class="label">' + escape(label) + '</span>' +
-              '</div>';
-          }
-      },
-      createFilter: function(input) {
-          var match, regex;
-
-          // email@address.com
-          regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
-          match = input.match(regex);
-          if (match) return !this.options.hasOwnProperty(match[0]);
-
-          // name <email@address.com>
-          regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
-          match = input.match(regex);
-          if (match) return !this.options.hasOwnProperty(match[2]);
-
-          return false;
-      },
-      create: function(input) {
-          if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
-              return {name: input};
-          }
-          var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
-          if (match) {
-              return {
-                  name  : $.trim(match[1])
-              };
-          }
-          alert('Invalid email address.');
-          return false;
-      }
-  });
-
-	$('#select-to_secretario').selectize({
-      persist: false,
-      maxItems: null,
-      valueField: 'name',
-      labelField: 'name',
-      searchField: ['name', 'email'],
-      options: [{email:"krlos013@gmail.com", name:"Juan Carlos Santiago"},{"email":"letteromo@gmail.com", name:"Arlette Romo"}],
-      render: {
-          item: function(item, escape) {
-              return '<div class="menu">' +
-                  (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
-              '</div>';
-          },
-          option: function(item, escape) {
-              var label = item.name || item.email;
-              var caption = item.name ? item.email : null;
-              return '<div>' +
-                  '<span class="label">' + escape(label) + '</span>' +
-              '</div>';
-          }
-      },
-      createFilter: function(input) {
-          var match, regex;
-
-          // email@address.com
-          regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
-          match = input.match(regex);
-          if (match) return !this.options.hasOwnProperty(match[0]);
-
-          // name <email@address.com>
-          regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
-          match = input.match(regex);
-          if (match) return !this.options.hasOwnProperty(match[2]);
-
-          return false;
-      },
-      create: function(input) {
-          if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
-              return {email: input};
-          }
-          var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
-          if (match) {
-              return {
-                  email : match[2],
-                  name  : $.trim(match[1])
-              };
-          }
-          alert('Invalid email address.');
-          return false;
-      }
-  });
-
+    persist: false,
+    maxItems: null,
+    valueField: 'name',
+    labelField: 'name',
+    searchField: ['id', 'name'],
+    options: arrar,
+    render: {
+        item: function(item, escape) {
+            return '<div>' +
+                (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '')  +
+            '</div>';
+        },
+        option: function(item, escape) {
+            var label = item.name || item.id;
+            var caption = item.name ? item.id : null;
+            return '<div>' +
+                '<span class="label">' + escape(label) + '</span></div>';
+        }
+    }   
+    
+});
 
 }
+function selectOrganizador(arrar){
+  $('#select-to_organizador').selectize({
+    persist: false,
+    maxItems: null,
+    valueField: 'name',
+    labelField: 'name',
+    searchField: ['id', 'name'],
+    options: arrar,
+    render: {
+        item: function(item, escape) {
+            return '<div>' +
+                (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '')  +
+            '</div>';
+        },
+        option: function(item, escape) {
+            var label = item.name || item.id;
+            var caption = item.name ? item.id : null;
+            return '<div>' +
+                '<span class="label">' + escape(label) + '</span></div>';
+        }
+    }   
+    
+});
+}
 
+function selectSecretario(arrar){
+  $('#select-to_secretario').selectize({
+    persist: false,
+    maxItems: null,
+    valueField: 'name',
+    labelField: 'name',
+    searchField: ['id', 'name'],
+    options: arrar,
+    render: {
+        item: function(item, escape) {
+            return '<div>' +
+                (item.name ? '<span class="name text-left">' + escape(item.name) + '</span>' : '')  +
+            '</div>';
+        },
+        option: function(item, escape) {
+            var label = item.name || item.id;
+            var caption = item.name ? item.id : null;
+            return '<div>' +
+                '<span class="label">' + escape(label) + '</span></div>';
+        }
+    }   
+    
+});
+}
 
 function notification(campo){
         var notification = new NotificationFx({

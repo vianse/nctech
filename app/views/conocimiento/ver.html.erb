@@ -124,8 +124,14 @@
             display:none;
         }
         .note-toolbar{
+            display:none;
             background-color:#F7941D;
             text-align:left!important;
+        }
+        .note-toolbar1{
+            background-color:#F7941D;
+            text-align:left!important;
+            height:50px;
         }
         .note-btn{
             left: 0px;
@@ -142,6 +148,10 @@
         }
         .linea-int {
             width: 110%!important;
+        }
+        .left{
+            margin-left:85%;
+            margin-right: 2px;
         }
         
 	</style>
@@ -210,7 +220,7 @@
                     <hr>
 					<div class="col-md-4"></div>
 				</div>
-
+                <div id="valoracion" class="visible"></div>
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
@@ -296,7 +306,8 @@ class Perfil extends React.Component{
                  nombre: "",
                  puesto: "",
                  responsabilidad: "",
-                 fechaIngreso: ""
+                 fechaIngreso: "",
+                 valoracion: ""
 			 }
 	}
 	componentWillMount() {
@@ -314,25 +325,119 @@ class Perfil extends React.Component{
                       console.log(myPerfil.data.solucion)
                       $(".note-editable").html(myPerfil.data.solucion);
                     });
+      
                 }
         });
         },2000)
-	}
+
+
+        firebase.auth().onAuthStateChanged( firebaseUser => {
+            if(firebaseUser) {
+            var database = firebase.database();
+            var user    = firebaseUser.uid;
+            var usuario = knowledgeID + "_" + user
+            var ref = database.ref("knowledge_valoraciones").child(usuario);
+                    ref.once('value', snap => {
+                    const valor = {
+                                    id: snap.key,
+                                    data: snap.val(),
+                    };
+                    console.log(valor.data.accion)
+                    this.setState({
+                        valoracion: valor.data.accion
+                    })
+                    
+                    });
+
+                }
+        });
+    }
+    guardar(e){
+        firebase.auth().onAuthStateChanged( firebaseUser => {
+            if(firebaseUser) {
+                var user    = firebaseUser.uid;
+                var usuario = knowledgeID + "_" + user
+                
+                    var objeto = {
+                        accion: e,
+                    }
+                    var database = firebase.database();
+                    var ref = database.ref("knowledge_valoraciones").child(usuario);
+                    ref.set(objeto)
+
+                    var ref = database.ref("knowledge").child(knowledgeID);
+                    ref.once('value', snap => {
+                    const newReceta = {
+                            id: snap.key,
+                            data: snap.val(),
+                    };
+                        if(e == true){
+                            var objeto1 = {
+                                util: newReceta.data.util + 1 ,
+                        }
+                        var database = firebase.database();
+                        var ref = database.ref("knowledge").child(knowledgeID);
+                        ref.update(objeto1)
+                        }
+
+                        if(e == false){
+                            var objeto2 = {
+                            noutil: newReceta.data.noutil + 1 ,
+                        }
+                        var database = firebase.database();
+                        var ref = database.ref("knowledge").child(knowledgeID);
+                        ref.update(objeto2)
+                        }
+                
+                });
+   
+            }
+            setTimeout(function(){
+               window.location.href = "/knowledge_base"
+            },500)
+        });
+    }
 	render() {
+      
         var imagen = this.state.imagen
         var nombre = this.state.nombre
         var puesto = this.state.puesto
         var responsabilidad = this.state.responsabilidad
         var fechaIngreso = this.state.fechaIngreso
-        return (<div>
+        var guardar = this.guardar.bind(this)
+        var valoracion = this.state.valoracion
+        console.log(this.state.valoracion)
+        if(!valoracion) {
+            return (<div>
                     <div className="row">
                         <div className="col-md-12">
+                            <div className="note-toolbar1">
+                                <a href="#" className="btn btn-success left" onClick={(e)=>guardar(true)} ><i className="fas fa-thumbs-up"></i> útil</a>
+                                <a href="#" className="btn btn-danger right" onClick={(e)=>guardar(false)} ><i className="fas fa-thumbs-down"></i> No útil</a>
+                            </div>
+                            <div className="cabecera">
+                                <div id="summernote" ></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>)
+        }
+    else
+        {
+            return (<div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="note-toolbar1">
+                                <label className="left"> Ya calificaste este post </label>
+                            </div>
                             <div className="cabecera">
                                 <div id="summernote"></div>
                             </div>
                         </div>
                     </div>
                 </div>)
+        }
+       
 	}
 }
 
@@ -345,11 +450,7 @@ ReactDOM.render(
 setTimeout(function(){
     $('#summernote').summernote({
         lang: 'es-ES',
-        toolbar: [
-          // [groupName, [list of button]]
-          [''],
-     
-        ],
+        
         buttons: {
                 hello: Attachment,
                 publicar: Publicar
@@ -377,7 +478,7 @@ var Publicar = function (context) {
   var ui = $.summernote.ui;
   // create button
   var button = ui.button({
-    contents: '<button id="publicar" class="btn btn-success" data-toggle="modal" data-target="#modal-versionMinuta">Publicar</button>',
+    contents: '<button id="publicar" class="btn btn-success" data-toggle="modal" data-target="#modal-versionMinuta">útil</button>',
     tooltip: 'Publicar',
     click: function () {
         modal();

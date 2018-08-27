@@ -263,6 +263,27 @@ class Minutas extends React.Component{
                   });
 
               });
+
+              var url = "/api/v1/get_user"
+              $.ajax({
+                 url: url,
+                 method: "get",
+                 dataType: "json",
+                 crossDomain: true,
+                 contentType: "application/json; charset=utf-8",
+                 success: function (data) {
+                   console.log(data);
+                   selectOrganizador(data);
+                   selectSecretario(data);
+                   select(data);
+                 },
+                 error: function (jqXHR, textStatus, errorThrown) {
+      
+                 }
+             });
+
+
+
               }
             });
 
@@ -652,7 +673,7 @@ class Minutas extends React.Component{
 
                   var usu = this.state.data.map(function(object){
                     var ar = {email: object.data.correo ,name: object.data.nombre}
-                    select(ar);
+                 
                     console.log(ar);
                   })
               });
@@ -673,7 +694,7 @@ class Minutas extends React.Component{
 		              });
 
               }
-							  select();
+							  
             });
         }
         componentWillMount(){
@@ -720,7 +741,7 @@ class Minutas extends React.Component{
               <td>{object.data.responsable}</td>
               <td>{object.data.asunto}</td>
               <td>{object.data.subactividad}</td>
-              <td>{object.data.coResponsable}</td>
+              <td>{object.data.coResponsableID}</td>
               <td>{object.data.fechaCompromiso}</td>
               <td><button className="btn btn-md btn-danger float-right" onClick={()=>eliminar(object.id)}>Eliminar</button>
               </td>
@@ -1013,179 +1034,82 @@ function addMinuta(){
 }
 
 
-
-
 function select(arrar){
-
-	var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
-																				'(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
-
 	$('#select-to').selectize({
-			persist: false,
-			maxItems: null,
-			valueField: 'name',
-			labelField: 'name',
-			searchField: ['name', 'email'],
-			options: [{email:"krlos013@gmail.com", name:"Juan Carlos Santiago"},{"email":"letteromo@gmail.com", name:"Arlette Romo"}]
-	,
-			render: {
-					item: function(item, escape) {
-							return '<div class="menu">' +
-									(item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
-
-							'</div>';
-					},
-					option: function(item, escape) {
-							var label = item.name || item.email;
-							var caption = item.name ? item.email : null;
-							return '<div>' +
-									'<span class="label">' + escape(label) + '</span>' +
-									
-							'</div>';
-					}
-			},
-			createFilter: function(input) {
-					var match, regex;
-
-					// email@address.com
-					regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
-					match = input.match(regex);
-					if (match) return !this.options.hasOwnProperty(match[0]);
-
-					// name <email@address.com>
-					regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
-					match = input.match(regex);
-					if (match) return !this.options.hasOwnProperty(match[2]);
-
-					return false;
-			},
-			create: function(input) {
-					if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
-							return {email: input};
-					}
-					var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
-					if (match) {
-							return {
-									email : match[2],
-									name  : $.trim(match[1])
-							};
-					}
-					alert('Invalid email address.');
-					return false;
-			}
-	});
-
-
-	$('#select-to_organizador').selectize({
-      persist: false,
-      maxItems: null,
-      valueField: 'name',
-      labelField: 'name',
-      searchField: ['name', 'email'],
-      options: [{email:"krlos013@gmail.com", name:"Juan Carlos Santiago"},{"email":"letteromo@gmail.com", name:"Arlette Romo"}],
-      render: {
-          item: function(item, escape) {
-              return '<div class="menu">' +
-                  (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
-
-              '</div>';
-          },
-          option: function(item, escape) {
-              var label = item.name || item.email;
-              var caption = item.name ? item.email : null;
-              return '<div>' +
-                  '<span class="label">' + escape(label) + '</span>' +
-
-              '</div>';
-          }
-      },
-      createFilter: function(input) {
-          var match, regex;
-
-          // email@address.com
-          regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
-          match = input.match(regex);
-          if (match) return !this.options.hasOwnProperty(match[0]);
-
-          // name <email@address.com>
-          regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
-          match = input.match(regex);
-          if (match) return !this.options.hasOwnProperty(match[2]);
-
-          return false;
-      },
-      create: function(input) {
-          if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
-              return {email: input};
-          }
-          var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
-          if (match) {
-              return {
-                  email : match[2],
-                  name  : $.trim(match[1])
-              };
-          }
-          alert('Invalid email address.');
-          return false;
-      }
-  });
-
-	$('#select-to_secretario').selectize({
-      persist: false,
-      maxItems: null,
-      valueField: 'name',
-      labelField: 'name',
-      searchField: ['name', 'email'],
-      options: [{email:"krlos013@gmail.com", name:"Juan Carlos Santiago"},{"email":"letteromo@gmail.com", name:"Arlette Romo"}],
-      render: {
-          item: function(item, escape) {
-              return '<div class="menu">' +
-                  (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
-
-              '</div>';
-          },
-          option: function(item, escape) {
-              var label = item.name || item.email;
-              var caption = item.name ? item.email : null;
-              return '<div>' +
-                  '<span class="label">' + escape(label) + '</span>' +
-
-              '</div>';
-          }
-      },
-      createFilter: function(input) {
-          var match, regex;
-
-          // email@address.com
-          regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
-          match = input.match(regex);
-          if (match) return !this.options.hasOwnProperty(match[0]);
-
-          // name <email@address.com>
-          regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
-          match = input.match(regex);
-          if (match) return !this.options.hasOwnProperty(match[2]);
-
-          return false;
-      },
-      create: function(input) {
-          if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
-              return {email: input};
-          }
-          var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
-          if (match) {
-              return {
-                  email : match[2],
-                  name  : $.trim(match[1])
-              };
-          }
-          alert('Invalid email address.');
-          return false;
-      }
-  });
-
+    persist: false,
+    maxItems: null,
+    valueField: 'name',
+    labelField: 'name',
+    searchField: ['id', 'name'],
+    options: arrar,
+    render: {
+        item: function(item, escape) {
+            return '<div>' +
+                (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '')  +
+            '</div>';
+        },
+        option: function(item, escape) {
+            var label = item.name || item.id;
+            var caption = item.name ? item.id : null;
+            return '<div>' +
+                '<span class="label">' + escape(label) + '</span></div>';
+        }
+    }   
+    
+});
 
 }
+function selectOrganizador(arrar){
+  $('#select-to_organizador').selectize({
+    persist: false,
+    maxItems: null,
+    valueField: 'name',
+    labelField: 'name',
+    searchField: ['id', 'name'],
+    options: arrar,
+    render: {
+        item: function(item, escape) {
+            return '<div>' +
+                (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '')  +
+            '</div>';
+        },
+        option: function(item, escape) {
+            var label = item.name || item.id;
+            var caption = item.name ? item.id : null;
+            return '<div>' +
+                '<span class="label">' + escape(label) + '</span></div>';
+        }
+    }   
+    
+});
+}
+
+function selectSecretario(arrar){
+  $('#select-to_secretario').selectize({
+    persist: false,
+    maxItems: null,
+    valueField: 'name',
+    labelField: 'name',
+    searchField: ['id', 'name'],
+    options: arrar,
+    render: {
+        item: function(item, escape) {
+            return '<div>' +
+                (item.name ? '<span class="name text-left">' + escape(item.name) + '</span>' : '')  +
+            '</div>';
+        },
+        option: function(item, escape) {
+            var label = item.name || item.id;
+            var caption = item.name ? item.id : null;
+            return '<div>' +
+                '<span class="label">' + escape(label) + '</span></div>';
+        }
+    }   
+    
+});
+}
+
+
 function redirecciona(url){
 	window.location.href = url
 }

@@ -51,7 +51,7 @@
         .cabecera_extracto{
             margin-top:10px;
             background-color: #DCDCDD!important;
-            height:550px;
+            height:250px;
             
         }
         .footer_body{
@@ -72,13 +72,21 @@
             
         }
         .cabecera_formacion{
-            margin-top:10px;
+           
             background-color: #DCDCDD!important;
             height:250px;
+            width:100%;
+            
+        }
+        .cabecera_imagen{
+            margin-top:20px;
+            background-color: #DCDCDD!important;
+            height:50px;
+            width:100%;
             
         }
         .area{
-            height:550px!important;
+            height:250px!important;
             background-color: #DCDCDD!important;
         }
         .area_sobremi{
@@ -342,8 +350,7 @@ class PerfilBody extends React.Component{
                         var responsabilidad = $("#responsabilidad").val();
                         var fechaIngreso = $("#fechaIngreso").val();
                         var extracto = $("#extracto").val();
-                        var sobremi = $("#sobremi").val();
-                        var cursos = $("#cursos").val();
+ 
                         var megusta = $("#megusta").val();
                         var mapa = $('#mapa').attr('src');
                         var database = firebase.database();
@@ -352,13 +359,12 @@ class PerfilBody extends React.Component{
                                    responsabilidad: responsabilidad,
                                    fechaIngreso: fechaIngreso,
                                    extracto: extracto,
-                                   sobremi: sobremi,
-                                   cursos: cursos,
                                    megusta: megusta,
                                    mapa: mapa
                               }
                              var ref = database.ref("usuarios").child(user);
                              ref.update(objeto)
+                             window.location.href ="/directorio"
                              
                   }
               });
@@ -403,65 +409,57 @@ class PerfilBody extends React.Component{
         var subir = this.subir.bind(this)
         var guardar = this.guardar.bind(this)
         return (<div>
-                    <div className="row">
-                        <div className="col-md-12">
+                        <div className="row">
+                            <div className="col-md-12">
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <div className="cabecera_extracto">
-                                            <textarea rows="4" cols="50" className="form-control area" placeholder="Describe tu extracto profesional" id="extracto">
-                                            </textarea>
-                                        </div>
-                                        <div className="footer_body">
-                                            <span className="titulo_perfil">EXTRACTO PROFESIONAL</span>
-                                        </div>  
-                                    </div>
-                                    <div className="col-md-3">
-                                        <div className="row">
-                                             <div className="col-md-12">
-                                                <div className="cabecera_sobremi">
-                                                  <textarea rows="4" cols="50" className="form-control area_sobremi" placeholder="Que me describe mejor..." id="sobremi">
-                                                  </textarea>
-                                                </div>
-                                                <div className="footer_body">
-                                                    <span className="titulo_perfil">SOBRE MI</span>
-                                                </div>
-                                                <div className="cabecera_formacion">
-                                                  <textarea rows="4" cols="50" className="form-control area_sobremi" placeholder="Cursos que he tomado" id="cursos">
-                                                  </textarea>
-                                                </div>
-                                                <div className="footer_body">
-                                                    <span className="titulo_perfil">FORMACIÓN</span>
-                                                </div>
-                                            </div>
-                                        </div>    
-                                    </div>
-                                    <div className="col-md-3">
                                         <div className="row">
                                             <div className="col-md-12">
-                                                <div className="cabecera_sobremi">
-                                                    <textarea rows="4" cols="50" className="form-control area_sobremi" placeholder="Lo que me gusta hacer..." id="megusta">
+                                                <div className="cabecera_extracto">
+                                                    <textarea rows="4" cols="50" className="form-control area" placeholder="Describe tu extracto profesional" id="extracto">
                                                     </textarea>
                                                 </div>
                                                 <div className="footer_body">
-                                                    <span className="titulo_perfil">HOBBIES</span>
-                                                </div>
-                                                <div className="cabecera_formacion">
-                                                    <label for="file" className="label_file">Cargar Imagen
-                                                        <input type='file' onChange={subir} className="upload"/>
-                                                    </label>
-                                                    <img src={img} id="mapa" className="area_sobremi"/>
+                                                    <span className="titulo_perfil">EXTRACTO PROFESIONAL</span>
+                                                </div>  
+                                            </div>
+                                        </div>    
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="row">
+                                            <div className="col-md-12">
+                                                <div className="cabecera_sobremi">
+                                                    <textarea rows="4" cols="50" className="form-control area_sobremi" placeholder="Sobre mi..." id="megusta">
+                                                    </textarea>
                                                 </div>
                                                 <div className="footer_body">
-                                                    <span className="titulo_perfil">MAPA DE RELACIONES</span>
-                                                    
+                                                    <span className="titulo_perfil">SOBRE MI(FORMACIÓN, HOBBIES)</span>
                                                 </div>
+                                                
                                             </div>
                                         </div>  
-                                    </div>
-                                </div>
+                                        
+                                </div>  
+                            </div>
                         </div>
                         
                     </div>
+                    <div className="row">
+                            <div className="col-md-12">
+                                 <div className="cabecera_imagen">
+                                     <label for="file" className="label_file">Cargar Imagen
+                                         <input type='file' onChange={subir} className="upload"/>
+                                     </label> 
+                                 </div>
+                                <div className="cabecera_formacion">
+                                    
+                                    <img src={img} id="mapa" className="area_sobremi"/>
+                                </div>
+                                <div className="footer_body">
+                                    <span className="titulo_perfil">MAPA DE RELACIONES</span>   
+                                </div>
+                            </div>
+                        </div>
                     <button className="btn btn-success" onClick={guardar}>Guardar</button>
                 </div>)
 	}
