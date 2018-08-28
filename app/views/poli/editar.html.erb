@@ -68,12 +68,12 @@
 				  <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent; color: #fff; border: none; outline: none; cursor: pointer;">
 					<svg class="svg-inline--fa fa-cog fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="cog" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M444.788 291.1l42.616 24.599c4.867 2.809 7.126 8.618 5.459 13.985-11.07 35.642-29.97 67.842-54.689 94.586a12.016 12.016 0 0 1-14.832 2.254l-42.584-24.595a191.577 191.577 0 0 1-60.759 35.13v49.182a12.01 12.01 0 0 1-9.377 11.718c-34.956 7.85-72.499 8.256-109.219.007-5.49-1.233-9.403-6.096-9.403-11.723v-49.184a191.555 191.555 0 0 1-60.759-35.13l-42.584 24.595a12.016 12.016 0 0 1-14.832-2.254c-24.718-26.744-43.619-58.944-54.689-94.586-1.667-5.366.592-11.175 5.459-13.985L67.212 291.1a193.48 193.48 0 0 1 0-70.199l-42.616-24.599c-4.867-2.809-7.126-8.618-5.459-13.985 11.07-35.642 29.97-67.842 54.689-94.586a12.016 12.016 0 0 1 14.832-2.254l42.584 24.595a191.577 191.577 0 0 1 60.759-35.13V25.759a12.01 12.01 0 0 1 9.377-11.718c34.956-7.85 72.499-8.256 109.219-.007 5.49 1.233 9.403 6.096 9.403 11.723v49.184a191.555 191.555 0 0 1 60.759 35.13l42.584-24.595a12.016 12.016 0 0 1 14.832 2.254c24.718 26.744 43.619 58.944 54.689 94.586 1.667 5.366-.592 11.175-5.459 13.985L444.788 220.9a193.485 193.485 0 0 1 0 70.2zM336 256c0-44.112-35.888-80-80-80s-80 35.888-80 80 35.888 80 80 80 80-35.888 80-80z"></path></svg><!-- <i class="fas fa-cog"></i> -->
 				  </button>
-				  <div class="dropdown-menu sub-head" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="javascript:void(0)">Mi Perfil</a>
-					<a class="dropdown-item" href="javascript:void(0)" ng-click="goToPath('/app/usuarios')">Usuarios</a>
-					<a class="dropdown-item" href="javascript:void(0)" ng-click="goToPath('/app/roles')">Roles</a>
-					<a class="dropdown-item" href="javascript:void(0)" ng-click="logoutSystem()">Salir</a>
-				  </div>
+				  <div class="dropdown-menu sub-head men" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="/perfil">Mi Perfil</a>
+					<a class="dropdown-item" href="/usuarios">Usuarios</a>
+					<a class="dropdown-item" href="/roles">Roles</a>
+					<a class="dropdown-item" href="javascript:void(0)" onClick="javascript:cerrarSesion();">Salir</a>
+				 </div>
 				</div>
 				<div class="dropdown" style="float: right; position:relative">
 				  <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent; color: #fff; border: none; outline: none; cursor: pointer;">
@@ -94,16 +94,17 @@
 		<div class="row">
 			<div class="col-md-2 text-center">
 				<img class="img100 icono-int" src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Ficono03.png?alt=media&token=3ce3c4aa-7213-49d8-abc0-1572cdb8c5b9">
-				<div class="col-md-2 color-blanco text-center">
+				<div class="col-md-12 color-blanco text-center">
 					<h4>HERRAMIENTAS</h4>
 					<div class="lineadw linea-verde linea-int"></div>
 					<div id="sub-izq" class="row">
 						<div class="" aria-labelledby="dropdownMenuLink">
-              <button class="dropdown-item" type="button">Galeria NC Tech</button>
-							<button class="dropdown-item" type="button">Chat de negocios</button>
-							<button class="dropdown-item menu-activo" type="button" onClick="javascript:redirecciona('/documentos')">Documentos</button>
-							<button class="dropdown-item" type="button">Newsletter</button>
-							<a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&amp;service=mail&amp;sacu=1&amp;rip=1&amp;flowName=GlifWebSignIn&amp;flowEntry=ServiceLogin" target="_blank"><button class="dropdown-item" type="button">Correo</button></a>
+						<button class="dropdown-item" type="button" ng-click="goToPath('/app/galeria')">Galeria NC Tech</button>
+						<a href="https://nctech.slack.com/" target="_blank"><button class="dropdown-item" type="button">Chat de negocios</button></a>
+           	<button class="dropdown-item" onClick="javascript:redirecciona('/documentos');" type="button">Plantillas</button>
+						<a href="/newsletter"><button class="dropdown-item" type="button" ng-click="goToPath('/app/newsletter')">Newsletter</button></a>
+						<a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&amp;service=mail&amp;sacu=1&amp;rip=1&amp;flowName=GlifWebSignIn&amp;flowEntry=ServiceLogin" target="_blank"><button class="dropdown-item" type="button">Correo</button></a>
+
 						</div>
 					</div><!--subizq-->
 				</div>

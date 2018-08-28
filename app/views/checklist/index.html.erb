@@ -16,10 +16,10 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/4.0.0-alpha.1/js/bootstrap-switch.js"></script>
 	<script defer="" src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 
 	<style id="svelte-1eldsjg-style">body > .ui-pnotify{position:fixed;z-index:100040}body > .ui-pnotify.ui-pnotify-modal{z-index:100042}.ui-pnotify{position:absolute;height:auto;z-index:1;display:none}.ui-pnotify.ui-pnotify-modal{z-index:3}.ui-pnotify.ui-pnotify-in{display:block}.ui-pnotify.ui-pnotify-initial-hidden{display:block;visibility:hidden}.ui-pnotify.ui-pnotify-move{transition:left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-slow{transition:opacity .4s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-slow.ui-pnotify.ui-pnotify-move{transition:opacity .4s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-normal{transition:opacity .25s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-normal.ui-pnotify.ui-pnotify-move{transition:opacity .25s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-fast{transition:opacity .1s linear;opacity:0}.ui-pnotify.ui-pnotify-fade-fast.ui-pnotify.ui-pnotify-move{transition:opacity .1s linear, left .5s ease, top .5s ease, right .5s ease, bottom .5s ease}.ui-pnotify.ui-pnotify-fade-in{opacity:1}.ui-pnotify .ui-pnotify-shadow{-webkit-box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1);-moz-box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1);box-shadow:0px 6px 28px 0px rgba(0,0,0,0.1)}.ui-pnotify-container{background-position:0 0;padding:.8em;height:100%;margin:0}.ui-pnotify-container:after{content:" ";visibility:hidden;display:block;height:0;clear:both}.ui-pnotify-container.ui-pnotify-sharp{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.ui-pnotify-title{display:block;white-space:pre-line;margin-bottom:.4em;margin-top:0}.ui-pnotify.ui-pnotify-with-icon .ui-pnotify-title,.ui-pnotify.ui-pnotify-with-icon .ui-pnotify-text{margin-left:24px}[dir=rtl] .ui-pnotify.ui-pnotify-with-icon .ui-pnotify-title,[dir=rtl] .ui-pnotify.ui-pnotify-with-icon .ui-pnotify-text{margin-right:24px;margin-left:0}.ui-pnotify-title-bs4{font-size:1.2rem}.ui-pnotify-text{display:block;white-space:pre-line}.ui-pnotify-icon,.ui-pnotify-icon span{display:block;float:left}[dir=rtl] .ui-pnotify-icon,[dir=rtl] .ui-pnotify-icon span{float:right}.ui-pnotify-icon-bs3 > span{position:relative;top:2px}.ui-pnotify-icon-bs4 > span{position:relative;top:4px}.ui-pnotify-modal-overlay{background-color:rgba(0, 0, 0, .4);top:0;left:0;position:absolute;height:100%;width:100%;z-index:2}body > .ui-pnotify-modal-overlay{position:fixed;z-index:100041}
   </style>
@@ -35,8 +35,7 @@
 	<div class="clearfix">
 		<span class="float-left">
 			<div id="log-int">
-<img src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Flogo-cabecera.png?alt=media&token=2d197f6d-6d72-495f-b820-8816ad1c277b" onClick="javascript:redirecciona('/')" style="cursor:pointer;">
-
+				<img src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Flogo-cabecera.png?alt=media&token=2d197f6d-6d72-495f-b820-8816ad1c277b" onClick="javascript:redirecciona('/')" style="cursor:pointer;">
 			</div>
 		</span>
 		<span class="float-right">
@@ -46,12 +45,12 @@
 				  <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent; color: #fff; border: none; outline: none; cursor: pointer;">
 					<svg class="svg-inline--fa fa-cog fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="cog" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M444.788 291.1l42.616 24.599c4.867 2.809 7.126 8.618 5.459 13.985-11.07 35.642-29.97 67.842-54.689 94.586a12.016 12.016 0 0 1-14.832 2.254l-42.584-24.595a191.577 191.577 0 0 1-60.759 35.13v49.182a12.01 12.01 0 0 1-9.377 11.718c-34.956 7.85-72.499 8.256-109.219.007-5.49-1.233-9.403-6.096-9.403-11.723v-49.184a191.555 191.555 0 0 1-60.759-35.13l-42.584 24.595a12.016 12.016 0 0 1-14.832-2.254c-24.718-26.744-43.619-58.944-54.689-94.586-1.667-5.366.592-11.175 5.459-13.985L67.212 291.1a193.48 193.48 0 0 1 0-70.199l-42.616-24.599c-4.867-2.809-7.126-8.618-5.459-13.985 11.07-35.642 29.97-67.842 54.689-94.586a12.016 12.016 0 0 1 14.832-2.254l42.584 24.595a191.577 191.577 0 0 1 60.759-35.13V25.759a12.01 12.01 0 0 1 9.377-11.718c34.956-7.85 72.499-8.256 109.219-.007 5.49 1.233 9.403 6.096 9.403 11.723v49.184a191.555 191.555 0 0 1 60.759 35.13l42.584-24.595a12.016 12.016 0 0 1 14.832 2.254c24.718 26.744 43.619 58.944 54.689 94.586 1.667 5.366-.592 11.175-5.459 13.985L444.788 220.9a193.485 193.485 0 0 1 0 70.2zM336 256c0-44.112-35.888-80-80-80s-80 35.888-80 80 35.888 80 80 80 80-35.888 80-80z"></path></svg><!-- <i class="fas fa-cog"></i> -->
 				  </button>
-				  <div class="dropdown-menu sub-head" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="javascript:void(0)">Mi Perfil</a>
-					<a class="dropdown-item" href="javascript:void(0)" ng-click="goToPath('/app/usuarios')">Usuarios</a>
-					<a class="dropdown-item" href="javascript:void(0)" ng-click="goToPath('/app/roles')">Roles</a>
-					<a class="dropdown-item" href="javascript:void(0)" ng-click="logoutSystem()">Salir</a>
-				  </div>
+				  <div class="dropdown-menu sub-head men" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="/perfil">Mi Perfil</a>
+					<a class="dropdown-item" href="/usuarios">Usuarios</a>
+					<a class="dropdown-item" href="/roles">Roles</a>
+					<a class="dropdown-item" href="javascript:void(0)" onClick="javascript:cerrarSesion();">Salir</a>
+				 </div>
 				</div>
 				<div class="dropdown" style="float: right; position:relative">
 				  <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent; color: #fff; border: none; outline: none; cursor: pointer;">
@@ -72,16 +71,17 @@
 		<div class="row">
 			<div class="col-md-2 text-center">
 				<img class="img100 icono-int" src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Ficono03.png?alt=media&token=3ce3c4aa-7213-49d8-abc0-1572cdb8c5b9">
-				<div class="col-md-2 color-blanco text-center">
+				<div class="col-md-12 color-blanco text-center">
 					<h4>HERRAMIENTAS</h4>
 					<div class="lineadw linea-verde linea-int"></div>
 					<div id="sub-izq" class="row">
 						<div class="" aria-labelledby="dropdownMenuLink">
-							<button class="dropdown-item" type="button">Galeria NC Tech</button>
-							<button class="dropdown-item" type="button">Chat de negocios</button>
-							<button class="dropdown-item menu-activo" type="button"onClick="javascript:redirecciona(/documentos)">Documentos</button>
-							<button class="dropdown-item" type="button">Newsletter</button>
-							<a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&amp;service=mail&amp;sacu=1&amp;rip=1&amp;flowName=GlifWebSignIn&amp;flowEntry=ServiceLogin" target="_blank"><button class="dropdown-item" type="button">Correo</button></a>
+						<button class="dropdown-item" type="button" ng-click="goToPath('/app/galeria')">Galeria NC Tech</button>
+						<a href="https://nctech.slack.com/" target="_blank"><button class="dropdown-item" type="button">Chat de negocios</button></a>
+           				 <button class="dropdown-item" onClick="javascript:redirecciona('/documentos');" type="button">Plantillas</button>
+						<a href="/newsletter"><button class="dropdown-item" type="button" ng-click="goToPath('/app/newsletter')">Newsletter</button></a>
+						<a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&amp;service=mail&amp;sacu=1&amp;rip=1&amp;flowName=GlifWebSignIn&amp;flowEntry=ServiceLogin" target="_blank"><button class="dropdown-item" type="button">Correo</button></a>
+
 						</div>
 					</div><!--subizq-->
 				</div>
@@ -323,22 +323,22 @@ class Minutas extends React.Component{
 				var url = "editar/checklist?id=" + object.id
 				var url_ver = "ver/checklist?id=" + object.id
 				return  <tr>
-									<td className="ng-scope gris2 even" role="row">
+									<td className="ng-scope gris2 even text-left" role="row">
 									{i + 1}
 									</td>
-									<td className="ng-scope gris2 even" role="row">
+									<td className="ng-scope gris2 even text-left" role="row">
 									{object.data.nombreChecklist}
 									</td>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.responsableChecklist}
 									</td>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.terminoChecklist}
 									</td>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.version}
 									</td>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.fechaModificacion}
 									</td>
 						<td  className="ng-scope gris2 even" role="row">
@@ -366,12 +366,12 @@ class Minutas extends React.Component{
 					<table id="example" className="table table-striped table-bordered" style={{width:"100%"}}>
 						<thead className="ng-scope">
 							<tr role="row">
-								<th>No</th>
-								<th>Nombre</th>
-								<th>Resposnable</th>
-								<th>Termino</th>
-                <th>Versión</th>
-								<th>Fecha Modificación</th>
+								<th className="text-left">No</th>
+								<th className="text-left">Nombre</th>
+								<th className="text-left">Resposnable</th>
+								<th className="text-left">Termino</th>
+                				<th className="text-left">Versión</th>
+								<th className="text-left">Fecha Modificación</th>
 								<th ></th>
 							</tr>
 						</thead>

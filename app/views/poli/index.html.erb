@@ -46,12 +46,12 @@
 				  <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent; color: #fff; border: none; outline: none; cursor: pointer;">
 					<svg class="svg-inline--fa fa-cog fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="cog" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M444.788 291.1l42.616 24.599c4.867 2.809 7.126 8.618 5.459 13.985-11.07 35.642-29.97 67.842-54.689 94.586a12.016 12.016 0 0 1-14.832 2.254l-42.584-24.595a191.577 191.577 0 0 1-60.759 35.13v49.182a12.01 12.01 0 0 1-9.377 11.718c-34.956 7.85-72.499 8.256-109.219.007-5.49-1.233-9.403-6.096-9.403-11.723v-49.184a191.555 191.555 0 0 1-60.759-35.13l-42.584 24.595a12.016 12.016 0 0 1-14.832-2.254c-24.718-26.744-43.619-58.944-54.689-94.586-1.667-5.366.592-11.175 5.459-13.985L67.212 291.1a193.48 193.48 0 0 1 0-70.199l-42.616-24.599c-4.867-2.809-7.126-8.618-5.459-13.985 11.07-35.642 29.97-67.842 54.689-94.586a12.016 12.016 0 0 1 14.832-2.254l42.584 24.595a191.577 191.577 0 0 1 60.759-35.13V25.759a12.01 12.01 0 0 1 9.377-11.718c34.956-7.85 72.499-8.256 109.219-.007 5.49 1.233 9.403 6.096 9.403 11.723v49.184a191.555 191.555 0 0 1 60.759 35.13l42.584-24.595a12.016 12.016 0 0 1 14.832 2.254c24.718 26.744 43.619 58.944 54.689 94.586 1.667 5.366-.592 11.175-5.459 13.985L444.788 220.9a193.485 193.485 0 0 1 0 70.2zM336 256c0-44.112-35.888-80-80-80s-80 35.888-80 80 35.888 80 80 80 80-35.888 80-80z"></path></svg><!-- <i class="fas fa-cog"></i> -->
 				  </button>
-				  <div class="dropdown-menu sub-head" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="javascript:void(0)">Mi Perfil</a>
-					<a class="dropdown-item" href="javascript:void(0)" ng-click="goToPath('/app/usuarios')">Usuarios</a>
-					<a class="dropdown-item" href="javascript:void(0)" ng-click="goToPath('/app/roles')">Roles</a>
-					<a class="dropdown-item" href="javascript:void(0)" ng-click="logoutSystem()">Salir</a>
-				  </div>
+				  <div class="dropdown-menu sub-head men" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="/perfil">Mi Perfil</a>
+					<a class="dropdown-item" href="/usuarios">Usuarios</a>
+					<a class="dropdown-item" href="/roles">Roles</a>
+					<a class="dropdown-item" href="javascript:void(0)" onClick="javascript:cerrarSesion();">Salir</a>
+				 </div>
 				</div>
 				<div class="dropdown" style="float: right; position:relative">
 				  <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent; color: #fff; border: none; outline: none; cursor: pointer;">
@@ -72,16 +72,17 @@
 		<div class="row">
 			<div class="col-md-2 text-center">
 				<img class="img100 icono-int" src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Ficono03.png?alt=media&token=3ce3c4aa-7213-49d8-abc0-1572cdb8c5b9">
-				<div class="col-md-2 color-blanco text-center">
+				<div class="col-md-12 color-blanco text-center">
 					<h4>HERRAMIENTAS</h4>
 					<div class="lineadw linea-verde linea-int"></div>
 					<div id="sub-izq" class="row">
 						<div class="" aria-labelledby="dropdownMenuLink">
-							<button class="dropdown-item" type="button">Galeria NC Tech</button>
-							<button class="dropdown-item" type="button">Chat de negocios</button>
-							<button class="dropdown-item menu-activo" type="button" onClick="javascript:redirecciona('/documentos')">Documentos</button>
-							<button class="dropdown-item" type="button">Newsletter</button>
-							<a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&amp;service=mail&amp;sacu=1&amp;rip=1&amp;flowName=GlifWebSignIn&amp;flowEntry=ServiceLogin" target="_blank"><button class="dropdown-item" type="button">Correo</button></a>
+						<button class="dropdown-item" type="button" ng-click="goToPath('/app/galeria')">Galeria NC Tech</button>
+						<a href="https://nctech.slack.com/" target="_blank"><button class="dropdown-item" type="button">Chat de negocios</button></a>
+           				 <button class="dropdown-item" onClick="javascript:redirecciona('/documentos');" type="button">Plantillas</button>
+						<a href="/newsletter"><button class="dropdown-item" type="button" ng-click="goToPath('/app/newsletter')">Newsletter</button></a>
+						<a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&amp;service=mail&amp;sacu=1&amp;rip=1&amp;flowName=GlifWebSignIn&amp;flowEntry=ServiceLogin" target="_blank"><button class="dropdown-item" type="button">Correo</button></a>
+
 						</div>
 					</div><!--subizq-->
 				</div>
@@ -349,47 +350,47 @@ class Minutas extends React.Component{
         var ids = "clase_" + object.id
         estado(object.data.politicaid);
 				return  <tr>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left" role="row">
 									{i + 1}
 									</td>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.nombrePolitica}
 									</td>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.areaaplica}
 									</td>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.emitio}
 									</td>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.usuario}
 									</td>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left "  role="row">
 									{object.data.fechaModificacion}
 									</td>
-                  <td  className="ng-scope gris2 even" role="row">
+                 					 <td  className="ng-scope gris2 even" role="row">
 									<div id={ids}></div>
 									</td>
-						  <td className="ng-scope gris2 even" role="row">
-							<button className="btn btn-sm btn-info ng-scope" data-toggle="modal" data-target="#modal-versionMinuta" onClick={()=>pasar(object.id,object.data.nombrePolitica)}>
-              <svg className="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" data-prefix="fa" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
-              <path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z">
-              </path>
-              </svg>
-              </button>
-							<a href={url} className="btn btn-sm btn-primary ng-scope">
-							<svg className="svg-inline--fa fa-edit fa-w-18" aria-hidden="true" data-prefix="fa" data-icon="edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
-								<path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z">
-								</path>
-							</svg>
-							</a>
-							<button className="btn btn-sm btn-default ng-scope" data-toggle="modal" data-target="#modal-versionMinuta1" onClick={()=>pasar1(object.id,object.data.nombrePolitica)}>
-              <svg className="svg-inline--fa fa-users fa-w-20" aria-hidden="true" data-prefix="fa" data-icon="users" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg="">
-              <path fill="currentColor" d="M320 64c57.99 0 105 47.01 105 105s-47.01 105-105 105-105-47.01-105-105S262.01 64 320 64zm113.463 217.366l-39.982-9.996c-49.168 35.365-108.766 27.473-146.961 0l-39.982 9.996C174.485 289.379 152 318.177 152 351.216V412c0 19.882 16.118 36 36 36h264c19.882 0 36-16.118 36-36v-60.784c0-33.039-22.485-61.837-54.537-69.85zM528 300c38.66 0 70-31.34 70-70s-31.34-70-70-70-70 31.34-70 70 31.34 70 70 70zm-416 0c38.66 0 70-31.34 70-70s-31.34-70-70-70-70 31.34-70 70 31.34 70 70 70zm24 112v-60.784c0-16.551 4.593-32.204 12.703-45.599-29.988 14.72-63.336 8.708-85.69-7.37l-26.655 6.664C14.99 310.252 0 329.452 0 351.477V392c0 13.255 10.745 24 24 24h112.169a52.417 52.417 0 0 1-.169-4zm467.642-107.09l-26.655-6.664c-27.925 20.086-60.89 19.233-85.786 7.218C499.369 318.893 504 334.601 504 351.216V412c0 1.347-.068 2.678-.169 4H616c13.255 0 24-10.745 24-24v-40.523c0-22.025-14.99-41.225-36.358-46.567z">
-              </path>
-              </svg>
-              </button>
-						</td>
+									<td className="ng-scope gris2 even" role="row">
+											<button className="btn btn-sm btn-info ng-scope" data-toggle="modal" data-target="#modal-versionMinuta" onClick={()=>pasar(object.id,object.data.nombrePolitica)}>
+											<svg className="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" data-prefix="fa" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
+											<path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z">
+											</path>
+											</svg>
+											</button>
+											<a href={url} className="btn btn-sm btn-primary ng-scope">
+											<svg className="svg-inline--fa fa-edit fa-w-18" aria-hidden="true" data-prefix="fa" data-icon="edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+												<path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z">
+												</path>
+											</svg>
+											</a>
+											<button className="btn btn-sm btn-default ng-scope" data-toggle="modal" data-target="#modal-versionMinuta1" onClick={()=>pasar1(object.id,object.data.nombrePolitica)}>
+											<svg className="svg-inline--fa fa-users fa-w-20" aria-hidden="true" data-prefix="fa" data-icon="users" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg="">
+											<path fill="currentColor" d="M320 64c57.99 0 105 47.01 105 105s-47.01 105-105 105-105-47.01-105-105S262.01 64 320 64zm113.463 217.366l-39.982-9.996c-49.168 35.365-108.766 27.473-146.961 0l-39.982 9.996C174.485 289.379 152 318.177 152 351.216V412c0 19.882 16.118 36 36 36h264c19.882 0 36-16.118 36-36v-60.784c0-33.039-22.485-61.837-54.537-69.85zM528 300c38.66 0 70-31.34 70-70s-31.34-70-70-70-70 31.34-70 70 31.34 70 70 70zm-416 0c38.66 0 70-31.34 70-70s-31.34-70-70-70-70 31.34-70 70 31.34 70 70 70zm24 112v-60.784c0-16.551 4.593-32.204 12.703-45.599-29.988 14.72-63.336 8.708-85.69-7.37l-26.655 6.664C14.99 310.252 0 329.452 0 351.477V392c0 13.255 10.745 24 24 24h112.169a52.417 52.417 0 0 1-.169-4zm467.642-107.09l-26.655-6.664c-27.925 20.086-60.89 19.233-85.786 7.218C499.369 318.893 504 334.601 504 351.216V412c0 1.347-.068 2.678-.169 4H616c13.255 0 24-10.745 24-24v-40.523c0-22.025-14.99-41.225-36.358-46.567z">
+											</path>
+											</svg>
+											</button>
+									</td>
 					</tr>
 			})
 			return (
@@ -397,14 +398,14 @@ class Minutas extends React.Component{
 					<table id="example" className="table table-striped table-bordered" style={{width:"100%"}}>
 						<thead className="ng-scope">
 							<tr role="row">
-								<th>No</th>
-								<th >Nombre</th>
-								<th >Área que aplica</th>
-								<th >Emisor</th>
-								<th >Usuario</th>
-								<th >Fecha Modificación</th>
-                <th >Aceptada</th>
-                <th className="sorting_disabled" tabindex="0" aria-controls="DataTables_Table_30" rowspan="1" colspan="1" aria-label="" style={{width: "216px"}}></th>
+								<th className="text-left">No</th>
+								<th className="text-left">Nombre</th>
+								<th className="text-left">Área que aplica</th>
+								<th className="text-left">Emisor</th>
+								<th className="text-left">Usuario</th>
+								<th className="text-left">Fecha Modificación</th>
+                				<th className="text-left">Aceptada</th>
+                				<th className="sorting_disabled" tabindex="0" aria-controls="DataTables_Table_30" rowspan="1" colspan="1" aria-label="" style={{width: "216px"}}></th>
 							</tr>
 						</thead>
 						<tbody className="ng-scope">
@@ -460,7 +461,7 @@ function modal(id, titulo){
       var accion = this.accion.bind(this)
 				return (
           <div>
-					<div className="ng-scope">Hola!, Si estas leyendo este mensaje, significa que revisarás el documento <strong>{titulo}</strong>, te sugerimos que leas cuidadosamente cada punto, recuerda que las políticas son las reglas bajo las cuales ser rige la empresa y están definidas exclusivamente por Dirección General. Una vez aceptado este mensaje, damos por asentada la lectura, comprensión total y apego a las mismas</div>
+					<div className="ng-scope">Hola!, Si estas leyendo este mensaje, significa que revisarás el documento <strong>{titulo}</strong>, te sugerimos que leas cuidadosamente cada punto, recuerda que las políticas son las reglas bajo las cuales se rige la empresa y están definidas exclusivamente por Dirección General. Una vez aceptado este mensaje, damos por asentada la lectura, comprensión total y apego a las mismas</div>
           <div className="modal-footer">
           <button className="btn btn-danger" onClick={()=>accion("No acepto")} data-dismiss="modal">
           No, Acepto
