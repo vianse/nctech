@@ -118,10 +118,10 @@ Rails.application.routes.draw do
   get 'usuarios/crear' => 'usuarios#crear', as: :crear_usuarios
   get 'editar/usuarios' => 'usuarios#editar', as: :editar_usuarios
   get 'ver/usuarios' => 'usuarios#ver', as: :ver_usuarios
-  get 'grupos' => 'roles#index', as: :roles
-  get 'grupo/crear' => 'roles#crear', as: :crear_roles
-  get 'editar/grupo' => 'roles#editar', as: :editar_roles
-  get 'ver/grupo' => 'roles#ver', as: :ver_roles
+  get 'roles' => 'roles#index', as: :roles
+  get 'rol/crear' => 'roles#crear', as: :crear_roles
+  get 'editar/rol' => 'roles#editar', as: :editar_roles
+  get 'ver/rol' => 'roles#ver', as: :ver_roles
   get 'archivos' => 'archivos#index', as: :archivos
   get 'archivos/crear' => 'archivos#crear', as: :crear_archivos
   get 'editar/archivos' => 'archivos#editar', as: :editar_archivos
@@ -135,6 +135,7 @@ Rails.application.routes.draw do
   get 'ver/enlaces' => 'enlaces#ver', as: :ver_enlaces
   get 'newsletter' => 'newsletter#index', as: :newsletter
   get 'ver/newsletter' => 'newsletter#ver', as: :ver_newsletter
+  
   namespace :api do
       namespace :v1 do
         resources :get_user, path: "get_user"

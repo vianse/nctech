@@ -427,7 +427,6 @@ class Body extends React.Component{
                                 <th>Descripción</th>
                                 <th>Area</th>
 								<th>Tipo</th>
-							
 								<th></th>
 							</tr>
 						</thead>
@@ -548,7 +547,7 @@ function modal(id){
            }
        });
         
-    },1000)
+},1000)
 
     
 
@@ -574,7 +573,7 @@ function modal(id){
 					var area = $("#area").val();
 					var tipo = $("#tipo").val();
                     var url = $("#url_archivo").val();
-                    var compartido = $("#select-to").val();
+                    var compartido = user + "," + $("#select-to").val();
                     var objeto = {
                                     fecha: moment().format('L'),
                                     autor: firebaseUser.displayName,

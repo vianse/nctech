@@ -80,15 +80,11 @@
 			<div class="col-md-2 text-center">
 				<img class="img100 icono-int" src="https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Ficono03.png?alt=media&token=3ce3c4aa-7213-49d8-abc0-1572cdb8c5b9">
 				<div class="col-md-2 color-blanco text-center">
-					<h4>HERRAMIENTAS</h4>
+					<h4>SEGURIDAD</h4>
 					<div class="lineadw linea-verde linea-int"></div>
 					<div id="sub-izq" class="row">
 						<div class="" aria-labelledby="dropdownMenuLink">
-							<button class="dropdown-item" type="button">Galeria NC Tech</button>
-							<button class="dropdown-item" type="button">Chat de negocios</button>
-							<button class="dropdown-item menu-activo" type="button"onClick="javascript:redirecciona(/documentos)">Documentos</button>
-							<button class="dropdown-item" type="button">Newsletter</button>
-							<a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&amp;service=mail&amp;sacu=1&amp;rip=1&amp;flowName=GlifWebSignIn&amp;flowEntry=ServiceLogin" target="_blank"><button class="dropdown-item" type="button">Correo</button></a>
+							<a href="/usuarios"><button class="dropdown-item" type="button">Usuarios</button></a>
 						</div>
 					</div><!--subizq-->
 				</div>
@@ -185,7 +181,7 @@ class Link extends React.Component{
 			 }
 
 	render() {
-		var url = "/grupo/crear?id=" + moment().unix();
+		var url = "/rol/crear?id=" + moment().unix();
 			return (
 				<a href={url} className="btn btn-sm btn-success float-right ng-scope" id="addGrupo">Nuevo Rol</a>
 			)
@@ -239,7 +235,7 @@ class Minutas extends React.Component{
 		var arr = this.state.data
 
 			var options = arr.map(function(object, i){
-				var url = "/editar/grupo?id=" + object.id
+				var url = "/editar/rol?id=" + object.id
 				var url_ver = "ver/usuarios?id=" + object.id
 				return  <tr>
 							<td className="ng-scope gris2 even text-left" role="row">
