@@ -299,25 +299,25 @@ $.cookie('checkid' , checklistID)
         var check = arra.map(function(object){
           return(
             <tr>
-            <td>
+            <td className="text-left">
             {object.data.grupoChecklist}
             </td>
-            <td>
+            <td className="text-left">
             {object.data.descripcionChecklist}
             </td>
-            <td>
+            <td className="text-left">
             {object.data.entregaChecklist}
             </td>
-            <td>
+            <td className="text-left">
             {object.data.responsableCheckChecklist}
             </td>
-            <td>
+            <td className="text-left">
             {object.data.coresponsableChecklist}
             </td>
-            <td>
+            <td className="text-left">
             {object.data.terminoChecklist}
             </td>
-            <td>
+            <td className="text-left">
             <a href="javascript:removecheckCheckList();"  className="btn btn-danger">Eliminar</a>
             </td>
             </tr>
@@ -327,10 +327,10 @@ $.cookie('checkid' , checklistID)
         var participantes = array.map(function(object){
           return(
             <tr>
-            <td colSpan="3">
+            <td colSpan="3" className="text-left">
             {object.data.involucradosChecklist}
             </td>
-            <td colSpan="3">
+            <td colSpan="3" className="text-left">
             {object.data.areainvolucradosChecklist}
             </td>
             <td>
@@ -461,8 +461,8 @@ $.cookie('checkid' , checklistID)
                 </select>
 	              </td>
                 <td>
-	              <div className="text-left"> TERMINO</div>
-                <input type="checkbox" value="Sí" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="terminochekChecklist"  />
+	              <div className="text-left ocultar"> TERMINO</div>
+                <input type="checkbox" value="Sí" className="form-control ng-pristine ng-untouched ng-valid ng-empty ocultar" id="terminochekChecklist"  />
 	              </td>
                 <td>
                 <a href="javascript:addCheckList();"  className="btn btn-success">Agregar</a>

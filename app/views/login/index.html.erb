@@ -166,30 +166,31 @@
 
 <!--Modal Eventos Generales-->
 
-<div class="modal ng-scope" tabindex="-1" role="dialog" id="modal-recuperarPassword">
+<div class="modal ng-scope" tabindex="-1" role="dialog" id="entorno">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<div class="col-sm-12 text-center">
-					<h3 class="modal-title" id="modal-title">Recuperar Contraseña</h3>
+					<h3 class="modal-title" id="modal-title">Selecciona el entorno para probar</h3>
 				</div>
 			</div>
 			<div class="modal-body" id="modal-body">
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="form-group">
-							<label class="label-control">Ingresa tu Correo</label>
-							<div class="input-group">
-								<input type="mail" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="correoForgetPass">
-							</div>
+							<label class="label-control">Enque entorno te gustaria probar?</label><br/>
+							<select class="form-control" placeholder="Selecciona uno" id="areaPolitica">
+                        <option disabled selected>Selecciona una opción</option>
+  											<option>DESAROLLO</option>
+  											<option>CALIDAD</option>
+              </select>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<div class="col-sm-12 text-center">
-					<button type="button" class="btn btn-sm btn-danger" onclick="$(&quot;#modal-recuperarPassword&quot;).modal(&quot;hide&quot;);"> CANCELAR</button>
-					<button type="button" class="btn btn-sm btn-success" ng-click="sendForgetPassword()"> ACEPTAR</button>
+					<button type="button" class="btn btn-sm btn-success" ng-click="sendForgetPassword()"> INICIAR</button>
 				</div>
 			</div>
 		</div>
@@ -214,6 +215,9 @@ function iniciarSesion(){
   provider.addScope('profile');
   provider.addScope('email');
   provider.addScope('https://www.googleapis.com/auth/plus.me');
+  //provider.setCustomParameters({
+  //'hd': 'nctech.com.mx'
+  //});
   firebase.auth().signInWithPopup(provider);
 }
 
@@ -244,5 +248,7 @@ if(user) {
 
   }
 });
+
+//setTimeout(function () { $("#entorno").modal("show");}, 5000);
 
 </script>

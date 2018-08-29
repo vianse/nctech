@@ -297,22 +297,22 @@ $.cookie('checkid' , checklistID)
         var check = arra.map(function(object){
           return(
             <tr>
-            <td>
+            <td className="text-left">
             {object.data.grupoChecklist}
             </td>
-            <td>
+            <td className="text-left">
             {object.data.descripcionChecklist}
             </td>
-            <td>
+            <td className="text-left"> 
             {object.data.entregaChecklist}
             </td>
-            <td>
+            <td className="text-left">
             {object.data.responsableCheckChecklist}
             </td>
-            <td>
+            <td className="text-left">
             {object.data.coresponsableChecklist}
             </td>
-            <td>
+            <td className="text-left">
             {object.data.terminoChecklist}
             </td>
             <td>
@@ -325,10 +325,10 @@ $.cookie('checkid' , checklistID)
         var participantes = array.map(function(object){
           return(
             <tr>
-            <td colSpan="3">
+            <td colSpan="3" className="text-left">
             {object.data.involucradosChecklist}
             </td>
-            <td colSpan="3">
+            <td colSpan="3" className="text-left">
             {object.data.areainvolucradosChecklist}
             </td>
             <td>
@@ -391,43 +391,7 @@ $.cookie('checkid' , checklistID)
 	              </tr>
 	            </thead>
 	            <tbody>
-	              <tr>
-	              <td>
-	              <div className="text-left">GRUPO</div>
-                <input type="text" className="form-control" id="grupoChecklist" placeholder="Ingresa un grupo" disabled/>
-	              </td>
-                <td>
-	              <div className="text-left">DESCRIPCIÓN</div>
-                <input type="text" className="form-control" id="descripcionChecklist" placeholder="Ingresa una Descripción" disabled/>
-	              </td>
-                <td>
-	              <div className="text-left">ENTREGA</div>
-                <input type="date" className="form-control" id="entregaChecklist" disabled/>
-	              </td>
-                <td>
-	              <div className="text-left"> RESPONSABLE</div>
-                <select className="form-control" placeholder="Selecciona uno" id="responsableCheckChecklist" disabled>
-                  <option disabled selected>Selecciona una opción</option>
-                                    {options}
-                </select>
-
-	              </td>
-                <td>
-	              <div className="text-left">CORESPONSABLE</div>
-                <select className="form-control" placeholder="Selecciona uno" id="coresponsableChecklist" disabled>
-                  <option disabled selected>Selecciona una opción</option>
-                                    {options}
-                </select>
-	              </td>
-                <td>
-	              <div className="text-left"> TERMINO</div>
-                <input type="checkbox" value="Sí" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="terminoChecklist"  disabled/>
-	              </td>
-                <td>
-
-                </td>
-	              </tr>
-
+	             
 	            </tbody>
               <thead>
               <tr>

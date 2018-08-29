@@ -362,7 +362,9 @@ $.cookie('procedimientoid' , procedimientoID)
 	              <td>
 	              <div>
 	              <div className="text-left"> Objetivo</div>
-	                    <input type="text" className="form-control" id="objetivoProcedimiento" placeholder="Ingresa el objetivo"/>
+											
+											<textarea rows="2" data-autoresize className="form-control" cols="50" id="objetivoProcedimiento">
+										</textarea>
 	                </div>
 	              </td>
 	              </tr>
@@ -371,7 +373,7 @@ $.cookie('procedimientoid' , procedimientoID)
 	              <td>
 	              <div className="text-left"> Alcance</div>
 	              <div>
-										<textarea rows="5"  className="form-control" cols="50" id="alcanceProcedimiento">
+										<textarea rows="2" data-autoresize className="form-control" cols="50" id="alcanceProcedimiento">
 										</textarea>
 	                </div>
 	              </td>
@@ -508,8 +510,8 @@ $.cookie('procedimientoid' , procedimientoID)
 	        var participantes = arra.map(function(object){
 	          return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
 
-	                <td>{object.data.pasos}</td>
-	                <td>{object.data.area}</td>
+	                <td className="text-left">{object.data.pasos}</td>
+	                <td className="text-left">{object.data.area}</td>
 
 	              </tr>
 
@@ -595,7 +597,7 @@ $.cookie('procedimientoid' , procedimientoID)
 	          return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
 
 	                <td>{object.data.requerimeintos}</td>
-	                <td>{object.data.cumplido}</td>
+	                
 
 	              </tr>
 
@@ -615,7 +617,7 @@ $.cookie('procedimientoid' , procedimientoID)
 
 											<td><div className="text-left"> REQUERIMIENTOS</div><input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="requerimeintos"  /></td>
 
-											<td><div className="text-left"> CUMPLIDO</div><input type="checkbox" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="cumplido" /></td>
+											
 											<td>
 	                    <a href="javascript:addCheckList();" className="btn btn-success">Agregar Requerimiento</a>
 	                    </td>
@@ -626,7 +628,7 @@ $.cookie('procedimientoid' , procedimientoID)
 	                <thead>
 	                  <tr>
 	                    <th className="text-center">REQUERIMIENTOS</th>
-	                    <th className="text-center">CUMPLIDO</th>
+	                    
 	                  </tr>
 	                </thead>
 	                <tbody>
@@ -700,7 +702,8 @@ $.cookie('procedimientoid' , procedimientoID)
 
                     <td><div className="text-left"> ÁREA RESPONSABLE DEL PROCESO</div>
 										<select className="form-control" placeholder="Selecciona uno" id="arearresponsableproceso">
-                      <option disabled selected>Selecciona una opción</option>
+											<option disabled selected>Selecciona una opción</option>
+											<option>TODOS</option>
 											<option>CAPITAL HUMANO</option>
 											<option>SOPORTE TECNICO</option>
 											<option>MARKETING</option>
@@ -711,7 +714,8 @@ $.cookie('procedimientoid' , procedimientoID)
                     </select></td>
 
                     <td><div className="text-left"> REPONSABLE</div><select className="form-control" placeholder="Selecciona uno" id="responsableproceso">
-                      <option disabled selected>Selecciona una opción</option>
+											<option disabled selected>Selecciona una opción</option>
+											<option>TODOS</option>
 											{options}
                     </select></td>
                     <td colSpan="2">
@@ -952,18 +956,10 @@ function addCheckList(){
       if(firebaseUser) {
                     var user    = firebaseUser.uid;
                     var requerimeintos = $("#requerimeintos").val();
-										if ($('input#cumplido').is(':checked')) {
-											var cumplido = "Sí";
-											console.log(cumplido);
-										}
-										else {
-											var cumplido = "No";
-											console.log(cumplido);
-										}
+										
                     var database = firebase.database();
                           var objeto = {
                                requerimeintos: requerimeintos,
-                               cumplido: cumplido,
                                procedimientoid: procedimientoID,
                                usuario: user,
                           }
@@ -1136,4 +1132,13 @@ function notification(campo){
 	function redirecciona(url){
 		window.location.href = url
 	}
+
+	jQuery.each(jQuery('textarea[data-autoresize]'), function() {
+    var offset = this.offsetHeight - this.clientHeight;
+ 
+    var resizeTextarea = function(el) {
+        jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset);
+    };
+    jQuery(this).on('keyup input', function() { resizeTextarea(this); }).removeAttr('data-autoresize');
+});
 </script>

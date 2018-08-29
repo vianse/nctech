@@ -364,7 +364,9 @@ $.cookie('politicaid' , politicaID)
 	              <td>
 	              <div>
 	              <div className="text-left"> Objetivo</div>
-	                    <input type="text" className="form-control" id="objetivoPolitica" placeholder="Ingresa el objetivo"/>
+		
+											<textarea rows="2" data-autoresize className="form-control" cols="50" id="objetivoPolitica" placeholder="Ingresa el objetivo">
+										  </textarea>
 	                </div>
 	              </td>
 	              </tr>
@@ -373,7 +375,8 @@ $.cookie('politicaid' , politicaID)
 	              <td>
 	              <div className="text-left"> Alcance</div>
 	              <div>
-	                    <input type="text" className="form-control" id="alcancePolitica" placeholder="Ingresa el alcance"/>
+											<textarea rows="2" data-autoresize className="form-control" cols="50" id="alcancePolitica" placeholder="Ingresa el alcance">
+										  </textarea>
 	                </div>
 	              </td>
 	              </tr>
@@ -425,13 +428,13 @@ $.cookie('politicaid' , politicaID)
 							<table className="table" style={{backgroundColor:"#FFF"}}>
 								<thead>
 									<tr>
-										<th className="text-left" colSpan="3">GRUPO / DESCRIPCIÓN</th>
+										<th className="text-left" colSpan="3">GRUPO</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr ng-repeat="participante in minuta.participantes" className="ng-scope">
 										<td><div className="text-left"> Grupo</div><input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="grupoPolitica"  /></td>
-										<td><div className="text-left"> Descripción</div><input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="descripcionPolitica" /></td>
+										<td><div className="text-left"> </div></td>
 										<td>
                     </td>
 									</tr>
@@ -483,8 +486,8 @@ $.cookie('politicaid' , politicaID)
 	        var participantes = arra.map(function(object){
 	          return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
 
-	                <td>{object.data.areaPolitica}</td>
-	                <td>{object.data.puestoPolitica}</td>
+	                <td className="text-left">{object.data.areaPolitica}</td>
+	              
 
 	              </tr>
 
@@ -511,7 +514,7 @@ $.cookie('politicaid' , politicaID)
   											<option>ATENCION AL CLIENTE</option>
   											<option>XPERTCAD</option>
                       </select></td>
-											<td><div className="text-left"> PUESTO</div><input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="puestoPolitica" /></td>
+											<td></td>
 											<td>
 	                    <a href="javascript:addAreaPolitica();" className="btn btn-success">Agregar Área</a>
 	                    </td>
@@ -521,8 +524,8 @@ $.cookie('politicaid' , politicaID)
 	              <table className="table" style={{backgroundColor:"#FFF"}}>
 	                <thead>
 	                  <tr>
-	                    <th className="text-center">ÁREA</th>
-	                    <th className="text-center">PUESTO</th>
+	                    <th className="text-left">ÁREA</th>
+	                    
 	                  </tr>
 	                </thead>
 	                <tbody>
@@ -847,11 +850,11 @@ function addAreaPolitica(){
       if(firebaseUser) {
                     var user    = firebaseUser.uid;
                     var areaPolitica = $("#areaPolitica").val();
-                    var puestoPolitica = $("#puestoPolitica").val();
+               
                     var database = firebase.database();
                           var objeto = {
                                areaPolitica: areaPolitica,
-                               puestoPolitica: puestoPolitica,
+                             
                                politicaid: politicaID,
                                usuario: user,
                           }
@@ -881,7 +884,7 @@ function addPolitica(){
                         var objetivoPolitica = $("#objetivoPolitica").val();
                         var alcancePolitica = $("#alcancePolitica").val();
                         var grupoPolitica = $("#grupoPolitica").val();
-                        var descripcionPolitica = $("#descripcionPolitica").val();
+                        
                         var emitio = $("#quienemitioPolitica").val();
                         var database = firebase.database();
                               var objeto = {
@@ -889,7 +892,7 @@ function addPolitica(){
                                    objetivoPolitica: objetivoPolitica,
                                    alcancePolitica: alcancePolitica,
                                    grupoPolitica: grupoPolitica,
-                                   descripcionPolitica: descripcionPolitica,
+                                  
                                    emitio: emitio,
                                    politicaid: politicaID,
 																	 usuario: userName,
@@ -982,5 +985,14 @@ function notification(campo){
           }
         });
         notification.show();
-  }
+	}
+	
+	jQuery.each(jQuery('textarea[data-autoresize]'), function() {
+    var offset = this.offsetHeight - this.clientHeight;
+ 
+    var resizeTextarea = function(el) {
+        jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset);
+    };
+    jQuery(this).on('keyup input', function() { resizeTextarea(this); }).removeAttr('data-autoresize');
+});
 </script>
