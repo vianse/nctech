@@ -119,7 +119,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<div class="col-sm-12 text-center">
-					<h3 class="modal-title ng-binding" id="modal-title">Version Minuta </h3>
+					<h3 class="modal-title ng-binding" id="modal-title">Versiones Procedimientos </h3>
 				</div>
 			</div>
 			<div class="modal-body" id="modal-body">
@@ -153,8 +153,6 @@
 </body></html>
 
 <script>
-
-
 
 firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -341,7 +339,7 @@ class Minutas extends React.Component{
 									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.usuario}
 									</td>
-									<td  className="ng-scope gris2 even text-left" role="row">
+									<td  className="ng-scope gris2 even" role="row">
 									{object.data.fechaModificacion}
 									</td>
 						<td  className="ng-scope gris2 even" role="row">
@@ -378,7 +376,7 @@ class Minutas extends React.Component{
 								<th className="text-left">Persona resposnable</th>
 								<th className="text-left">Versión</th>
 								<th className="text-left">Usuario</th>
-								<th className="text-left">Fecha Modificación</th>
+								<th >Fecha Modificación</th>
 								<th className="sorting_disabled" tabindex="0" aria-controls="DataTables_Table_30" rowspan="1" colspan="1" aria-label="" style={{width: "216px"}}></th>
 							</tr>
 						</thead>

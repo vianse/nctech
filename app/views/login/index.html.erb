@@ -225,13 +225,14 @@ firebase.auth().onAuthStateChanged( user => {
   console.log(user);
 if(user) {
   // User is signed in.
-    console.log(user);
+    console.log(user.metadata.lastSignInTime);
     var database = firebase.database();
     var objeto = {
                 nombre: user.displayName,
                 correo: user.email,
                 foto: user.photoURL,
                 uid: user.uid,
+                ultimaSesion:moment(user.metadata.lastSignInTime).format('L'),
 								estatus: "Activo"
                 }
 

@@ -266,12 +266,11 @@ $.cookie('checkid' , checklistID)
 
                   });
 
-
-                var posicion = checklistID.indexOf("_");
+               var posicion = checklistID.indexOf("_");
                var minutanumero = checklistID.substring(0,posicion);
                var aumento = Number($.cookie("versionCheckList")) + 1
                var res = checklistID.replace(checklistID, minutanumero + "_Version_" + aumento);
-                var ref = database.ref("accesoChecklist");
+               var ref = database.ref("accesoChecklist");
                     ref.orderByChild("checkid").startAt(minutanumero).endAt(res).on('child_added', snap => {
                     const newReceta = {
                         id: snap.key,
@@ -631,7 +630,7 @@ function addProcedimiento(){
                               var objeto = {
                                    nombreChecklist: nombreProyecto,
                                    responsableChecklist: responsableChecklist,
-                                   terminoChecklist: terminoChecklist,
+                                   terminoChecklist: moment(terminoChecklist).format('L'),
                                    checkid: checklistID,
 																	 usuario: userName,
                                    usuarioID: user,

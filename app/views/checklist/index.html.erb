@@ -443,7 +443,7 @@ function modal(id){
 										{object.data.responsableChecklist}
 										</td>
 										<td  className="ng-scope gris2 even" role="row">
-										{object.data.terminoChecklist}
+										{moment(object.data.terminoChecklist).format('L')}
 										</td>
 										<td  className="ng-scope gris2 even" role="row">
 										{i + 1}

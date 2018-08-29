@@ -424,11 +424,9 @@ $.cookie('procedimientoid' , procedimientoID)
         var arra = this.state.data1
         var participantes = arra.map(function(object){
           return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
-
-                <td className="text-left">{object.data.lineamientos}</td>
-                <td className="text-left">{object.data.objetivos}</td>
-
-              </tr>
+                		<td className="text-left">{object.data.lineamientos}</td>
+                		<td className="text-left">{object.data.objetivos}</td>
+              		</tr>
 
         })
 
@@ -482,13 +480,11 @@ $.cookie('procedimientoid' , procedimientoID)
 	           data:[],
 	           data1:[],
 	         }
-
-	         }
+			}
 
 
 	    componentWillMount(){
 	      var database = firebase.database();
-
 	      var ref = database.ref("procesodetallado");
 	          ref.orderByChild("procedimientoid").equalTo(procedimientoID).on('child_added', snap => {
 	          const newReceta = {
@@ -503,22 +499,16 @@ $.cookie('procedimientoid' , procedimientoID)
 	              console.log(this.state.data1);
 	          });
 	    }
-
-
 	    render() {
 	        var arra = this.state.data1
 	        var participantes = arra.map(function(object){
 	          return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
-
-	                <td className="text-left">{object.data.pasos}</td>
-	                <td className="text-left">{object.data.area}</td>
-
-	              </tr>
-
+	                	<td className="text-left">{object.data.pasos}</td>
+	               		<td className="text-left">{object.data.area}</td>
+	              	</tr>
 	        })
 
 	        return (
-
 	          <div>
 								<table className="table" style={{backgroundColor:"#FFF"}}>
 									<thead>
@@ -531,7 +521,7 @@ $.cookie('procedimientoid' , procedimientoID)
 
 											<td><div className="text-left"> PASOS</div><input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="pasos"  /></td>
 
-											<td><div className="text-left"> ÁREA / PUESTO RESPONSABLE</div><input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="areas" /></td>
+											<td><div className="text-left"> DESCRIPCIÓN / PUESTO RESPONSABLE</div><input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="areas" /></td>
 											<td>
 	                    <a href="javascript:addProcesoDetallado();" className="btn btn-success">Agregar Proceso</a>
 	                    </td>
@@ -542,7 +532,7 @@ $.cookie('procedimientoid' , procedimientoID)
 	                <thead>
 	                  <tr>
 	                    <th className="text-center">PASOS</th>
-	                    <th className="text-center">ÁREA / PUESTO RESPONSABLE</th>
+	                    <th className="text-center">DESCRIPCIÓN / PUESTO RESPONSABLE</th>
 	                  </tr>
 	                </thead>
 	                <tbody>
@@ -595,16 +585,11 @@ $.cookie('procedimientoid' , procedimientoID)
 	        var arra = this.state.data1
 	        var participantes = arra.map(function(object){
 	          return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
-
-	                <td>{object.data.requerimeintos}</td>
-	                
-
-	              </tr>
+	               		 <td>{object.data.requerimeintos}</td>
+	              	 </tr>
 
 	        })
-
 	        return (
-
 	          <div>
 								<table className="table" style={{backgroundColor:"#FFF"}}>
 									<thead>
@@ -614,10 +599,7 @@ $.cookie('procedimientoid' , procedimientoID)
 									</thead>
 									<tbody>
 										<tr ng-repeat="participante in minuta.participantes" className="ng-scope">
-
 											<td><div className="text-left"> REQUERIMIENTOS</div><input type="text" className="form-control ng-pristine ng-untouched ng-valid ng-empty" id="requerimeintos"  /></td>
-
-											
 											<td>
 	                    <a href="javascript:addCheckList();" className="btn btn-success">Agregar Requerimiento</a>
 	                    </td>
@@ -628,11 +610,10 @@ $.cookie('procedimientoid' , procedimientoID)
 	                <thead>
 	                  <tr>
 	                    <th className="text-center">REQUERIMIENTOS</th>
-	                    
 	                  </tr>
 	                </thead>
 	                <tbody>
-	                {participantes}
+	                	{participantes}
 	                </tbody>
 	              </table>
 							</div>

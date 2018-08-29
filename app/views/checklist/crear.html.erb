@@ -112,33 +112,28 @@
 			<div class="col-md-10 text-center color-blanco">
 				<div class="row">
 					<div class="col-md-4 text-left">
-<button class="btn btn-xs btn-default color-blanco btn-atras" style="background-color: transparent;" onClick="javascript:redirecciona('/checklist');"><svg class="svg-inline--fa fa-arrow-alt-circle-left fa-w-16 fa-2x color-blanco" aria-hidden="true" data-prefix="fa" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z"></path></svg><!-- <i class="fa fa-arrow-alt-circle-left fa-2x color-blanco"></i> --></button>					</div>
-					<!-- ngIf: !isEdit --><div class="col-md-4 text-center ng-scope" ng-if="!isEdit"><h3>AGREGAR CHECKLIST</h3></div><!-- end ngIf: !isEdit -->
-					<!-- ngIf: isEdit -->
+          <button class="btn btn-xs btn-default color-blanco btn-atras" style="background-color: transparent;" onClick="javascript:redirecciona('/checklist');"><svg class="svg-inline--fa fa-arrow-alt-circle-left fa-w-16 fa-2x color-blanco" aria-hidden="true" data-prefix="fa" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z"></path></svg><!-- <i class="fa fa-arrow-alt-circle-left fa-2x color-blanco"></i> --></button>					</div>
+					<div class="col-md-4 text-center ng-scope" ng-if="!isEdit"><h3>CHECKLIST</h3></div>
 					<div class="col-md-4"></div>
 				</div>
-
-
-					<div class="row">
+				<div class="row">
 						<div class="col-md-12">
               <div id="cabeceraProcedimientos">
               </div>
 						</div>
-					</div>
-
-          <div class="row">
+				</div>
+        <div class="row">
 						<div class="col-md-12">
-
               <div id="botoncrear">
               </div>
 						</div>
-					</div>
+				</div>
 
-			</div><!---colmd10-->
-		</div><!--row-->
-	</div><!--soy90-->
+			</div>
+		</div>
+	</div>
 	<!--<div id="log-int2"><img src="assets/images/logotipo-nctech.png"></div>-->
-</div><!--gral-->
+</div>
 
 
 <!--Modal Versionamiento de Procedimiento-->
@@ -177,31 +172,25 @@
 	<div class="page-loading-overlay loaded">
 		<div class="loader-2"></div>
 	</div>
-
-
-
-
-</body></html>
+</body>
+</html>
 
 <script>
-firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          $("#usuario").text(user.displayName);
+    firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+              $("#usuario").text(user.displayName);
 
-        } else {
-          window.location.href = "/login"
-        }
-      });
-
-
-
+            } else {
+              window.location.href = "/login"
+            }
+    });
 </script>
 <script type="text/jsx">
 
 
-/* Script para obtener los parametros de la URL
-*
-*/
+/* 
+ *   Script para obtener los parametros de la URL
+ */
 
 var getUrlParameter = function getUrlParameter(sParam) {
 var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -222,7 +211,7 @@ var checklistID = getUrlParameter('id');
 $.cookie('checkid' , checklistID)
 
 
-	class Procedimientos extends React.Component{
+class Procedimientos extends React.Component{
 	    constructor(props) {
 	         super(props);
 	         this.state = {
@@ -249,9 +238,7 @@ $.cookie('checkid' , checklistID)
 	                  this.setState({
 	                       data: this.state.data, arr:newArr
 	                  });
-
 	              });
-
 
                 var ref = database.ref("accesoChecklist");
                     ref.orderByChild("checkid").equalTo(checklistID).on('child_added', snap => {
@@ -265,12 +252,9 @@ $.cookie('checkid' , checklistID)
                              data1: this.state.data1, arr:newArr
                         });
                         console.log(this.state.data1);
-                    });
+                });
 
-
-
-
-                    var ref = database.ref("checklistChecklist");
+                var ref = database.ref("checklistChecklist");
                         ref.orderByChild("checkid").equalTo(checklistID).on('child_added', snap => {
                         const newReceta = {
                             id: snap.key,
@@ -283,16 +267,9 @@ $.cookie('checkid' , checklistID)
                             });
                             console.log(this.state.data2);
                         });
-
-
-
-
-	              }
-	            });
-
+	                  }
+	               });
 	        }
-
-
 	    render() {
 
         var arra = this.state.data2
@@ -608,7 +585,7 @@ function addProcedimiento(){
                               var objeto = {
                                    nombreChecklist: nombreProyecto,
                                    responsableChecklist: responsableChecklist,
-                                   terminoChecklist: terminoChecklist,
+                                   terminoChecklist: moment(terminoChecklist).format('L'),
                                    checkid: checklistID,
 																	 usuario: userName,
                                    usuarioID: user,

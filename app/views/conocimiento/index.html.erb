@@ -388,7 +388,9 @@ class Body extends React.Component{
 		var arr = this.state.data
 		var options = arr.map(function(object, i){
 		var url = "editar/minuta?id=" + object.id
-		var url_ver = "ver/knowledge_base?id=" + object.id
+        var url_ver = "ver/knowledge_base?id=" + object.id
+        var recorte = object.data.descripcion.substr(0,50)
+        var recorteNombre = object.data.nombre.substr(0,50)
 				return  <tr>
 							<td className="ng-scope gris2 even text-left" role="row">
 								{object.data.fecha}
@@ -397,10 +399,10 @@ class Body extends React.Component{
 								{object.data.autor}
 							</td>
 							<td  className="ng-scope gris2 even text-left" role="row">
-								{object.data.nombre}
+                            {recorteNombre}
 							</td>
 							<td  className="ng-scope gris2 even text-left" role="row">
-								{object.data.descripcion}
+								{recorte}
 							</td>
 							<td  className="ng-scope gris2 even text-left" role="row">
 								{object.data.categoria}

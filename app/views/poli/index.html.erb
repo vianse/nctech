@@ -195,16 +195,50 @@ class Link extends React.Component{
 				 data:[],
 
 			 }
+	}
+	componentWillMount(){
+		firebase.auth().onAuthStateChanged( firebaseUser => {
+				if(firebaseUser) {
+					var database = firebase.database();
+					var user     = firebaseUser.uid;
+					var ref = database.ref("usuarios").child(user);
+							ref.once('value', snap => {
+							const rol = {
+									data: snap.val().rol,
+							};
+							
+							var ref = database.ref("grupos");
+							ref.orderByChild("grupo").equalTo(rol.data).on('child_added', snap => {
+							const agregarMinuta = {
+									data: snap.val().agregarMinuta,
+							};
+							this.setState({
+								addMinuta: agregarMinuta.data
+							})
+							console.log(agregarMinuta)
+							});
+						});
 
-			 }
-
+					}
+			});
+	}
 	render() {
+		var add = this.state.addMinuta
 		var url = "/politicas/crear?id=" + moment().unix();
+		if(add === "Sí"){
 			return (
 
 				<a href={url} className="btn btn-sm btn-success float-right ng-scope" id="addMinuta">Agregar Politicas</a>
 
 			)
+		}
+	else{
+		return (
+
+			<div></div>
+
+		)
+		}
 		}
 }
 
@@ -217,9 +251,12 @@ class Minutas extends React.Component{
 			 super(props);
 			 this.state = {
 				 data:[],
-         data1:[],
+         		 data1:[],
 				 text: '',
-				 limitar: ''
+				 limitar: '',
+				 ver:"",
+				 editar:"",
+				 versiones: ""
 			 }
 			 this.buscar = this.buscar.bind(this);
 			 this.limitar = this.limitar.bind(this);
@@ -248,7 +285,34 @@ class Minutas extends React.Component{
 
 			}
       componentDidMount(){
+		firebase.auth().onAuthStateChanged( firebaseUser => {
+			if(firebaseUser) {
+				var database = firebase.database();
+				var user     = firebaseUser.uid;
+				var ref = database.ref("usuarios").child(user);
+						ref.once('value', snap => {
+						const rol = {
+								data: snap.val().rol,
+						};
+						
+						var ref = database.ref("grupos");
+						ref.orderByChild("grupo").equalTo(rol.data).on('child_added', snap => {
+						const agregarMinuta = {
+								ver: snap.val().verMinuta,
+								editar: snap.val().editarMinuta,
+								versiones: snap.val().versionesMinuta,
+						};
+						this.setState({
+							ver: agregarMinuta.ver,
+							editar: agregarMinuta.editar,
+							versiones: agregarMinuta.versiones
+						})
+						console.log(agregarMinuta)
+						});
+					});
 
+				}
+		});
       }
 		ordenar(campo){
 				this.setState({
@@ -341,13 +405,43 @@ class Minutas extends React.Component{
 		var buscar = this.buscar.bind(this)
 		var limitar = this.limitar.bind(this)
 		var pasar = this.pasar.bind(this)
-    var pasar1 = this.pasar1.bind(this)
-
+   		var pasar1 = this.pasar1.bind(this)
+		var ver = this.state.ver
+		var editar = this.state.editar
+		var versiones = this.state.versiones
 		var arr = this.state.data
-			var options = arr.map(function(object, i){
-				var url = "editar/politica?id=" + object.id
-				var url_ver = "ver/politicas?id=" + object.id
-        var ids = "clase_" + object.id
+		var options = arr.map(function(object, i){
+		var url = "editar/politica?id=" + object.id
+		var url_ver = "ver/politicas?id=" + object.id
+		var ids = "clase_" + object.id
+		
+
+		if(ver === "Sí"){
+			var verSi = <button className="btn btn-sm btn-info ng-scope" data-toggle="modal" data-target="#modal-versionMinuta" onClick={()=>pasar(object.id,object.data.nombrePolitica)}>
+			<svg className="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" data-prefix="fa" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
+			<path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z">
+			</path>
+			</svg>
+			</button>
+		}
+	   if(editar === "Sí"){
+		var editarSi = <a href={url} className="btn btn-sm btn-primary ng-scope">
+			<svg className="svg-inline--fa fa-edit fa-w-18" aria-hidden="true" data-prefix="fa" data-icon="edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+				<path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z">
+				</path>
+			</svg>
+			</a>
+		}
+	   if(editar === "Sí"){
+		var versionesSi =<button className="btn btn-sm btn-default ng-scope" data-toggle="modal" data-target="#modal-versionMinuta1" onClick={()=>pasar1(object.id,object.data.nombrePolitica)}>
+			<svg className="svg-inline--fa fa-users fa-w-20" aria-hidden="true" data-prefix="fa" data-icon="users" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg="">
+			<path fill="currentColor" d="M320 64c57.99 0 105 47.01 105 105s-47.01 105-105 105-105-47.01-105-105S262.01 64 320 64zm113.463 217.366l-39.982-9.996c-49.168 35.365-108.766 27.473-146.961 0l-39.982 9.996C174.485 289.379 152 318.177 152 351.216V412c0 19.882 16.118 36 36 36h264c19.882 0 36-16.118 36-36v-60.784c0-33.039-22.485-61.837-54.537-69.85zM528 300c38.66 0 70-31.34 70-70s-31.34-70-70-70-70 31.34-70 70 31.34 70 70 70zm-416 0c38.66 0 70-31.34 70-70s-31.34-70-70-70-70 31.34-70 70 31.34 70 70 70zm24 112v-60.784c0-16.551 4.593-32.204 12.703-45.599-29.988 14.72-63.336 8.708-85.69-7.37l-26.655 6.664C14.99 310.252 0 329.452 0 351.477V392c0 13.255 10.745 24 24 24h112.169a52.417 52.417 0 0 1-.169-4zm467.642-107.09l-26.655-6.664c-27.925 20.086-60.89 19.233-85.786 7.218C499.369 318.893 504 334.601 504 351.216V412c0 1.347-.068 2.678-.169 4H616c13.255 0 24-10.745 24-24v-40.523c0-22.025-14.99-41.225-36.358-46.567z">
+			</path>
+			</svg>
+			</button>
+		}
+
+
         estado(object.data.politicaid);
 				return  <tr>
 									<td  className="ng-scope gris2 even text-left" role="row">
@@ -365,32 +459,18 @@ class Minutas extends React.Component{
 									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.usuario}
 									</td>
-									<td  className="ng-scope gris2 even text-left "  role="row">
+									<td  className="ng-scope gris2 even"  role="row">
 									{object.data.fechaModificacion}
 									</td>
-                 					 <td  className="ng-scope gris2 even" role="row">
+                 					 <td  className="ng-scope gris2 even text-left" role="row">
 									<div id={ids}></div>
 									</td>
 									<td className="ng-scope gris2 even" role="row">
-											<button className="btn btn-sm btn-info ng-scope" data-toggle="modal" data-target="#modal-versionMinuta" onClick={()=>pasar(object.id,object.data.nombrePolitica)}>
-											<svg className="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" data-prefix="fa" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
-											<path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z">
-											</path>
-											</svg>
-											</button>
-											<a href={url} className="btn btn-sm btn-primary ng-scope">
-											<svg className="svg-inline--fa fa-edit fa-w-18" aria-hidden="true" data-prefix="fa" data-icon="edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
-												<path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z">
-												</path>
-											</svg>
-											</a>
-											<button className="btn btn-sm btn-default ng-scope" data-toggle="modal" data-target="#modal-versionMinuta1" onClick={()=>pasar1(object.id,object.data.nombrePolitica)}>
-											<svg className="svg-inline--fa fa-users fa-w-20" aria-hidden="true" data-prefix="fa" data-icon="users" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg="">
-											<path fill="currentColor" d="M320 64c57.99 0 105 47.01 105 105s-47.01 105-105 105-105-47.01-105-105S262.01 64 320 64zm113.463 217.366l-39.982-9.996c-49.168 35.365-108.766 27.473-146.961 0l-39.982 9.996C174.485 289.379 152 318.177 152 351.216V412c0 19.882 16.118 36 36 36h264c19.882 0 36-16.118 36-36v-60.784c0-33.039-22.485-61.837-54.537-69.85zM528 300c38.66 0 70-31.34 70-70s-31.34-70-70-70-70 31.34-70 70 31.34 70 70 70zm-416 0c38.66 0 70-31.34 70-70s-31.34-70-70-70-70 31.34-70 70 31.34 70 70 70zm24 112v-60.784c0-16.551 4.593-32.204 12.703-45.599-29.988 14.72-63.336 8.708-85.69-7.37l-26.655 6.664C14.99 310.252 0 329.452 0 351.477V392c0 13.255 10.745 24 24 24h112.169a52.417 52.417 0 0 1-.169-4zm467.642-107.09l-26.655-6.664c-27.925 20.086-60.89 19.233-85.786 7.218C499.369 318.893 504 334.601 504 351.216V412c0 1.347-.068 2.678-.169 4H616c13.255 0 24-10.745 24-24v-40.523c0-22.025-14.99-41.225-36.358-46.567z">
-											</path>
-											</svg>
-											</button>
+										{verSi}
+										{editarSi}
+										{versionesSi}
 									</td>
+									
 					</tr>
 			})
 			return (
@@ -403,7 +483,7 @@ class Minutas extends React.Component{
 								<th className="text-left">Área que aplica</th>
 								<th className="text-left">Emisor</th>
 								<th className="text-left">Usuario</th>
-								<th className="text-left">Fecha Modificación</th>
+								<th>Fecha Modificación</th>
                 				<th className="text-left">Aceptada</th>
                 				<th className="sorting_disabled" tabindex="0" aria-controls="DataTables_Table_30" rowspan="1" colspan="1" aria-label="" style={{width: "216px"}}></th>
 							</tr>
