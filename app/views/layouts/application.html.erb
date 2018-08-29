@@ -1,283 +1,341 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Nctech</title>
-    <%= csrf_meta_tags %>
+
+<head>
+  <title>Nctech</title>
+  <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://nctech.com.mx/assets/page/img/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://nctech.com.mx/assets/page/img/favicon.ico" />
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://nctech.com.mx/assets/page/img/favicon.ico" />
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://nctech.com.mx/assets/page/img/favicon.ico" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://nctech.com.mx/assets/page/img/favicon.ico" />
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://nctech.com.mx/assets/page/img/favicon.ico" />
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://nctech.com.mx/assets/page/img/favicon.ico" />
-    <link rel="icon" type="image/ico" href="https://nctech.com.mx/assets/page/img/favicon.ico" sizes="32x32" />
-    <link rel="icon" type="image/ico" hhref="https://nctech.com.mx/assets/page/img/favicon.ico" sizes="16x16" />
-    
-  </head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <script src="https://res.cloudinary.com/dnubgpeun/raw/upload/v1510457490/js/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="https://res.cloudinary.com/dnubgpeun/raw/upload/v1510457086/vendor/jquery.flexslider-min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-  <script type="text/javascript" src="https://res.cloudinary.com/dnubgpeun/raw/upload/v1510457086/vendor/jquery.fancybox.js"></script>
-  <script type="text/javascript" src="https://res.cloudinary.com/dnubgpeun/raw/upload/v1510457086/vendor/custom.fancybox.js"></script>
-  <script src="https://unpkg.com/react@15.0.0/dist/react.js"></script>
-  <script src="https://fb.me/react-15.0.0.min.js"></script>
-  <script src="https://fb.me/react-dom-15.0.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
-  <script src="https://rawgit.com/arqex/react-json/master/build/Json.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/locale/es.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://nctech.com.mx/assets/page/img/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://nctech.com.mx/assets/page/img/favicon.ico" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://nctech.com.mx/assets/page/img/favicon.ico" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://nctech.com.mx/assets/page/img/favicon.ico" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://nctech.com.mx/assets/page/img/favicon.ico" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://nctech.com.mx/assets/page/img/favicon.ico" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://nctech.com.mx/assets/page/img/favicon.ico" />
+        <link rel="icon" type="image/ico" href="https://nctech.com.mx/assets/page/img/favicon.ico" sizes="32x32" />
+        <link rel="icon" type="image/ico" hhref="https://nctech.com.mx/assets/page/img/favicon.ico" sizes="16x16" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+        <script src="https://res.cloudinary.com/dnubgpeun/raw/upload/v1510457490/js/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+        <script src="https://res.cloudinary.com/dnubgpeun/raw/upload/v1510457086/vendor/jquery.flexslider-min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+        <script type="text/javascript" src="https://res.cloudinary.com/dnubgpeun/raw/upload/v1510457086/vendor/jquery.fancybox.js"></script>
+        <script type="text/javascript" src="https://res.cloudinary.com/dnubgpeun/raw/upload/v1510457086/vendor/custom.fancybox.js"></script>
+        <script src="https://unpkg.com/react@15.0.0/dist/react.js"></script>
+        <script src="https://fb.me/react-15.0.0.min.js"></script>
+        <script src="https://fb.me/react-dom-15.0.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+        <script src="https://rawgit.com/arqex/react-json/master/build/Json.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/locale/es.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+</head>
+
+
 <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyDo6Nf734iNR7FoNURu-5xqzqJodV_BYLw",
-      authDomain: "intranet-10d95.firebaseapp.com",
-      databaseURL: "https://intranet-10d95.firebaseio.com",
-      projectId: "intranet-10d95",
-      storageBucket: "intranet-10d95.appspot.com",
-      messagingSenderId: "9632688031"
-    };
-    firebase.initializeApp(config);
-    var storage = firebase.storage();
-  </script>
- 
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDo6Nf734iNR7FoNURu-5xqzqJodV_BYLw",
+    authDomain: "intranet-10d95.firebaseapp.com",
+    databaseURL: "https://intranet-10d95.firebaseio.com",
+    projectId: "intranet-10d95",
+    storageBucket: "intranet-10d95.appspot.com",
+    messagingSenderId: "9632688031"
+  };
+  firebase.initializeApp(config);
+  var storage = firebase.storage();
+</script>
 
-
-  <style>
+<style>
   /* Hoja de estilos para sitio Endomarketing NC Tech
-  Autor: Vianse
-  Fecha de craciÃ³n: 1 Agosto 2018
-  */
+    Autor: Vianse
+    Fecha de craciÃ³n: 1 Agosto 2018
+    */
   html {
     min-height: 100%;
     position: relative;
   }
 
+  @font-face {
+    font-family: 'HelveticaNeueLTStd-LtEx';
+    src: url('/assets/HelveticaNeueLTStd-LtEx.eot');
+    src: url('/assets/HelveticaNeueLTStd-LtEx.eot?#iefix') format('embedded-opentype'),
+    url('/assets/HelveticaNeueLTStd-LtCn.otf') format('otf'),
+    url('/assets/HelveticaNeueLTStd-LtEx.svg#a_sensible_armadilloregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
 
-  @font-face {  
-        font-family: 'HelveticaNeue';  
-        src: url('/assets/para/HelveticaNeue.eot');  
-        src: url('/assets/para/HelveticaNeue.eot?#iefix') format('embedded-opentype'),  
-           
-          url('/assets/para/HelveticaNeue.otf') format('otf'), 
-         url('/assets/para/HelveticaNeue.svg#a_sensible_armadilloregular') format('svg');  
-        font-weight: normal;  
-        font-style: normal;  
-     }  
-     .content p {  
-        font-family: 'HelveticaNeue';  
-        font-size: 42px;  
-     }  
+  .content p {
+    font-family: "HelveticaNeueLTStd-LtEx", Helvetica, Arial, sans-serif !important;
+    font-size: 42px;
+  }
 
-  body{
-  	margin:0;
-  	padding:0;
-  	background-image: url("https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Fbg-sitio-interior.jpg?alt=media&token=a8a6603f-20e7-48ee-b457-3ca14736c9bc");
-  	background-size: cover;
-  	background-attachment: fixed;
-  	background-position: center bottom;
-  	font-family: 'Helvetica Neue', sans-serif;
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Fbg-sitio-interior.jpg?alt=media&token=a8a6603f-20e7-48ee-b457-3ca14736c9bc");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center bottom;
+    font-family: "HelveticaNeueLTStd-Lt", Helvetica, Arial, sans-serif !important;
     margin-bottom: 100px;
   }
-  .ocultar{
-    display:none!important;
+
+  .ocultar {
+    display: none !important;
   }
-  .dropdown-item{
-    font-size: 12px!important;
-    font-family: 'Helvetica Neue', sans-serif;
+
+  .dropdown-item {
+    font-size: 12px !important;
+    font-family: "HelveticaNeueLTStd-LtCn", Helvetica, Arial, sans-serif !important;
   }
-  a{
-    font-family: 'Helvetica Neue', sans-serif;
+
+  a {
+    font-family: "HelveticaNeueLTStd-LtCn", Helvetica, Arial, sans-serif !important;
   }
+
   .ng-binding {
-    font-family: 'Helvetica Neue', sans-serif!important;
-    font-size: 14px!important;
+    font-family: "HelveticaNeueLTStd-LtCn", Helvetica, Arial, sans-serif !important;
+    font-size: 14px !important;
   }
-  h3{
-    font-family: 'Helvetica Neue', sans-serif;
+
+  h3 {
+    font-family: "HelveticaNeueLTStd-LtCn", Helvetica, Arial, sans-serif !important;
   }
-  td{
-    font-family: 'Helvetica Neue', sans-serif;
+
+  h4 {
+    font-family: "HelveticaNeueLTStd-LtCn", Helvetica, Arial, sans-serif !important;
   }
-  #usuario{
-    font-size: 14px!important;
-    font-family: 'Helvetica Neue', sans-serif!important;
+
+  td {
+    font-family: "HelveticaNeueLTStd-LtCn", Helvetica, Arial, sans-serif !important;
   }
-  button{
-    font-family: 'Helvetica Neue', sans-serif!important;
+
+  #usuario {
+    font-size: 14px !important;
+    font-family: "HelveticaNeueLTStd-LtCn", Helvetica, Arial, sans-serif !important;
   }
-  .men{
-		left:-50px!important;
-	}
-	.dropdown-item:hover{
-		background-color:#4C5C68!important;
-	}
-  #gral{
-  	width: 100%;
-  	float: left;
+
+  button {
+    font-family: "HelveticaNeueLTStd-LtCn", Helvetica, Arial, sans-serif !important;
   }
-  .soy90{
+  button.dropdown-item {
+    font-family: "HelveticaNeueLTStd-LtCn", Helvetica, Arial, sans-serif !important;
+  }
+  .subm .dropdown-item {
+    font-family: "HelveticaNeueLTStd-LtCn", Helvetica, Arial, sans-serif !important;
+  }
+
+  .men {
+    left: -50px !important;
+  }
+
+  .dropdown-item:hover {
+    background-color: #4C5C68 !important;
+  }
+
+  #gral {
+    width: 100%;
+    float: left;
+  }
+
+  .soy90 {
     width: 90%;
     margin: 0 auto;
   }
-  .cont100{
-  	width: 100%;
-  	float: left;
-  	margin: 0 auto;
-  	display: inline-block;
-  }
-  #logotipo{
-    margin: 3% 5% 0 0;
-  	width: 25%;
-  	font-size: 30px;
-  	color: #fff;
-  	text-align: left;
-  }
-  .fecha{
-    line-height: 20!important;
-  }
-  #logotipo img{
-  	width: 100%;
+
+  .cont100 {
+    width: 100%;
     float: left;
-  }
-  #logotipo span{
-    float: left;
-  	margin-top: 20px;
-  }
-  #logotipo #sub{
-  	margin-left: 40%;
-  }
-  .subsub{
-  	display: none;
-  	text-align: center;
-  	color: #fff;
-  	font-size: 30px;
-  	margin-top: 3%;
-  }
-  #frase{
-      margin-top: 7%;
-      width: 100%;
-      /* margin-left: -200px; */
-      height: 60px;
-      /* margin-top: -150px; */
-      padding: 5px;
-      font-size: 36px;
-      opacity: 0.7;
-      color: #fff;
-      text-align: center;
-      float: left;
-      padding: 0 3%;
+    margin: 0 auto;
+    display: inline-block;
   }
 
-  #entrar{
-  	width: 70%;
-  	color: #fff;
+  #logotipo {
+    margin: 3% 5% 0 0;
+    width: 25%;
+    font-size: 30px;
+    color: #fff;
+    text-align: left;
+  }
+
+  .fecha {
+    line-height: 20 !important;
+  }
+
+  #logotipo img {
+    width: 100%;
+    float: left;
+  }
+
+  #logotipo span {
+    float: left;
+    margin-top: 20px;
+  }
+
+  #logotipo #sub {
+    margin-left: 40%;
+  }
+
+  .subsub {
+    display: none;
+    text-align: center;
+    color: #fff;
+    font-size: 30px;
+    margin-top: 3%;
+  }
+
+  #frase {
+    margin-top: 7%;
+    width: 100%;
+    /* margin-left: -200px; */
+    height: 60px;
+    /* margin-top: -150px; */
+    padding: 5px;
+    font-size: 36px;
+    opacity: 0.7;
+    color: #fff;
+    text-align: center;
+    float: left;
+    padding: 0 3%;
+  }
+
+  #entrar {
+    width: 70%;
+    color: #fff;
     float: left;
     margin-top: 10%;
   }
+
   .carousel-indicators li {
-      border-radius: 10px;
-      margin: 1px 3px;
-      height: 10px;
-      max-width: 10px;
-      border: 1px solid #FFF;
-      background-color: transparent;
+    border-radius: 10px;
+    margin: 1px 3px;
+    height: 10px;
+    max-width: 10px;
+    border: 1px solid #FFF;
+    background-color: transparent;
   }
+
   .carousel-indicators .active {
-  	border-radius: 10px;
-      background-color: #fff;
-      max-width: 12px;
-      margin: 0 3px;
-      height: 12px;
+    border-radius: 10px;
+    background-color: #fff;
+    max-width: 12px;
+    margin: 0 3px;
+    height: 12px;
   }
-  .cont-gral{
+
+  .cont-gral {
     padding: 2% 2% 4% 2%;
   }
-  .color-blanco{
+
+  .color-blanco {
     color: #fff;
   }
-  .color-gris{
+
+  .color-gris {
     color: #333;
   }
-  .texto-gris{
-  	color: #646162;
+
+  .texto-gris {
+    color: #646162;
   }
-  .lineadw{
+
+  .lineadw {
     width: 40%;
     height: 8px;
     margin: 10px auto;
   }
-  .linea-roja{
+
+  .linea-roja {
     background-color: #ED1C24;
   }
-  .linea-verde{
+
+  .linea-verde {
     background-color: #39B54A;
   }
-  .linea-morada{
-  	background-color: #662D91;
+
+  .linea-morada {
+    background-color: #662D91;
   }
-  .linea-gris{
+
+  .linea-gris {
     background-color: #BCBEC0;
   }
-  .linea-rosa{
+
+  .linea-rosa {
     background-color: hsl(332, 79%, 58%);
   }
-  .linea-azul{
+
+  .linea-azul {
     background-color: #27AAE1;
   }
-  .linea-naranja{
+
+  .linea-naranja {
     background-color: #F7941D;
   }
-  .linea-amarilla{
+
+  .linea-amarilla {
     background-color: #FFDE17;
   }
-  .linea-azul1{
+
+  .linea-azul1 {
     background-color: #2B3990;
   }
-  .linea-azul2{
+
+  .linea-azul2 {
     background-color: #1B75BC;
   }
-  .linea-azul3{
+
+  .linea-azul3 {
     background-color: #27AAE1;
   }
-  .color-naranja{
+
+  .color-naranja {
     color: #F7941D;
   }
-  .img-responsive{
+
+  .img-responsive {
     width: 100%;
   }
-  .iconoshome{
+
+  .iconoshome {
     width: 25%;
   }
-  #elslide{
+
+  #elslide {
     padding: 0;
     margin: 0px auto 46px;
     width: 1010px;
     height: 200px;
   }
+
   .carousel-inner {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      height: 200px;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 200px;
   }
-  .titulos-home{
+
+  .titulos-home {
     font-size: 19px;
     margin: 10px 0;
     text-decoration: none;
   }
-  .subm{
+
+  .subm {
     top: 0% !important;
     left: 70% !important;
     font-size: 14px;
@@ -290,13 +348,16 @@
     transform: inherit !important;
     border: none;
   }
-  .dropdown-item{
+
+  .dropdown-item {
     background-color: transparent;
   }
-  .dropdown-item:hover{
+
+  .dropdown-item:hover {
     background-color: transparent;
   }
-  .subm .dropdown-item{
+
+  .subm .dropdown-item {
     padding: 4px 10px;
     color: #fff;
     margin: 0;
@@ -304,29 +365,41 @@
     margin-bottom: 2px;
     font-size: 12px;
   }
-  .subm [type=reset], [type=submit], button, html [type=button]{
+
+  .subm [type=reset],
+  [type=submit],
+  button,
+  html [type=button] {
     margin: 0 15px;
   }
-  .subm .dropdown-item:focus, .dropdown-item:hover{
+
+  .subm .dropdown-item:focus,
+  .dropdown-item:hover {
     background-color: #000;
     cursor: pointer;
     text-decoration: none;
   }
-  .subm .titulos-home:focus, .titulos-home:hover{
+
+  .subm .titulos-home:focus,
+  .titulos-home:hover {
     text-decoration: none;
   }
-  #log-int{
+
+  #log-int {
     width: 50%;
     float: left;
   }
-  #log-int img{
+
+  #log-int img {
     width: 100%;
   }
+
   .carousel {
-      position: relative;
-      border: 1px solid #fff;
-      padding: 10px 10px 10px 10px;
+    position: relative;
+    border: 1px solid #fff;
+    padding: 10px 10px 10px 10px;
   }
+
   .carousel-indicators {
     position: absolute;
     right: 0;
@@ -346,30 +419,37 @@
     margin-left: 15%;
     list-style: none;
   }
-  .carousel-indicators .active{
+
+  .carousel-indicators .active {
     background-color: #8DC63F;
     border: 0;
   }
-  .carousel-indicators li{
+
+  .carousel-indicators li {
     background-color: #F7941D;
     border: 0;
   }
-  #log-int2{
+
+  #log-int2 {
     position: absolute;
     right: 3%;
     bottom: 3%;
     width: 15%;
   }
-  #log-int2 img{
+
+  #log-int2 img {
     width: 100%;
   }
-  .txt-pie-fotos{
+
+  .txt-pie-fotos {
     font-size: 20px;
   }
-  #demo-default{
+
+  #demo-default {
     margin: 0 auto;
   }
-  .btn-naranja{
+
+  .btn-naranja {
     color: #fff;
     background-color: #ea983e;
     padding: 10px;
@@ -377,34 +457,47 @@
     -moz-border-radius: 10px 10px 10px 10px;
     -webkit-border-radius: 10px 10px 10px 10px;
   }
-  .btn-naranja:hover{
+
+  .btn-naranja:hover {
     text-decoration: none;
     color: #fff;
   }
-  .img100{
+
+  .img100 {
     width: 100%;
   }
-  .linea-filtro{
+
+  .linea-filtro {
     position: relative;
     margin-top: -100px;
   }
-  .linea-filtro .form-control{
+
+  .linea-filtro .form-control {
     margin: 0 15px;
   }
-  .linea-filtro input[type=checkbox], input[type=radio]{
+
+  .linea-filtro input[type=checkbox],
+  input[type=radio] {
     margin: 0 15px;
   }
-  .linea-filtro [type=reset], [type=submit], button, html [type=button]{
+
+  .linea-filtro [type=reset],
+  [type=submit],
+  button,
+  html [type=button] {
     margin: 0 15px;
   }
-  .icono-int{
+
+  .icono-int {
     margin-bottom: 15px;
     width: 60%;
   }
-  .linea-int{
+
+  .linea-int {
     width: 100%;
   }
-  #sub-izq .dropdown-item{
+
+  #sub-izq .dropdown-item {
     text-align: left;
     color: #fff;
     background-image: url("https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Fbg-negro-transparente.png?alt=media&token=201552a3-99a9-402d-91c4-6586e711b89a");
@@ -412,9 +505,11 @@
     margin: 0 0 2px 0;
     font-size: 12px !important;
   }
-  #sub-izq .dropdown-item:hover{
+
+  #sub-izq .dropdown-item:hover {
     background-color: #000;
   }
+
   .table {
     width: 100%;
     max-width: 100%;
@@ -422,7 +517,8 @@
     border-spacing: 5px;
     border-collapse: separate;
   }
-  thead tr th{
+
+  thead tr th {
     background-color: #F7941D !important;
     color: #fff;
     border: 0 !important;
@@ -432,7 +528,8 @@
     font-size: 12px;
     padding: 3px !important;
   }
-  tbody tr td{
+
+  tbody tr td {
     color: #fff;
     border: 0 !important;
     border-bottom: 0 !important;
@@ -442,73 +539,92 @@
     font-size: 12px;
     padding: 2px !important;
   }
-  .gris1{
+
+  .gris1 {
     background-color: #bbbdbf !important;
   }
-  .gris2{
+
+  .gris2 {
     background-color: #e6e7e7 !important;
   }
-  .gris3{
+
+  .gris3 {
     background-color: #585858 !important;
   }
-  .modal-content{
+
+  .modal-content {
     color: #1c1c1c;
   }
-  #cabecerasitio{
+
+  #cabecerasitio {
     background-image: url("https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Fbg-negro-transparente.png?alt=media&token=201552a3-99a9-402d-91c4-6586e711b89a");
     padding: 1%;
     width: 100%;
     float: left;
     font-size: 14px;
   }
-  #pie-sitio{
-   background-image: url("https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Fbg-negro-transparente.png?alt=media&token=201552a3-99a9-402d-91c4-6586e711b89a");
+
+  #pie-sitio {
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Fbg-negro-transparente.png?alt=media&token=201552a3-99a9-402d-91c4-6586e711b89a");
     padding: 1%;
     width: 100%;
     float: left;
     position: absolute;
     bottom: 0;
     font-size: 11px;
+    font-family: "HelveticaNeueLTStd-LtCn", Helvetica, Arial, sans-serif !important;
   }
-  #sett{
+
+  #sett {
     padding: 5% 0;
   }
-  .sub-head{
+
+  .sub-head {
     background-color: #000;
     color: #fff;
   }
-  .sub-head .dropdown-item{
+
+  .sub-head .dropdown-item {
     color: #fff;
   }
-  .sub-head .dropdown-item:hover{
+
+  .sub-head .dropdown-item:hover {
     color: #000;
     background-color: #fff;
   }
-  .btn-atras{}
-  .mosaico-int .icono-int{
+
+  .btn-atras {}
+
+  .mosaico-int .icono-int {
     width: 38%;
     text-align: center;
   }
-  .mosaico-int .icono-int:hover{
+
+  .mosaico-int .icono-int:hover {
     cursor: pointer;
   }
-  h4{
+
+  h4 {
     font-size: 18px;
   }
-  .btn{
+
+  .btn {
     font-size: 12px;
     padding: 3px 10px;
   }
-  a{
-    color:white!important;
+
+  a {
+    color: white !important;
   }
-  .menu-activo{
+
+  .menu-activo {
     background-image: url("https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Fflecha-activo.png?alt=media&token=6cc14720-c68c-41f5-a642-22fb00a260f8") !important;
     background-repeat: no-repeat;
     background-position: left;
     background-size: cover;
   }
-  #sub-izq .dropdown-item:hover{
+
+  #sub-izq .dropdown-item:hover {
     text-align: left;
     color: #fff;
     background-image: url("https://firebasestorage.googleapis.com/v0/b/intranet-10d95.appspot.com/o/assets%2Fflecha-activo.png?alt=media&token=6cc14720-c68c-41f5-a642-22fb00a260f8") !important;
@@ -519,180 +635,228 @@
     margin: 0 0 2px 0;
     font-size: 12px !important;
   }
-  .logopdf{
+
+  .logopdf {
     padding: 0;
   }
-  .logopdf img{
+
+  .logopdf img {
     width: 80%;
   }
-  .titulopdf{
+
+  .titulopdf {
     padding: 10px 20px;
     color: #fff;
     font-size: 17px;
 
   }
-  #savePDFMinuta{
+
+  #savePDFMinuta {
     padding: 50px 20px;
     margin-bottom: 50px;
   }
-  #savePDFProceso{
+
+  #savePDFProceso {
     padding: 20px;
     margin-bottom: 50px;
   }
-  #savePDFPolitica{
+
+  #savePDFPolitica {
     padding: 20px;
     margin-bottom: 50px;
   }
-  .lineapdf{
+
+  .lineapdf {
     width: 100%;
     height: 2px;
     margin: 10px auto;
   }
-  .celdapdf{
+
+  .celdapdf {
     padding: 0px 0px;
     border: 1px solid #585858;
     font-size: 13px;
   }
-  .celdapdf2{
-      padding: 0 0 0 5px;
-      border: 1px solid #585858;
-      font-size: 13px;
+
+  .celdapdf2 {
+    padding: 0 0 0 5px;
+    border: 1px solid #585858;
+    font-size: 13px;
   }
-  .espaciot{
+
+  .espaciot {
     margin-bottom: 20px;
   }
-  .bg-blanco{
+
+  .bg-blanco {
     background-color: #fff;
     padding: 1%;
   }
-  .bg-blanco h5{
+
+  .bg-blanco h5 {
     background-color: #F7941D;
     margin-bottom: 0;
     padding: 5px 10px 5px 10px;
     font-size: 15px;
   }
-  .form-control{
-  	border-radius: 0;
-      font-size: 13px;
-      padding: 5px 5px;
-      line-height: 0;
+
+  .form-control {
+    border-radius: 0;
+    font-size: 13px;
+    padding: 5px 5px;
+    line-height: 0;
   }
-  textarea.form-control{
-      line-height: 1.5;
+
+  textarea.form-control {
+    line-height: 1.5;
   }
-  .chosen-container-single .chosen-single span{
-    color:#333;
+
+  .chosen-container-single .chosen-single span {
+    color: #333;
   }
-  .diaevento{
+
+  .diaevento {
     height: 200px;
   }
-  .resevento{
+
+  .resevento {
     background-color: #e6e7e7;
     color: #666;
     font-size: 13px;
   }
-  .resevento .row{
+
+  .resevento .row {
     border-bottom: 1px solid #F7941D;
   }
-  .coldia{
+
+  .coldia {
     margin-right: 10px;
   }
-  .tit-mosaico{
+
+  .tit-mosaico {
     font-size: 17px;
   }
-  input, button, select, textarea{
-  	font-size: 11px;
+
+  input,
+  button,
+  select,
+  textarea {
+    font-size: 11px;
   }
-  .left80{
-  	margin-left: -80px;
+
+  .left80 {
+    margin-left: -80px;
   }
-  #sub-izq{
+
+  #sub-izq {
     margin-left: 0 !important;
   }
-  .subtt{
-  	font-size: 13px;
-  	text-align: left;
+
+  .subtt {
+    font-size: 13px;
+    text-align: left;
   }
-  .titt{
+
+  .titt {
     font-size: 15px;
   }
-  .input-sm{
-      margin: 0 8px !important;
-      height: auto !important;
-      padding: 1px !important;
+
+  .input-sm {
+    margin: 0 8px !important;
+    height: auto !important;
+    padding: 1px !important;
   }
-  .page-item{
+
+  .page-item {
     font-size: 13px;
   }
-  .page-item a{
+
+  .page-item a {
     padding: 5px;
     color: gray;
   }
-  .page-item:hover{
+
+  .page-item:hover {
     padding: 5px;
     background-color: transparent !important;
   }
-  .page-item a:hover{
+
+  .page-item a:hover {
     padding: 5px;
     background-color: transparent !important;
   }
-  .page-item.active .page-link{
+
+  .page-item.active .page-link {
     background-color: #F7941D;
     border-color: #F7941D;
   }
-  .angularjs-datetime-picker{
+
+  .angularjs-datetime-picker {
     z-index: 100;
   }
-  .datepicker .datepicker-switch, .datepicker .next, .datepicker .prev, .datepicker tfoot tr th{
+
+  .datepicker .datepicker-switch,
+  .datepicker .next,
+  .datepicker .prev,
+  .datepicker tfoot tr th {
     background-color: white !important;
     color: gray !important;
   }
-  .dow{
+
+  .dow {
     background-color: white !important;
     color: gray !important;
   }
-  .ng-binding{
+
+  .ng-binding {
     font-size: 13px;
   }
-  .btn-success{
+
+  .btn-success {
     margin-top: 10px;
     margin-bottom: 10px;
   }
 
-  .dataTables_info, .dataTables_length, .dataTables_filter, .dataTables_paginate, .paging_simple_numbers{
-    font-size: 13px!important;
+  .dataTables_info,
+  .dataTables_length,
+  .dataTables_filter,
+  .dataTables_paginate,
+  .paging_simple_numbers {
+    font-size: 13px !important;
   }
+
   /*Responsivo*/
+
   @media screen and (max-width: 900px) {
-    #logotipo{
-    	width: 100%;
-    	float: none;
-    	text-align: center;
+    #logotipo {
+      width: 100%;
+      float: none;
+      text-align: center;
     }
-    #logotipo img{
-    	width: 50%;
-    	text-align: center;
+    #logotipo img {
+      width: 50%;
+      text-align: center;
     }
-    #logotipo span{
-    	display: none;
+    #logotipo span {
+      display: none;
     }
-    #logotipo #sub{
-    	display: none;
+    #logotipo #sub {
+      display: none;
     }
-    .subsub{
-    	display: block;
+    .subsub {
+      display: block;
     }
-    #frase{
-    	position: relative;
-    	height: auto;
-    	display: none;
+    #frase {
+      position: relative;
+      height: auto;
+      display: none;
     }
-    #entrar{
-    	width: 100%;
-    	right: 0;
-    	padding: 0 3%;
-    	position: relative;
-    	margin-top: 10%;
+    #entrar {
+      width: 100%;
+      right: 0;
+      padding: 0 3%;
+      position: relative;
+      margin-top: 10%;
     }
     .subm {
       top: 0%;
@@ -708,20 +872,21 @@
       text-align: center;
     }
   }
+
   @media screen and (max-width: 770px) {
-    .icono-int{
+    .icono-int {
       width: 50%;
     }
-    .linea-filtro{
+    .linea-filtro {
       margin: 30px 0;
     }
-    .form-group{
+    .form-group {
       width: 100%;
     }
-    .form-control{
-      width:90%;
+    .form-control {
+      width: 90%;
     }
-    #log-int2{
+    #log-int2 {
       position: relative;
       margin: 40px 0 10px 0;
       /* bottom: 14%; */
@@ -729,10 +894,11 @@
       float: right;
     }
   }
+
   @media screen and (max-width: 500px) {
     body {
-      margin:0;
-      padding:0;
+      margin: 0;
+      padding: 0;
       background-image: url(../images/bg-movil.jpg);
       background-size: contain;
       background-position: center top;
@@ -740,28 +906,31 @@
     }
   }
 
-  a.btn.btn-sm.btn-info.ng-scope{
-    margin-right: 4%!important;
+  a.btn.btn-sm.btn-info.ng-scope {
+    margin-right: 4% !important;
   }
-  a.btn.btn-sm.btn-warning.ng-scope{
-    margin-left: 4%!important;
+
+  a.btn.btn-sm.btn-warning.ng-scope {
+    margin-left: 4% !important;
   }
-  </style>
-    <body class="body">
-      <%= yield %>
-    </body>
+</style>
+
+<body class="body">
+  <%= yield %>
+</body>
+
 </html>
-  <script>
-  function cerrarSesion(){
-    firebase.auth().signOut().then(function() {
+<script>
+  function cerrarSesion() {
+    firebase.auth().signOut().then(function () {
       // Sign-out successful.
       window.location.href = "/login"
       console.log("no logueado");
-    }).catch(function(error) {
+    }).catch(function (error) {
       // An error happened.
     });
   }
-  function redirecciona(url){
+  function redirecciona(url) {
     window.location.href = url
   }
-  </script>
+</script>

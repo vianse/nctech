@@ -8,7 +8,8 @@ class Api::V1::GetUserController <ApplicationController
 skip_before_action :verify_authenticity_token
 	def index
       # organizacion = params[:organizacion]
-       url = "https://intranet-10d95.firebaseio.com/usuarios.json?print=pretty"
+			url = "https://intranet-10d95.firebaseio.com/usuarios.json?print=pretty"
+		 #url = "https://intranet-qa-9b4ac.firebaseio.com/usuarios.json?print=pretty" #calidad
     	 response = RestClient::Request.execute(
 				method: :get,
        			url: url,
