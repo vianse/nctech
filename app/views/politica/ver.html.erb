@@ -384,7 +384,8 @@ class Procedimientos extends React.Component{
               <td>
               <div className="text-left"> Alcance</div>
               <div>
-                    <input type="text" className="form-control" id="alcanceProcedimiento" placeholder="Ingresa el alcance" disabled/>
+                <textarea rows="5"  className="form-control" cols="50" id="alcanceProcedimiento" disabled>
+                </textarea>
                 </div>
               </td>
               </tr>
@@ -439,8 +440,8 @@ class Procedimientos extends React.Component{
         var participantes = arra.map(function(object){
           return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
 
-                <td>{object.data.lineamientos}</td>
-                <td>{object.data.objetivos}</td>
+                <td className="text-left">{object.data.lineamientos}</td>
+                <td className="text-left">{object.data.objetivos}</td>
 
               </tr>
 
@@ -510,8 +511,8 @@ class Procedimientos extends React.Component{
         var participantes = arra.map(function(object){
           return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
 
-                <td>{object.data.pasos}</td>
-                <td>{object.data.area}</td>
+                <td className="text-left">{object.data.pasos}</td>
+                <td className="text-left">{object.data.area}</td>
 
               </tr>
 
@@ -527,8 +528,8 @@ class Procedimientos extends React.Component{
                   <th className="text-left" colSpan="3">PROCESO DETALLADO</th>
                 </tr>
                   <tr>
-                    <th className="text-center">PASOS</th>
-                    <th className="text-center">ÁREA / PUESTO RESPONSABLE</th>
+                    <th className="text-left">PASOS</th>
+                    <th className="text-left">ÁREA / PUESTO RESPONSABLE</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -585,8 +586,8 @@ class Procedimientos extends React.Component{
         var participantes = arra.map(function(object){
           return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
 
-                <td>{object.data.requerimeintos}</td>
-                <td>{object.data.cumplido}</td>
+                <td className="text-left">{object.data.requerimeintos}</td>
+                <td className="text-left">{object.data.cumplido}</td>
 
               </tr>
 
@@ -602,8 +603,8 @@ class Procedimientos extends React.Component{
                   <th className="text-left" colSpan="3">CHECK LIST</th>
                 </tr>
                   <tr>
-                    <th className="text-center">REQUERIMIENTOS</th>
-                    <th className="text-center">CUMPLIDO</th>
+                    <th className="text-left">REQUERIMIENTOS</th>
+                    <th className="text-left">CUMPLIDO</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -772,8 +773,8 @@ class Procedimientos extends React.Component{
         var arra = this.state.data1
         var participantes = arra.map(function(object){
           return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
-                	<td>{object.data.area}</td>
-                	<td>{object.data.responsable}</td>
+                	<td className="text-left">{object.data.area}</td>
+                	<td className="text-left">{object.data.responsable}</td>
               	</tr>
 
         })
@@ -782,8 +783,8 @@ class Procedimientos extends React.Component{
               <table className="table" style={{backgroundColor:"#FFF"}}>
                 <thead>
                   <tr>
-                    <th className="text-center">ÁREAS INVOLUCRADAS</th>
-                    <th className="text-center">RESPONSABLE</th>
+                    <th className="text-left">ÁREAS INVOLUCRADAS</th>
+                    <th className="text-left">RESPONSABLE</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -836,8 +837,8 @@ class Procedimientos extends React.Component{
 				var participantes = arra.map(function(object){
 					return <tr ng-repeat="participante in minuta.participantes" className="ng-scope">
 
-								<td>{object.data.areasinvolucradas}</td>
-								<td>{object.data.responsableinvolucrado}</td>
+								<td className="text-left">{object.data.areasinvolucradas}</td>
+								<td className="text-left">{object.data.responsableinvolucrado}</td>
 
 							</tr>
 

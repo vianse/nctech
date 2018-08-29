@@ -768,7 +768,7 @@ class Actividades extends React.Component{
         }
 
 			asignar(e){
-				$("#asuntoMinutaActividades").val(e.target.value)
+				
 			}
 			eliminar(id){
 				var database = firebase.database();
@@ -833,10 +833,7 @@ class Actividades extends React.Component{
 
                     <td>
                       <input type="text" className="form-control" id="asuntoMinutaActividades"/>
-											<select className="form-control" placeholder="Selecciona uno" id="ResponsableActividades" onChange={(e)=>asignar(e)}>
-	                        <option disabled selected>Selecciona una opción</option>
-	                        {asuntos}
-	                    </select>
+											
 										</td>
 										<td>
                     <input type="text" className="form-control" id="subActividadActividades"/>

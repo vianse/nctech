@@ -323,25 +323,25 @@ class Minutas extends React.Component{
 				var url = "editar/procedimiento?id=" + object.id
 				var url_ver = "ver/procedimiento?id=" + object.id
 				return  <tr>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left" role="row">
 									{i + 1}
 									</td>
 									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.nombreProcedimiento}
 									</td>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.arearresponsableproceso}
 									</td>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.responsableproceso}
 									</td>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.version}
 									</td>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.usuario}
 									</td>
-									<td  className="ng-scope gris2 even" role="row">
+									<td  className="ng-scope gris2 even text-left" role="row">
 									{object.data.fechaModificacion}
 									</td>
 						<td  className="ng-scope gris2 even" role="row">
@@ -372,13 +372,13 @@ class Minutas extends React.Component{
 					<table id="example" className="table table-striped table-bordered" style={{width:"100%"}}>
 						<thead className="ng-scope">
 							<tr role="row">
-								<th>No</th>
-								<th>Nombre</th>
-								<th>Área resposnable</th>
-								<th>Persona resposnable</th>
-								<th>Versión</th>
-								<th>Usuario</th>
-								<th>Fecha Modificación</th>
+								<th className="text-left">No</th>
+								<th className="text-left">Nombre</th>
+								<th className="text-left">Área resposnable</th>
+								<th className="text-left">Persona resposnable</th>
+								<th className="text-left">Versión</th>
+								<th className="text-left">Usuario</th>
+								<th className="text-left">Fecha Modificación</th>
 								<th className="sorting_disabled" tabindex="0" aria-controls="DataTables_Table_30" rowspan="1" colspan="1" aria-label="" style={{width: "216px"}}></th>
 							</tr>
 						</thead>
@@ -449,22 +449,22 @@ function modal(id){
 					var url = "editar/procedimiento?id=" + object.id
 					var url_ver = "ver/procedimiento?id=" + object.id
 					return  <tr>
-										<td  className="ng-scope gris2 even" role="row">
+										<td  className="ng-scope gris2 even text-left" role="row">
 										{object.data.nombreProcedimiento}
 										</td>
-										<td  className="ng-scope gris2 even" role="row">
+										<td  className="ng-scope gris2 even text-left" role="row">
 										{object.data.arearresponsableproceso}
 										</td>
-										<td  className="ng-scope gris2 even" role="row">
+										<td  className="ng-scope gris2 even text-left" role="row">
 										{object.data.responsableproceso}
 										</td>
-										<td  className="ng-scope gris2 even" role="row">
+										<td  className="ng-scope gris2 even text-left" role="row">
 										{i + 1}
 										</td>
-										<td  className="ng-scope gris2 even" role="row">
+										<td  className="ng-scope gris2 even text-left" role="row">
 										{object.data.usuario}
 										</td>
-										<td  className="ng-scope gris2 even" role="row">
+										<td  className="ng-scope gris2 even text-left" role="row">
 										{object.data.fechaModificacion}
 									</td>
 									<td  className="ng-scope gris2 even" role="row">
@@ -483,12 +483,12 @@ function modal(id){
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>Nombre</th>
-								<th>Area Responsable</th>
-								<th>Persona Responsable</th>
-								<th>Versión</th>
-								<th>Usuario</th>
-								<th>Fecha de Modificación</th>
+								<th className="text-left">Nombre</th>
+								<th className="text-left">Area Responsable</th>
+								<th className="text-left">Persona Responsable</th>
+								<th className="text-left">Versión</th>
+								<th className="text-left">Usuario</th>
+								<th className="text-left">Fecha de Modificación</th>
 								<th></th>
 							</tr>
 						</thead>
