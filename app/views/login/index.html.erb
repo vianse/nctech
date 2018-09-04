@@ -1,5 +1,5 @@
 <html lang="en">
-  
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -353,9 +353,9 @@
     provider.addScope('profile');
     provider.addScope('email');
     provider.addScope('https://www.googleapis.com/auth/plus.me');
-    //provider.setCustomParameters({
-    //'hd': 'nctech.com.mx'
-    //});
+    provider.setCustomParameters({
+    'hd': 'nctech.com.mx'
+    });
     firebase.auth().signInWithPopup(provider);
   }
 
